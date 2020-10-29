@@ -2,7 +2,7 @@ import React from 'react';
 import './App.css';
 import {AppRouter} from "./routing/AppRouter";
 import { Provider } from "react-redux";
-import {store} from "./redux/store/store.js";
+import {store} from "./redux/store/store";
 
  const App: React.FC = () => {
 

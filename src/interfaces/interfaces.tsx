@@ -1,5 +1,3 @@
-import { types } from "../types/types";
-
 export interface iUsers {
   username: string;
   uid: string;
