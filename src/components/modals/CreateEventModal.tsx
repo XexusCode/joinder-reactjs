@@ -12,10 +12,12 @@ import React, { useState } from "react";
 import SearchBar from "../maps/SearchBar";
 import DatePicker from "../date/DatePicker";
 import { imgUpload } from "../../helpers/imgUpload";
+import { EventObject, User } from "../../interfaces/interfaces";
 
 interface CreateEventModalParams {
   show: boolean;
   onHide: () => void;
+  handleCreateEvent: (event: EventObject) => void;
 }
 
 export const CreateEventModal = (props: CreateEventModalParams) => {
@@ -28,6 +30,7 @@ export const CreateEventModal = (props: CreateEventModalParams) => {
     const resp = await imgUpload(e.target.files[0]);
     setImg(resp);
   };
+
   return (
     <Modal {...props} centered aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -100,10 +103,19 @@ export const CreateEventModal = (props: CreateEventModalParams) => {
         <Button onClick={props.onHide}>Close</Button>
         <Button
           onClick={() => {
-            console.log(dateStart, "qweqwe", dateEnd);
+            props.handleCreateEvent({
+              idevent: "23",
+              name: "",
+              owner: "string",
+              start_date: "string",
+              end_date: "string",
+              location: "string",
+              nmax: 3,
+              users: [],
+            });
           }}
         >
-          Join
+          JOIN
         </Button>
       </Modal.Footer>
     </Modal>

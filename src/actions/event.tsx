@@ -1,8 +1,8 @@
 import { fetchApi } from "../helpers/fetch";
 import { Dispatch } from "react";
-import {ReduxAction} from "../redux/ReduxAction";
-import {ReduxActionType} from "../redux/ReduxActionType";
-import {EventObject} from "../interfaces/interfaces";
+import { ReduxAction } from "../redux/ReduxAction";
+import { ReduxActionType } from "../redux/ReduxActionType";
+import { EventObject } from "../interfaces/interfaces";
 
 export const startLoadEvents = (uid: string) => {
   return async (dispatch: Dispatch<ReduxAction<any>>) => {
@@ -24,18 +24,6 @@ export const startLoadEvents = (uid: string) => {
 //     }
 //   };
 // };
-
-export const startAddNewEvent = (event: EventObject) => {
-  return async (dispatch: Dispatch<ReduxAction<any>>) => {
-    const resp = await fetchApi("addevent", "GET");
-    const body = await resp.json();
-
-    if (body.success) {
-      dispatch(addEvent(body.data));
-      dispatch(updateActiveEvent(body.data));
-    }
-  };
-};
 
 export const startDeleteEvent = () => {
   return async (dispatch: Dispatch<ReduxAction<any>>) => {

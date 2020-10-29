@@ -1,8 +1,8 @@
-import {useDispatch} from "react-redux";
-import React, {useState} from "react";
-import {login} from "../../../actions/auth";
-import {LoginViewForm} from "./LoginViewForm";
-import {fetchApi} from "../../../helpers/fetch";
+import { useDispatch } from "react-redux";
+import React, { useState } from "react";
+import { login } from "../../../actions/auth";
+import { LoginViewForm } from "./LoginViewForm";
+import { fetchApi } from "../../../helpers/fetch";
 
 export const LoginDataContainer: React.FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -13,9 +13,9 @@ export const LoginDataContainer: React.FunctionComponent = () => {
 
   const handleSubmit = (email: string, password: string) => {
     fetchApi("login", { email, password }, "GET")
-        .then((response) => response.json())
-        .then((responseJson) => dispatch(login(responseJson.data)))
-        .catch((err) => setError(err));
+      .then((response) => response.json())
+      .then((responseJson) => dispatch(login(responseJson.data)))
+      .catch((err) => setError(err));
   };
 
   return (

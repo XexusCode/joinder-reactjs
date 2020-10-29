@@ -1,13 +1,16 @@
-import React, {useState} from "react";
-import {NavbarHome} from "../../components/joinder/ui/NavbarHome";
-import {useDispatch, useSelector} from "react-redux";
-import {RootState} from "../../reducers/rootReducer";
+import React, { useState } from "react";
+import { NavbarHome } from "../../components/joinder/ui/NavbarHome";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../reducers/rootReducer";
 
 import "./HomeStyle.scss";
-import {JoinEventModal} from "../../components/modals/JoinEventModal";
-import {CreateEventModal} from "../../components/modals/CreateEventModal";
-import {HomeViewEventList} from "./HomeViewEventList";
-import {logout} from "../../actions/auth";
+import { JoinEventModal } from "../../components/modals/JoinEventModal";
+import { CreateEventModal } from "../../components/modals/CreateEventModal";
+import { HomeViewEventList } from "./HomeViewEventList";
+import { logout } from "../../actions/auth";
+import { EventObject } from "../../interfaces/interfaces";
+import { fetchApi } from "../../helpers/fetch";
+import { addEvent, updateActiveEvent } from "../../actions/event";
 
 export const HomeDataContainer: React.FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -17,6 +20,16 @@ export const HomeDataContainer: React.FunctionComponent = () => {
   const { username } = useSelector((state: RootState) => state.auth);
   const handleLogout = () => {
     dispatch(logout());
+  };
+
+  const handleCreateEvent = async (event: EventObject) => {
+    const resp = await fetchApi("addevent", "GET");
+    const body = await resp.json();
+
+    if (body.success) {
+      dispatch(addEvent(body.data));
+      dispatch(updateActiveEvent(body.data));
+    }
   };
   return (
     <>
@@ -33,6 +46,7 @@ export const HomeDataContainer: React.FunctionComponent = () => {
         onHide={() => setModalShowJoin(false)}
       />
       <CreateEventModal
+        handleCreateEvent={handleCreateEvent}
         show={modalShowCreate}
         onHide={() => setModalShowCreate(false)}
       />

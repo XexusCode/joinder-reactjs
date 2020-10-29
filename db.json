@@ -3,13 +3,23 @@
       "success":true,
       "code":200,
       "message":"Usuario Logueado",
-      "data":"jwt-token"
+      "data":{
+         "username": "string",
+         "uid": "123",
+         "color": "123",
+         "rank": "123"
+      }
    },
    "register":{
       "success":true,
       "code":200,
       "message":"Usuario Registrado",
-      "data":"jwt-token"
+      "data":{
+         "username": "string",
+         "uid": "123",
+         "color": "123",
+         "rank": "123"
+      }
    },
    "loadevents":{
       "success":true,

@@ -1,8 +1,8 @@
-import {fetchApi} from "../helpers/fetch";
-import {User} from "../interfaces/interfaces";
-import {Dispatch} from "react";
-import {ReduxAction} from "../redux/ReduxAction";
-import {ReduxActionType} from "../redux/ReduxActionType";
+import { fetchApi } from "../helpers/fetch";
+import { User } from "../interfaces/interfaces";
+import { Dispatch } from "react";
+import { ReduxAction } from "../redux/ReduxAction";
+import { ReduxActionType } from "../redux/ReduxActionType";
 
 export const startRegister = (
   username: string,

@@ -2,7 +2,6 @@ import React from "react";
 import { EventObject } from "../../interfaces/interfaces";
 import { EventCard } from "../../components/joinder/event/EventCard";
 import { Button } from "react-bootstrap";
-import { startAddNewEvent } from "../../actions/event";
 import { useDispatch } from "react-redux";
 
 interface iHomeViewEventList {
@@ -25,7 +24,6 @@ export const HomeViewEventList = ({
       <Button
         className="buttonjoin"
         onClick={(e) => {
-          dispatch(startAddNewEvent(events[0]));
           setModalShowJoin(true);
         }}
       >
@@ -36,7 +34,6 @@ export const HomeViewEventList = ({
         variant="secondary"
         className="buttonadd"
         onClick={(e) => {
-          dispatch(startAddNewEvent(events[0]));
           setModalShowCreate(true);
         }}
       >
