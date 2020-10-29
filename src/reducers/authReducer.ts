@@ -1,24 +1,20 @@
-import { types } from "../types/types";
+import {ReduxAction} from "../redux/ReduxAction";
+import {ReduxActionType} from "../redux/ReduxActionType";
 
 const initialState = {
   checking: true,
   uid: null,
 };
 
-interface authActionTypes {
-  type: string;
-  payload: any;
-}
-
-export const authReducer = (state = initialState, action: authActionTypes) => {
+export const authReducer = (state = initialState, action: ReduxAction<any>) => {
   switch (action.type) {
-    case types.authLogin:
+    case ReduxActionType.AUTH_LOGIN:
       return {
         ...state,
         checking: false,
         ...action.payload,
       };
-    case types.authLogout:
+    case ReduxActionType.authLogout:
       return {
         state: {},
         checking: true,

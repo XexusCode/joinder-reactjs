@@ -1,12 +1,12 @@
 import React from "react";
-import { iEvents } from "../../interfaces/interfaces";
+import { EventObject } from "../../interfaces/interfaces";
 import { EventCard } from "../../components/joinder/event/EventCard";
 import { Button } from "react-bootstrap";
 import { startAddNewEvent } from "../../actions/event";
 import { useDispatch } from "react-redux";
 
 interface iHomeViewEventList {
-  events: Array<iEvents>;
+  events: Array<EventObject>;
   setModalShowJoin: (arr: boolean) => void;
   setModalShowCreate: (arr: boolean) => void;
 }
@@ -19,8 +19,8 @@ export const HomeViewEventList = ({
   const dispatch = useDispatch();
   return (
     <div>
-      {events.map((e: iEvents) => (
-        <EventCard key={e.idevent} {...e} />
+      {events.map((event: EventObject) => (
+        <EventCard key={event.idevent} {...event} />
       ))}
       <Button
         className="buttonjoin"

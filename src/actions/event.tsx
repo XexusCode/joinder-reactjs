@@ -1,10 +1,11 @@
 import { fetchApi } from "../helpers/fetch";
-import { types } from "../types/types";
-import { dispatchAction, iEvents } from "../interfaces/interfaces";
 import { Dispatch } from "react";
+import {ReduxAction} from "../redux/ReduxAction";
+import {ReduxActionType} from "../redux/ReduxActionType";
+import {EventObject} from "../interfaces/interfaces";
 
 export const startLoadEvents = (uid: string) => {
-  return async (dispatch: Dispatch<dispatchAction>) => {
+  return async (dispatch: Dispatch<ReduxAction<any>>) => {
     const resp = await fetchApi("loadevents", "GET");
     const body = await resp.json();
     if (body.success) {
@@ -24,8 +25,8 @@ export const startLoadEvents = (uid: string) => {
 //   };
 // };
 
-export const startAddNewEvent = (event: iEvents) => {
-  return async (dispatch: Dispatch<dispatchAction>) => {
+export const startAddNewEvent = (event: EventObject) => {
+  return async (dispatch: Dispatch<ReduxAction<any>>) => {
     const resp = await fetchApi("addevent", "GET");
     const body = await resp.json();
 
@@ -37,7 +38,7 @@ export const startAddNewEvent = (event: iEvents) => {
 };
 
 export const startDeleteEvent = () => {
-  return async (dispatch: Dispatch<dispatchAction>) => {
+  return async (dispatch: Dispatch<ReduxAction<any>>) => {
     const resp = await fetchApi("deleteevent", "GET");
     const body = await resp.json();
     if (body.success) {
@@ -47,19 +48,19 @@ export const startDeleteEvent = () => {
 };
 
 export const startJoinNewEvent = (idEvent: string, uid: string) => {
-  return async (dispatch: Dispatch<dispatchAction>) => {
+  return async (dispatch: Dispatch<ReduxAction<any>>) => {
     const resp = await fetchApi("joinevent", "GET");
     const body = await resp.json(); // Usuario añadido a evento (idEvent)
 
     if (body.success) {
-      const event: iEvents = { ...body.data };
+      const event: EventObject = { ...body.data };
       dispatch(addEvent(event));
     }
   };
 };
 
-export const startUpdateEvent = (event: iEvents) => {
-  return async (dispatch: Dispatch<dispatchAction>) => {
+export const startUpdateEvent = (event: EventObject) => {
+  return async (dispatch: Dispatch<ReduxAction<any>>) => {
     const resp = await fetchApi("updateevent", "GET");
     const body = await resp.json();
 
@@ -70,34 +71,34 @@ export const startUpdateEvent = (event: iEvents) => {
 };
 
 export const startLogoutEvents = () => {
-  return async (dispatch: Dispatch<dispatchAction>) => {
+  return async (dispatch: Dispatch<ReduxAction<any>>) => {
     dispatch(logoutEvents());
   };
 };
-export const loadEvents = (events: Array<iEvents>) => ({
-  type: types.eventsLoad,
+export const loadEvents = (events: Array<EventObject>) => ({
+  type: ReduxActionType.eventsLoad,
   payload: events,
 });
 
-export const setActiveEvent = (event: iEvents) => ({
-  type: types.eventSetActive,
+export const setActiveEvent = (event: EventObject) => ({
+  type: ReduxActionType.eventSetActive,
   payload: event,
 });
 
-export const updateActiveEvent = (event: iEvents) => ({
-  type: types.eventUpdateActive,
+export const updateActiveEvent = (event: EventObject) => ({
+  type: ReduxActionType.eventUpdateActive,
   payload: event,
 });
 
-export const addEvent = (event: iEvents) => ({
-  type: types.eventAddNew,
+export const addEvent = (event: EventObject) => ({
+  type: ReduxActionType.eventAddNew,
   payload: event,
 });
 
 export const deleteEvent = () => ({
-  type: types.eventDelete,
+  type: ReduxActionType.eventDelete,
 });
 
 export const logoutEvents = () => ({
-  type: types.eventLogout,
+  type: ReduxActionType.eventLogout,
 });

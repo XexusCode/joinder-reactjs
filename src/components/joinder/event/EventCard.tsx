@@ -2,8 +2,8 @@ import React from "react";
 import "./EventCard.scss";
 import { Badge, Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { iEvents } from "../../../interfaces/interfaces";
-export const EventCard = (event: iEvents) => {
+import { EventObject } from "../../../interfaces/interfaces";
+export const EventCard = (event: EventObject) => {
   return (
     <Link style={{ textDecoration: "none" }} to={`./evento/${event.idevent}`}>
       <Col>

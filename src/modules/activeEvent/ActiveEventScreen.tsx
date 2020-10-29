@@ -1,6 +1,6 @@
 import React from "react";
 import { ActiveEventDataContainer } from "./ActiveEventDataContainer";
 
-export const ActiveEventScreem: React.FC = () => {
+export const ActiveEventScreen: React.FC = () => {
   return <ActiveEventDataContainer />;
 };

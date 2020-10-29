@@ -1,9 +1,10 @@
-import { types } from "../types/types";
-import { iEvents } from "../interfaces/interfaces";
+import { EventObject } from "../interfaces/interfaces";
+import {ReduxAction} from "../redux/ReduxAction";
+import {ReduxActionType} from "../redux/ReduxActionType";
 
 interface iInitialState {
-  events: Array<iEvents>;
-  activeEvent: iEvents;
+  events: Array<EventObject>;
+  activeEvent: EventObject;
 }
 
 const initialState: iInitialState = {
@@ -27,16 +28,16 @@ interface eventActionTypes {
 
 export const eventReducer = (
   state = initialState,
-  action: eventActionTypes
+  action: ReduxAction<any>
 ) => {
   switch (action.type) {
-    case types.eventsLoad:
+    case ReduxActionType.eventsLoad:
       return {
         ...state,
         events: action.payload,
       };
 
-    case types.eventUpdateActive:
+    case ReduxActionType.eventUpdateActive:
       return {
         ...state,
         events: state.events.map((e) =>
@@ -45,13 +46,13 @@ export const eventReducer = (
         activeEvent: action.payload,
       };
 
-    case types.eventAddNew:
+    case ReduxActionType.eventAddNew:
       return {
         ...state,
         events: [...state.events, action.payload],
       };
 
-    case types.eventDelete:
+    case ReduxActionType.eventDelete:
       console.log(state.activeEvent.idevent);
       return {
         ...state,
@@ -61,7 +62,7 @@ export const eventReducer = (
         activeEvent: {},
       };
 
-    case types.authLogout:
+    case ReduxActionType.authLogout:
       return {
         events: [],
         activeEvent: {},

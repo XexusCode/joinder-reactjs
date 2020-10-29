@@ -1,11 +1,11 @@
-export interface iUsers {
+export interface User {
   username: string;
   uid: string;
   color: string;
   rank: string;
 }
 
-export interface iEvents {
+export interface EventObject {
   idevent: string;
   name: string;
   owner: string;
@@ -13,18 +13,7 @@ export interface iEvents {
   end_date: string;
   location: string;
   nmax: number;
-  users: Array<iUsers>;
-}
-export interface iDispatch {
-  dispatch: (action: iActions) => void;
+  users: Array<User>;
 }
 
-export interface iActions {
-  logout: () => void;
-}
 
-export interface dispatchAction {
-  type: string;
-}
-
-export type DispatchType = (args: dispatchAction) => dispatchAction;

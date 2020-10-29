@@ -1,7 +1,7 @@
-import { iUsers } from "../../../interfaces/interfaces";
+import { User } from "../../../interfaces/interfaces";
 import React from "react";
 
-export const UserCard = (user: iUsers) => {
+export const UserCard = (user: User) => {
   return (
     <div>
       <p>PRUEBA</p>
