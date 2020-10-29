@@ -1,0 +1,24 @@
+.event{
+  color: black;
+
+
+
+  &:hover{
+    background-color: darken(ghostwhite,20%);
+    text-decoration: lavender;
+    text-underline: none;
+
+
+  }
+}
+.fondo{
+  background-color: white;
+}
+
+.badge{
+  font-size: larger;
+}
+.nmax{
+
+  padding-top: 10px;
+}

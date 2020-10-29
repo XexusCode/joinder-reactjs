@@ -1,0 +1,171 @@
+{
+   "login":{
+      "success":true,
+      "code":200,
+      "message":"Usuario Logueado",
+      "data":"jwt-token"
+   },
+   "register":{
+      "success":true,
+      "code":200,
+      "message":"Usuario Registrado",
+      "data":"jwt-token"
+   },
+   "loadevents":{
+      "success":true,
+      "code":200,
+      "message":"Eventos Cargados",
+      "data":[
+         {
+            "idevent":"111",
+            "name":"evento1",
+            "owner":"222",
+            "start_date":"11-20-30 11:23",
+            "end_date":"21-20-30 11:23",
+            "location":"Castellon",
+			"nmax":7,
+            "users":[
+               {
+                  "uid":"222",
+                  "color":"green",
+                  "rank":"user"
+               },
+               {
+                  "uid":"223",
+                  "color":"blue",
+                  "rank":"user"
+               }
+            ]
+         },
+         {
+            "idevent":"112",
+            "name":"evento2",
+            "start_date":"13-20-30 11:23",
+            "end_date":"14-20-30 11:23",
+            "location":"Castellon",
+			"nmax":7,
+            "users":[
+               {
+                  "uid":"222",
+                  "color":"green",
+                  "rank":"user"
+               },
+               {
+                  "uid":"224",
+                  "color":"pink",
+                  "rank":"user"
+               }
+            ]
+         }
+      ]
+   },
+   "adduser":{
+      "success":true,
+      "code":200,
+      "message":"Usuario Añadido",
+      "data":{
+         "idevent":"112",
+         "name":"evento2",
+         "start_date":"13-20-30 11:23",
+         "end_date":"14-20-30 11:23",
+         "location":"Castellon",
+		 "nmax":7,
+         "users":[
+            {
+               "uid":"222",
+               "color":"green",
+               "rank":"user"
+            },
+            {
+               "uid":"225NEW",
+               "color":"orange",
+               "rank":"user"
+            }
+         ]
+      }
+   },
+   "updateevent":{
+      "success":true,
+      "code":200,
+      "message":"Evento Actualizado",
+      "data":{
+         "idevent":"112",
+         "name":"eventoMODIFICADO",
+         "start_date":"13-20-30 11:23",
+         "end_date":"14-20-30 11:23",
+         "location":"Castellon",
+		 "nmax":7,
+         "users":[
+            {
+               "uid":"222",
+               "color":"green",
+               "rank":"user"
+            },
+            {
+               "uid":"225NEW",
+               "color":"orange",
+               "rank":"user"
+            }
+         ]
+      }
+   },
+   "addevent":{
+      "success":true,
+      "code":200,
+      "message":"Evento Guardado",
+      "data":{
+         "idevent":"14787",
+         "name":"nombreEvento",
+         "owner":"2222",
+         "start_date":"11-20-30 11:23",
+         "end_date":"21-20-30 11:23",
+         "location":"Castellon",
+		 "nmax":7,
+         "users":[
+            {
+               "uid":"2222",
+               "color":"green",
+               "rank":"owner"
+            },
+            {
+               "uid":"223",
+               "color":"blue",
+               "rank":"user"
+            }
+         ]
+      }
+   },
+   "joinevent":{
+      "success":true,
+      "code":200,
+      "message":"Te has unido a un evento",
+      "data":[
+         {
+            "idevent":"14787",
+            "name":"nombreEvento",
+            "owner":"2222",
+            "start_date":"11-20-30 11:23",
+            "end_date":"21-20-30 11:23",
+            "location":"Castellon",
+			"nmax":7,
+            "users":[
+               {
+                  "uid":"2222",
+                  "color":"green",
+                  "rank":"owner"
+               },
+               {
+                  "uid":"223",
+                  "color":"blue",
+                  "rank":"user"
+               }
+            ]
+         }
+      ]
+   },
+   "deleteevent":{
+      "success":true,
+      "code":200,
+      "message":"Evento Eliminado"
+   }
+}
