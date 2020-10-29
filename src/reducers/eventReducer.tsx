@@ -61,7 +61,7 @@ export const eventReducer = (
         activeEvent: {},
       };
 
-    case types.eventLogout:
+    case types.authLogout:
       return {
         events: [],
         activeEvent: {},

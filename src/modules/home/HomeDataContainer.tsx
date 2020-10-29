@@ -1,17 +1,13 @@
-import React, { useState } from "react";
-import { NavbarHome } from "../../components/joinder/ui/NavbarHome";
-import { iEvents } from "../../interfaces/interfaces";
-import { EventCard } from "../../components/joinder/event/EventCard";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../reducers/rootReducer";
-import { startAddNewEvent } from "../../actions/event";
-import { startLogout } from "../../actions/auth";
-import { Button, Container } from "react-bootstrap";
+import React, {useState} from "react";
+import {NavbarHome} from "../../components/joinder/ui/NavbarHome";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../reducers/rootReducer";
 
 import "./HomeStyle.scss";
-import { JoinEventModal } from "../../components/modals/JoinEventModal";
-import { CreateEventModal } from "../../components/modals/CreateEventModal";
-import { HomeViewEventList } from "./HomeViewEventList";
+import {JoinEventModal} from "../../components/modals/JoinEventModal";
+import {CreateEventModal} from "../../components/modals/CreateEventModal";
+import {HomeViewEventList} from "./HomeViewEventList";
+import {logout} from "../../actions/auth";
 
 export const HomeDataContainer: React.FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -20,7 +16,7 @@ export const HomeDataContainer: React.FunctionComponent = () => {
   const { events } = useSelector((state: RootState) => state.event);
   const { username } = useSelector((state: RootState) => state.auth);
   const handleLogout = () => {
-    dispatch(startLogout());
+    dispatch(logout());
   };
   return (
     <>
