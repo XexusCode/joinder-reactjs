@@ -9,20 +9,7 @@ export const LoginDataContainer: React.FunctionComponent = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    switch (e.target.name) {
-      case "email":
-        return setEmail(e.target.value);
-      case "password":
-        return setPassword(e.target.value);
-
-      default:
-        return null;
-    }
-  };
-
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const handleSubmit = (email: string, password: string) => {
     dispatch(startLogin(email, password));
   };
 
@@ -31,7 +18,8 @@ export const LoginDataContainer: React.FunctionComponent = () => {
       <LoginViewForm
         handleSubmit={handleSubmit}
         email={email}
-        handleInputChange={handleInputChange}
+        handleInputEmail={setEmail}
+        handleInputPassword={setPassword}
         password={password}
       />
     </div>

@@ -1,31 +1,36 @@
 import { Button, FormControl, FormGroup, Nav, Row } from "react-bootstrap";
 import React from "react";
 
-interface Ilogin {
-  handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
+interface LoginViewFormProps {
+  handleSubmit: (email: string, password: string) => void;
   email: string;
-  handleInputChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  handleInputEmail: (email: string) => void;
+  handleInputPassword: (password: string) => void;
   password: string;
 }
 
 export const LoginViewForm = ({
   handleSubmit,
   email,
-  handleInputChange,
+  handleInputEmail,
+  handleInputPassword,
   password,
-}: Ilogin) => {
+}: LoginViewFormProps) => {
   return (
     <div className="Login">
       <h1>Login Screen</h1>
       <Row>
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={(e) => {
+          e.preventDefault()
+          handleSubmit(email, password)
+        }}>
           <FormGroup controlId="email">
             <label>Email</label>
             <FormControl
               type="text"
               name="email"
               value={email}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputEmail(e.target.value)}
               placeholder="Enter your email"
             />
           </FormGroup>
@@ -36,7 +41,7 @@ export const LoginViewForm = ({
               type="password"
               name="password"
               value={password}
-              onChange={handleInputChange}
+              onChange={(e) => handleInputPassword(e.target.value)}
               placeholder="Enter your password"
             />
           </FormGroup>

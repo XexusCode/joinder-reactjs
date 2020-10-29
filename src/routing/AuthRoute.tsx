@@ -10,9 +10,6 @@ export const AuthRoute: React.FC = () => {
       <Switch>
         <Route path={Routes.AUTH_LOGIN} component={LoginScreen} />
         <Route path={Routes.AUTH_REGISTER} component={RegisterScreen} />
-
-        <Route path={Routes.AUTH_REGISTER} component={RegisterScreen} />
-
         <Redirect to={Routes.AUTH_LOGIN} />
       </Switch>
     </div>
