@@ -1,28 +1,44 @@
 import { Button, FormControl, FormGroup, Row } from "react-bootstrap";
 import React from "react";
 
-interface IRegister {
+interface RegisterParams {
   username: string;
-  handleInputChange(e: React.ChangeEvent<HTMLInputElement>): void;
+  handleInputName: (username: string) => void;
+  handleInputPassword: (password: string) => void;
+  handleInputPassword2: (password2: string) => void;
+  handleInputEmail: (email: string) => void;
   email: string;
   password: string;
   password2: string;
-  handleSubmit(e: React.FormEvent<HTMLFormElement>): void;
+  handleSubmit: (
+    e: React.FormEvent<HTMLFormElement>,
+    username: string,
+    email: string,
+    password: string,
+    password2: string
+  ) => void;
 }
 
 export const RegisterFormView = ({
   username,
-  handleInputChange,
   email,
   password,
   password2,
   handleSubmit,
-}: IRegister) => {
+  handleInputEmail,
+  handleInputName,
+  handleInputPassword,
+  handleInputPassword2,
+}: RegisterParams) => {
   return (
     <div className="register">
       <h1>Register</h1>
       <Row>
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={(e) => {
+            handleSubmit(e, username, email, password, password2);
+          }}
+        >
           <FormGroup controlId="username">
             <label>Username</label>
             <FormControl
@@ -30,7 +46,9 @@ export const RegisterFormView = ({
               name="username"
               placeholder="Enter your username"
               value={username}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                handleInputName(e.target.value);
+              }}
             />
           </FormGroup>
 
@@ -41,7 +59,9 @@ export const RegisterFormView = ({
               name="email"
               placeholder="Enter your email"
               value={email}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                handleInputEmail(e.target.value);
+              }}
             />
           </FormGroup>
 
@@ -52,7 +72,9 @@ export const RegisterFormView = ({
               name="password"
               placeholder="Enter your password"
               value={password}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                handleInputPassword(e.target.value);
+              }}
             />
           </FormGroup>
 
@@ -63,7 +85,9 @@ export const RegisterFormView = ({
               name="password2"
               placeholder="Repeat your password"
               value={password2}
-              onChange={handleInputChange}
+              onChange={(e) => {
+                handleInputPassword2(e.target.value);
+              }}
             />
           </FormGroup>
 

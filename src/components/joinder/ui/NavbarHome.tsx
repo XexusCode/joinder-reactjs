@@ -1,20 +1,20 @@
 import React from "react";
-import { Nav, Navbar, NavDropdown } from "react-bootstrap";
+import { Nav, Navbar } from "react-bootstrap";
 import { Routes } from "../../../routing/routes";
 
-interface iNavbar {
+interface NavbarParams {
   handleLogout: () => void;
   username: string;
 }
 
-export const NavbarHome = ({ handleLogout, username }: iNavbar) => {
+export const NavbarHome = ({ handleLogout, username }: NavbarParams) => {
   return (
     <div>
       <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
         <Navbar.Brand href={Routes.HOME}>{username}</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
-          <Nav className="mr-auto"></Nav>
+          <Nav className="mr-auto" />
           <Nav>
             <Nav.Link onClick={handleLogout}>LOGOUT</Nav.Link>
 

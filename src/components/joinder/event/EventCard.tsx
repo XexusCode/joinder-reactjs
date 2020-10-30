@@ -3,9 +3,20 @@ import "./EventCard.scss";
 import { Badge, Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { EventObject } from "../../../interfaces/interfaces";
-export const EventCard = (event: EventObject) => {
+interface EventCardParams {
+  handleActiveEvent: (event: EventObject) => void;
+  event: EventObject;
+}
+
+export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
   return (
-    <Link style={{ textDecoration: "none" }} to={`./evento/${event.idevent}`}>
+    <Link
+      onClick={() => {
+        handleActiveEvent(event);
+      }}
+      style={{ textDecoration: "none" }}
+      to={`./evento/${event.idevent}`}
+    >
       <Col>
         <hr />
         <Row>

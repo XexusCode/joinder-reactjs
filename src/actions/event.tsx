@@ -25,16 +25,6 @@ export const startLoadEvents = (uid: string) => {
 //   };
 // };
 
-export const startDeleteEvent = () => {
-  return async (dispatch: Dispatch<ReduxAction<any>>) => {
-    const resp = await fetchApi("deleteevent", "GET");
-    const body = await resp.json();
-    if (body.success) {
-      dispatch(deleteEvent());
-    }
-  };
-};
-
 export const startJoinNewEvent = (idEvent: string, uid: string) => {
   return async (dispatch: Dispatch<ReduxAction<any>>) => {
     const resp = await fetchApi("joinevent", "GET");

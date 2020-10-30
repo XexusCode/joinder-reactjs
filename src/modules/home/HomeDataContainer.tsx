@@ -12,31 +12,52 @@ import { EventObject } from "../../interfaces/interfaces";
 import { fetchApi } from "../../helpers/fetch";
 import { addEvent, updateActiveEvent } from "../../actions/event";
 
-export const HomeDataContainer: React.FunctionComponent = () => {
+export const HomeDataContainer: React.FC = () => {
   const dispatch = useDispatch();
+
+  const [error, setError] = useState("");
   const [modalShowCreate, setModalShowCreate] = useState(false);
   const [modalShowJoin, setModalShowJoin] = useState(false);
   const { events } = useSelector((state: RootState) => state.event);
   const { username } = useSelector((state: RootState) => state.auth);
+
   const handleLogout = () => {
     dispatch(logout());
     Swal.fire("Sesion Cerrada", "Has cerrado sesion correctamente!", "success");
   };
+  const handleActiveEvent = (event: EventObject) => {
+    dispatch(updateActiveEvent(event));
+  };
 
   const handleCreateEvent = async (event: EventObject) => {
-    const resp = await fetchApi("addevent", "GET");
-    const body = await resp.json();
-
-    if (body.success) {
-      dispatch(addEvent(body.data));
-      dispatch(updateActiveEvent(body.data));
-    }
+    fetchApi("addevent", "GET")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        dispatch(addEvent(responseJson.data));
+        dispatch(
+          addEvent({
+            idevent: "qewqwe",
+            users: [],
+            name: "qweqweqwe",
+            nmax: 10,
+            location: "qweqwe",
+            end_date: "",
+            owner: "jqew",
+            start_date: "213",
+          })
+        );
+        dispatch(updateActiveEvent(responseJson.data));
+        setModalShowCreate(false);
+      })
+      .catch((err) => setError(err));
   };
+
   return (
     <>
       <NavbarHome handleLogout={handleLogout} username={username} />
 
       <HomeViewEventList
+        handleActiveEvent={handleActiveEvent}
         events={events}
         setModalShowCreate={setModalShowCreate}
         setModalShowJoin={setModalShowJoin}
