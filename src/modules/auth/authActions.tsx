@@ -1,4 +1,4 @@
-import { UserObjects } from "../../interfaces/interfaces";
+import { UserObjects } from "../../models/models";
 import { ReduxAction } from "../../redux/ReduxAction";
 import { ReduxActionType } from "../../redux/ReduxActionType";
 

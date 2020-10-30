@@ -8,7 +8,7 @@ import { JoinEventModal } from "../../components/modals/JoinEventModal";
 import { CreateEventModal } from "../../components/modals/CreateEventModal";
 import { EventViewEventList } from "./EventViewEventList";
 import { logout } from "../auth/authActions";
-import { EventObject } from "../../interfaces/interfaces";
+import { EventObject } from "../../models/models";
 import { fetchApi } from "../../helpers/fetch";
 import { addEvent, loadEvents, updateActiveEvent } from "./eventActions";
 import { imgUpload } from "../../helpers/imgUpload";

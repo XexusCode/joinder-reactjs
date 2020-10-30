@@ -2,7 +2,7 @@ import { fetchApi } from "../../helpers/fetch";
 import { Dispatch } from "react";
 import { ReduxAction } from "../../redux/ReduxAction";
 import { ReduxActionType } from "../../redux/ReduxActionType";
-import { EventObject } from "../../interfaces/interfaces";
+import { EventObject } from "../../models/models";
 
 export const startLoadEvents = (uid: string) => {
   return async (dispatch: Dispatch<ReduxAction<any>>) => {

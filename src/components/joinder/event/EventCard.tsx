@@ -2,7 +2,7 @@ import React from "react";
 import "./EventCard.scss";
 import { Badge, Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
-import { EventObject } from "../../../interfaces/interfaces";
+import { EventObject } from "../../../models/models";
 interface EventCardParams {
   handleActiveEvent: (event: EventObject) => void;
   event: EventObject;

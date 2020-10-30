@@ -1,4 +1,4 @@
-import { UserObjects } from "../../../interfaces/interfaces";
+import { UserObjects } from "../../../models/models";
 import React from "react";
 
 export const UserCard = (user: UserObjects) => {

@@ -1,5 +1,5 @@
 import React from "react";
-import { EventObject } from "../../interfaces/interfaces";
+import { EventObject } from "../../models/models";
 import { EventCard } from "../../components/joinder/event/EventCard";
 import { Button } from "react-bootstrap";
 

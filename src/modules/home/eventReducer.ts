@@ -1,4 +1,4 @@
-import { EventObject } from "../../interfaces/interfaces";
+import { EventObject } from "../../models/models";
 import { ReduxAction } from "../../redux/ReduxAction";
 import { ReduxActionType } from "../../redux/ReduxActionType";
 

@@ -11,7 +11,7 @@ import {
 import React from "react";
 import SearchBar from "../maps/SearchBar";
 import DatePicker from "../date/DatePicker";
-import { EventObject } from "../../interfaces/interfaces";
+import { EventObject } from "../../models/models";
 
 interface CreateEventModalParams {
   show: boolean;
