@@ -1,5 +1,5 @@
-import {ReduxAction} from "../redux/ReduxAction";
-import {ReduxActionType} from "../redux/ReduxActionType";
+import { ReduxAction } from "../../redux/ReduxAction";
+import { ReduxActionType } from "../../redux/ReduxActionType";
 
 const initialState = {
   checking: true,

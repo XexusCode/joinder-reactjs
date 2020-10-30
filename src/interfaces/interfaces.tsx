@@ -1,4 +1,4 @@
-export interface User {
+export interface UserObjects {
   username: string;
   uid: string;
   color: string;
@@ -13,7 +13,5 @@ export interface EventObject {
   end_date: string;
   location: string;
   nmax: number;
-  users: Array<User>;
+  users: Array<UserObjects>;
 }
-
-

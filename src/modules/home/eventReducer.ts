@@ -1,6 +1,6 @@
-import { EventObject } from "../interfaces/interfaces";
-import {ReduxAction} from "../redux/ReduxAction";
-import {ReduxActionType} from "../redux/ReduxActionType";
+import { EventObject } from "../../interfaces/interfaces";
+import { ReduxAction } from "../../redux/ReduxAction";
+import { ReduxActionType } from "../../redux/ReduxActionType";
 
 interface iInitialState {
   events: Array<EventObject>;

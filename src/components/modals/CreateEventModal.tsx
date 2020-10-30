@@ -7,8 +7,8 @@ import {
   Modal,
   Row,
 } from "react-bootstrap";
-import React, from "react";
 
+import React from "react";
 import SearchBar from "../maps/SearchBar";
 import DatePicker from "../date/DatePicker";
 import { EventObject } from "../../interfaces/interfaces";

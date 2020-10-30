@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import { RegisterFormView } from "./RegisterFormView";
-import { login } from "../../../actions/auth";
 import { useDispatch } from "react-redux";
 import { fetchApi } from "../../../helpers/fetch";
+import { register } from "../../../serviceWorker";
 
 export const RegisterDataContainer = () => {
   const dispatch = useDispatch();
@@ -20,16 +20,16 @@ export const RegisterDataContainer = () => {
     password: string,
     password2: string
   ) => {
-    e.preventDefault();
-
     if (password === password2) {
       fetchApi("register", { username, email, password }, "GET")
-        .then((response) => response.json())
-        .then((responsejson) => dispatch(login(responsejson.data)))
+        .then((response) =>
+          response
+            .json()
+            .then((responsejson) => dispatch(register(responsejson.data)))
+        )
         .catch((err) => setError(err));
-    } else {
-      setError("Las contraseñas no son iguales");
     }
+    e.preventDefault();
   };
 
   return (

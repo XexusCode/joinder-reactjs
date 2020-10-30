@@ -10,7 +10,7 @@ interface iHomeViewEventList {
   handleActiveEvent: (event: EventObject) => void;
 }
 
-export const HomeViewEventList = ({
+export const EventViewEventList = ({
   events,
   setModalShowJoin,
   setModalShowCreate,

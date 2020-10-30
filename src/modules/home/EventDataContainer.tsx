@@ -1,21 +1,25 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { NavbarHome } from "../../components/joinder/ui/NavbarHome";
 import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../reducers/rootReducer";
+import { RootState } from "../../redux/rootReducer";
 import Swal from "sweetalert2";
-import "./HomeStyle.scss";
+import "./EventStyle.scss";
 import { JoinEventModal } from "../../components/modals/JoinEventModal";
 import { CreateEventModal } from "../../components/modals/CreateEventModal";
-import { HomeViewEventList } from "./HomeViewEventList";
-import { logout } from "../../actions/auth";
+import { EventViewEventList } from "./EventViewEventList";
+import { logout } from "../auth/authActions";
 import { EventObject } from "../../interfaces/interfaces";
 import { fetchApi } from "../../helpers/fetch";
-import { addEvent, updateActiveEvent } from "../../actions/event";
+import { addEvent, loadEvents, updateActiveEvent } from "./eventActions";
 import { imgUpload } from "../../helpers/imgUpload";
 import { useDate } from "./hooks/useDate";
 
-export const HomeDataContainer: React.FC = () => {
+export const EventDataContainer: React.FC = () => {
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    handleLoadEvents();
+  }, []);
 
   const [error, setError] = useState("");
   const [modalShowCreate, setModalShowCreate] = useState(false);
@@ -25,6 +29,15 @@ export const HomeDataContainer: React.FC = () => {
   const { events } = useSelector((state: RootState) => state.event);
   const { username } = useSelector((state: RootState) => state.auth);
 
+  const handleLoadEvents = () => {
+    fetchApi("loadevents", "GET")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        dispatch(loadEvents(responseJson.data));
+      })
+      .catch((err) => setError(err));
+  };
+
   const handleLogout = () => {
     dispatch(logout());
     Swal.fire("Sesion Cerrada", "Has cerrado sesion correctamente!", "success");
@@ -33,19 +46,19 @@ export const HomeDataContainer: React.FC = () => {
     dispatch(updateActiveEvent(event));
   };
 
-  const handleCreateEvent = async (event: EventObject) => {
+  const handleCreateEvent = (event: EventObject) => {
     fetchApi("addevent", "GET")
       .then((response) => response.json())
       .then((responseJson) => {
         dispatch(addEvent(responseJson.data));
         dispatch(
           addEvent({
-            idevent: "qewqwe",
+            idevent: "qew123qwe",
             users: [],
             name: "qweqweqwe",
             nmax: 10,
             location: "qweqwe",
-            end_date: "",
+            end_date: "qweqw",
             owner: "jqew",
             start_date: "213",
           })
@@ -64,7 +77,7 @@ export const HomeDataContainer: React.FC = () => {
     <>
       <NavbarHome handleLogout={handleLogout} username={username} />
 
-      <HomeViewEventList
+      <EventViewEventList
         handleActiveEvent={handleActiveEvent}
         events={events}
         setModalShowCreate={setModalShowCreate}

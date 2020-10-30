@@ -36,6 +36,7 @@ export const RegisterFormView = ({
       <Row>
         <form
           onSubmit={(e) => {
+            e.preventDefault();
             handleSubmit(e, username, email, password, password2);
           }}
         >

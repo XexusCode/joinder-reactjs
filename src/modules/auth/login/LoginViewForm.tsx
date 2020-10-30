@@ -20,10 +20,12 @@ export const LoginViewForm = ({
     <div className="Login">
       <h1>Login Screen</h1>
       <Row>
-        <form onSubmit={(e) => {
-          e.preventDefault()
-          handleSubmit(email, password)
-        }}>
+        <form
+          onSubmit={(e) => {
+            e.preventDefault();
+            handleSubmit(email, password);
+          }}
+        >
           <FormGroup controlId="email">
             <label>Email</label>
             <FormControl
