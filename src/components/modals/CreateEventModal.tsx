@@ -7,30 +7,27 @@ import {
   Modal,
   Row,
 } from "react-bootstrap";
-import React, { useState } from "react";
+import React, from "react";
 
 import SearchBar from "../maps/SearchBar";
 import DatePicker from "../date/DatePicker";
-import { imgUpload } from "../../helpers/imgUpload";
-import { EventObject, User } from "../../interfaces/interfaces";
+import { EventObject } from "../../interfaces/interfaces";
 
 interface CreateEventModalParams {
   show: boolean;
   onHide: () => void;
   handleCreateEvent: (event: EventObject) => void;
+  handleChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  img: string;
+  dates: {
+    dateStart: Date;
+    setDateStart: (arg0: Date) => void;
+    dateEnd: Date;
+    setDateEnd: (arg0: Date) => void;
+  };
 }
 
 export const CreateEventModal = (props: CreateEventModalParams) => {
-  const [dateStart, setDateStart] = useState(new Date());
-  const [dateEnd, setDateEnd] = useState(new Date());
-  const [img, setImg] = useState("http://placeimg.com/120/120/cats");
-
-  const handleChange = async (e: any) => {
-    console.log(e.target.files);
-    const resp = await imgUpload(e.target.files[0]);
-    setImg(resp);
-  };
-
   return (
     <Modal {...props} centered aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -65,18 +62,24 @@ export const CreateEventModal = (props: CreateEventModalParams) => {
               <Row>
                 <Col xs={12} md={6}>
                   <Form.Label>Fecha de inicio del evento:</Form.Label>
-                  <DatePicker date={dateStart} setDate={setDateStart} />
+                  <DatePicker
+                    date={props.dates.dateStart}
+                    setDate={props.dates.setDateStart}
+                  />
                 </Col>
                 <Col xs={12} md={6}>
                   <Form.Label>Fecha de fin del evento:</Form.Label>
-                  <DatePicker date={dateEnd} setDate={setDateEnd} />
+                  <DatePicker
+                    date={props.dates.dateEnd}
+                    setDate={props.dates.setDateEnd}
+                  />
                 </Col>
               </Row>
             </Form.Group>
             <Form.Group controlId="formBasicEmail">
               <Row className="justify-content-md-center pb-2">
                 <Col xs={6} md={4}>
-                  <Image src={img} roundedCircle />
+                  <Image src={props.img} roundedCircle />
                 </Col>
               </Row>
               <Row>
@@ -87,7 +90,7 @@ export const CreateEventModal = (props: CreateEventModalParams) => {
                       required
                       name="file"
                       label="File"
-                      onChange={handleChange}
+                      onChange={props.handleChange}
                       id="formcheck-api-custom"
                       custom
                       feedbackTooltip

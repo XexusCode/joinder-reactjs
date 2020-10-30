@@ -11,6 +11,8 @@ import { logout } from "../../actions/auth";
 import { EventObject } from "../../interfaces/interfaces";
 import { fetchApi } from "../../helpers/fetch";
 import { addEvent, updateActiveEvent } from "../../actions/event";
+import { imgUpload } from "../../helpers/imgUpload";
+import { useDate } from "./hooks/useDate";
 
 export const HomeDataContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -18,6 +20,8 @@ export const HomeDataContainer: React.FC = () => {
   const [error, setError] = useState("");
   const [modalShowCreate, setModalShowCreate] = useState(false);
   const [modalShowJoin, setModalShowJoin] = useState(false);
+  const [img, setImg] = useState("http://placeimg.com/120/120/cats");
+  const dates = useDate();
   const { events } = useSelector((state: RootState) => state.event);
   const { username } = useSelector((state: RootState) => state.auth);
 
@@ -51,6 +55,10 @@ export const HomeDataContainer: React.FC = () => {
       })
       .catch((err) => setError(err));
   };
+  const handleChange = (e: any) => {
+    console.log(e.target.files);
+    imgUpload(e.target.files[0]).then((resp) => setImg(resp));
+  };
 
   return (
     <>
@@ -68,6 +76,9 @@ export const HomeDataContainer: React.FC = () => {
         onHide={() => setModalShowJoin(false)}
       />
       <CreateEventModal
+        handleChange={handleChange}
+        img={img}
+        dates={dates}
         handleCreateEvent={handleCreateEvent}
         show={modalShowCreate}
         onHide={() => setModalShowCreate(false)}
