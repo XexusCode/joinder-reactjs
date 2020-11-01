@@ -11,7 +11,7 @@ export const RegisterDataContainer = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [password2, setPassword2] = useState("");
-  const [error, setError] = useState("");
+  const [, setError] = useState("");
 
   const handleSubmit = (
     e: React.FormEvent<HTMLFormElement>,

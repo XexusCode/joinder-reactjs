@@ -21,11 +21,6 @@ const initialState: iInitialState = {
   },
 };
 
-interface eventActionTypes {
-  type: string;
-  payload: any;
-}
-
 export const eventReducer = (
   state = initialState,
   action: ReduxAction<any>
@@ -40,8 +35,8 @@ export const eventReducer = (
     case ReduxActionType.eventUpdateActive:
       return {
         ...state,
-        events: state.events.map((e) =>
-          e.idevent === action.payload.idevent ? action.payload : e
+        events: state.events.map((event) =>
+          event.idevent === action.payload.idevent ? action.payload : event
         ),
         activeEvent: action.payload,
       };
@@ -57,9 +52,11 @@ export const eventReducer = (
       return {
         ...state,
         events: state.events.filter(
-          (e) => e.idevent !== state.activeEvent.idevent
+          (event) => event.idevent !== state.activeEvent.idevent
         ),
-        activeEvent: {},
+        activeEvent: {
+          users: [],
+        },
       };
 
     case ReduxActionType.authLogout:

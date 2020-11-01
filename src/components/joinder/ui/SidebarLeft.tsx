@@ -1,14 +1,23 @@
-import React from "react";
 import { slide as Menu } from "react-burger-menu";
+import React from "react";
+import "./SidebarLeft.scss";
 import { UserCard } from "../event/UserCard";
+import { UserObjects } from "../../../models/models";
 
-const SidebarLeft = () => {
+interface SidebarLeftParams {
+  users: Array<UserObjects>;
+}
+
+export const SidebarLeft = ({ users }: SidebarLeftParams) => {
   return (
     <Menu>
-      <UserCard username="eqwe" uid="qwe" color="321qewqw" rank="qwefewq" />
-      {/*<a onClick={ this.showSettings } className="menu-item--small" href="">Settings</a>*/}
+      <h4>Usuarios Activos</h4>
+      <hr />
+      {users
+        .sort((a, b) => (a.rank >= b.rank ? 1 : -1))
+        .map((user) => (
+          <UserCard key={user.uid} {...user} />
+        ))}
     </Menu>
   );
 };
-
-export default SidebarLeft;

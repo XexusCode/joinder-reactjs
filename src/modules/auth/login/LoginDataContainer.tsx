@@ -7,7 +7,7 @@ import { fetchApi } from "../../../helpers/fetch";
 export const LoginDataContainer: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
-  const [error, setError] = useState("");
+  const [, setError] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 

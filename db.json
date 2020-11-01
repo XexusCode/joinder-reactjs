@@ -36,14 +36,22 @@
 			"nmax":7,
             "users":[
                {
-                  "uid":"222",
+                  "username": "Xexus",
+                  "uid":"123",
                   "color":"green",
-                  "rank":"user"
+                  "rank":2
                },
                {
+                  "username": "Laura",
                   "uid":"223",
                   "color":"blue",
-                  "rank":"user"
+                  "rank":0
+               },
+               {
+                  "username": "Andrea",
+                  "uid":"224",
+                  "color":"pink",
+                  "rank":1
                }
             ]
          },

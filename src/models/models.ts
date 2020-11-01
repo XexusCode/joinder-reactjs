@@ -2,7 +2,7 @@ export interface UserObjects {
   username: string;
   uid: string;
   color: string;
-  rank: string;
+  rank: number;
 }
 
 export interface EventObject {

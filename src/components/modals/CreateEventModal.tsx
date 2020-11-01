@@ -8,10 +8,11 @@ import {
   Row,
 } from "react-bootstrap";
 
-import React from "react";
-import SearchBar from "../maps/SearchBar";
+import React, { useState } from "react";
 import DatePicker from "../date/DatePicker";
 import { EventObject } from "../../models/models";
+import Geocode from "react-geocode";
+import SearchBar from "../maps/SearchBar";
 
 interface CreateEventModalParams {
   show: boolean;
@@ -28,6 +29,15 @@ interface CreateEventModalParams {
 }
 
 export const CreateEventModal = (props: CreateEventModalParams) => {
+  const [value, setValue] = useState(null);
+
+  Geocode.setApiKey(`${process.env.REACT_APP_API_GOOGLE}`);
+
+  Geocode.fromAddress("castellon").then((response) => {
+    const { lat, lng } = response.results[0].geometry.location;
+    console.log(lat, lng);
+  });
+
   return (
     <Modal {...props} centered aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>
@@ -54,7 +64,12 @@ export const CreateEventModal = (props: CreateEventModalParams) => {
                   <Form.Label>Localizacion:</Form.Label>
                 </Col>
                 <Col xs={12} md={7}>
-                  <SearchBar />
+                  <SearchBar
+                    selectProps={{
+                      value,
+                      onChange: setValue,
+                    }}
+                  />
                 </Col>
               </Row>
             </Form.Group>

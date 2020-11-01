@@ -13,30 +13,18 @@ import { fetchApi } from "../../helpers/fetch";
 import { addEvent, loadEvents, updateActiveEvent } from "./eventActions";
 import { imgUpload } from "../../helpers/imgUpload";
 import { useDate } from "./hooks/useDate";
+import { EventEmptyList } from "./EventEmptyList";
 
 export const EventDataContainer: React.FC = () => {
   const dispatch = useDispatch();
 
-  useEffect(() => {
-    handleLoadEvents();
-  }, []);
-
-  const [error, setError] = useState("");
+  const [, setError] = useState("");
   const [modalShowCreate, setModalShowCreate] = useState(false);
   const [modalShowJoin, setModalShowJoin] = useState(false);
   const [img, setImg] = useState("http://placeimg.com/120/120/cats");
   const dates = useDate();
   const { events } = useSelector((state: RootState) => state.event);
   const { username } = useSelector((state: RootState) => state.auth);
-
-  const handleLoadEvents = () => {
-    fetchApi("loadevents", "GET")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        dispatch(loadEvents(responseJson.data));
-      })
-      .catch((err) => setError(err));
-  };
 
   const handleLogout = () => {
     dispatch(logout());
@@ -52,44 +40,57 @@ export const EventDataContainer: React.FC = () => {
       .then((responseJson) => {
         dispatch(addEvent(responseJson.data));
         dispatch(
-          addEvent({
-            idevent: "qew123qwe",
-            users: [],
-            name: "qweqweqwe",
-            nmax: 10,
-            location: "qweqwe",
-            end_date: "qweqw",
-            owner: "jqew",
-            start_date: "213",
-          })
+          addEvent(
+            (event = {
+              idevent: "qew123qwe",
+              users: [],
+              name: "qweqweqwe",
+              nmax: 10,
+              location: "qweqwe",
+              end_date: "qweqw",
+              owner: "jqew",
+              start_date: "213",
+            })
+          )
         );
         dispatch(updateActiveEvent(responseJson.data));
         setModalShowCreate(false);
       })
       .catch((err) => setError(err));
   };
-  const handleChange = (e: any) => {
-    console.log(e.target.files);
+  const handleChangeImg = (e: any) => {
     imgUpload(e.target.files[0]).then((resp) => setImg(resp));
   };
+
+  useEffect(() => {
+    fetchApi("loadevents", "GET")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        dispatch(loadEvents(responseJson.data));
+      })
+      .catch((err) => setError(err));
+  }, [dispatch]);
 
   return (
     <>
       <NavbarHome handleLogout={handleLogout} username={username} />
-
-      <EventViewEventList
-        handleActiveEvent={handleActiveEvent}
-        events={events}
-        setModalShowCreate={setModalShowCreate}
-        setModalShowJoin={setModalShowJoin}
-      />
+      {events.length === 0 ? (
+        <EventEmptyList />
+      ) : (
+        <EventViewEventList
+          handleActiveEvent={handleActiveEvent}
+          events={events}
+          setModalShowCreate={setModalShowCreate}
+          setModalShowJoin={setModalShowJoin}
+        />
+      )}
 
       <JoinEventModal
         show={modalShowJoin}
         onHide={() => setModalShowJoin(false)}
       />
       <CreateEventModal
-        handleChange={handleChange}
+        handleChange={handleChangeImg}
         img={img}
         dates={dates}
         handleCreateEvent={handleCreateEvent}
