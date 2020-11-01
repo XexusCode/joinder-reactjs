@@ -6,7 +6,7 @@ import Swal from "sweetalert2";
 import "./EventStyle.scss";
 import { JoinEventModal } from "../../components/modals/JoinEventModal";
 import { CreateEventModal } from "../../components/modals/CreateEventModal";
-import { EventViewEventList } from "./EventViewEventList";
+import { EventListView } from "./EventListView";
 import { logout } from "../auth/authActions";
 import { EventObject } from "../../models/models";
 import { fetchApi } from "../../helpers/fetch";
@@ -14,6 +14,7 @@ import { addEvent, loadEvents, updateActiveEvent } from "./eventActions";
 import { imgUpload } from "../../helpers/imgUpload";
 import { useDate } from "./hooks/useDate";
 import { EventEmptyList } from "./EventEmptyList";
+import { EventButtonsView } from "./EventButtonsView";
 
 export const EventDataContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -77,14 +78,12 @@ export const EventDataContainer: React.FC = () => {
       {events.length === 0 ? (
         <EventEmptyList />
       ) : (
-        <EventViewEventList
-          handleActiveEvent={handleActiveEvent}
-          events={events}
-          setModalShowCreate={setModalShowCreate}
-          setModalShowJoin={setModalShowJoin}
-        />
+        <EventListView handleActiveEvent={handleActiveEvent} events={events} />
       )}
-
+      <EventButtonsView
+        setModalShowCreate={setModalShowCreate}
+        setModalShowJoin={setModalShowJoin}
+      />
       <JoinEventModal
         show={modalShowJoin}
         onHide={() => setModalShowJoin(false)}
