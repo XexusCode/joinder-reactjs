@@ -8,17 +8,21 @@ import {
   Row,
 } from "react-bootstrap";
 
-import React, { useState } from "react";
+import React from "react";
 import DatePicker from "../date/DatePicker";
-import { EventObject } from "../../models/models";
-import Geocode from "react-geocode";
 import SearchBar from "../maps/SearchBar";
 
 interface CreateEventModalParams {
+  handleSubmitCreateEvent: () => void;
+  handleChange: (e: React.FormEvent<HTMLInputElement>) => void;
   show: boolean;
   onHide: () => void;
-  handleCreateEvent: (event: EventObject) => void;
-  handleChange: (e: React.FormEvent<HTMLInputElement>) => void;
+  value: any;
+  setValue: (value: any) => void;
+  eventName: string;
+  setEventName: (name: string) => void;
+  nmax: string;
+  setNmax: (nmax: string) => void;
   img: string;
   dates: {
     dateStart: Date;
@@ -29,36 +33,40 @@ interface CreateEventModalParams {
 }
 
 export const CreateEventModal = (props: CreateEventModalParams) => {
-  const [value, setValue] = useState(null);
-
-  Geocode.setApiKey(`${process.env.REACT_APP_API_GOOGLE}`);
-
-  Geocode.fromAddress("castellon").then((response) => {
-    const { lat, lng } = response.results[0].geometry.location;
-    console.log(lat, lng);
-  });
-
   return (
-    <Modal {...props} centered aria-labelledby="contained-modal-title-vcenter">
-      <Modal.Header closeButton>
-        <Modal.Title id="contained-modal-title-vcenter">
-          Crear evento
-        </Modal.Title>
-      </Modal.Header>
-      <Modal.Body className="show-grid">
-        <Container>
-          <Form>
+    <Container>
+      <Form
+        onSubmit={(e) => {
+          e.preventDefault();
+          props.handleSubmitCreateEvent();
+        }}
+      >
+        <Modal
+          {...props}
+          centered
+          aria-labelledby="contained-modal-title-vcenter"
+        >
+          <Modal.Header closeButton>
+            <Modal.Title id="contained-modal-title-vcenter">
+              Crear evento
+            </Modal.Title>
+          </Modal.Header>
+          <Modal.Body className="show-grid">
             <Form.Group controlId="formName">
               <Row>
                 <Col xs={12} md={5}>
                   <Form.Label>Nombre de el evento:</Form.Label>
                 </Col>
                 <Col xs={12} md={7}>
-                  <Form.Control placeholder="Introduce el nombre de el evento" />
+                  <Form.Control
+                    value={props.eventName}
+                    onChange={(e) => props.setEventName(e.target.value)}
+                    placeholder="Introduce el nombre de el evento"
+                  />
                 </Col>
               </Row>
             </Form.Group>
-            <Form.Group controlId="formLocation">
+            <Form.Group>
               <Row>
                 <Col xs={12} md={5}>
                   <Form.Label>Localizacion:</Form.Label>
@@ -66,8 +74,8 @@ export const CreateEventModal = (props: CreateEventModalParams) => {
                 <Col xs={12} md={7}>
                   <SearchBar
                     selectProps={{
-                      value,
-                      onChange: setValue,
+                      value: props.value,
+                      onChange: props.setValue,
                     }}
                   />
                 </Col>
@@ -91,7 +99,29 @@ export const CreateEventModal = (props: CreateEventModalParams) => {
                 </Col>
               </Row>
             </Form.Group>
-            <Form.Group controlId="formBasicEmail">
+            <Form.Group>
+              <Row className="pl-3 pr-3">
+                <Form.Label>Numero maximo de personas</Form.Label>
+                <Form.Control
+                  value={props.nmax}
+                  onChange={(e) => props.setNmax(e.target.value)}
+                  as="select"
+                  custom
+                >
+                  <option>1</option>
+                  <option>2</option>
+                  <option>3</option>
+                  <option>4</option>
+                  <option>5</option>
+                  <option>6</option>
+                  <option>7</option>
+                  <option>8</option>
+                  <option>9</option>
+                  <option>10</option>
+                </Form.Control>
+              </Row>
+            </Form.Group>
+            <Form.Group>
               <Row className="justify-content-md-center pb-2">
                 <Col xs={6} md={4}>
                   <Image src={props.img} roundedCircle />
@@ -104,7 +134,7 @@ export const CreateEventModal = (props: CreateEventModalParams) => {
                       className="position-relative"
                       required
                       name="file"
-                      label="File"
+                      label="Selecciona tu imagen"
                       onChange={props.handleChange}
                       id="formcheck-api-custom"
                       custom
@@ -114,28 +144,15 @@ export const CreateEventModal = (props: CreateEventModalParams) => {
                 </Col>
               </Row>
             </Form.Group>
-          </Form>
-        </Container>
-      </Modal.Body>
-      <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
-        <Button
-          onClick={() => {
-            props.handleCreateEvent({
-              idevent: "23",
-              name: "",
-              owner: "string",
-              start_date: "string",
-              end_date: "string",
-              location: "string",
-              nmax: 3,
-              users: [],
-            });
-          }}
-        >
-          JOIN
-        </Button>
-      </Modal.Footer>
-    </Modal>
+          </Modal.Body>
+          <Modal.Footer>
+            <Button onClick={props.onHide}>Close</Button>
+            <Button onClick={props.handleSubmitCreateEvent} type="submit">
+              JOIN
+            </Button>
+          </Modal.Footer>
+        </Modal>
+      </Form>
+    </Container>
   );
 };

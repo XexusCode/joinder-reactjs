@@ -8,13 +8,14 @@ import { JoinEventModal } from "../../components/modals/JoinEventModal";
 import { CreateEventModal } from "../../components/modals/CreateEventModal";
 import { EventListView } from "./EventListView";
 import { logout } from "../auth/authActions";
-import { EventObject } from "../../models/models";
+import { EventObject, UserObjects } from "../../models/models";
 import { fetchApi } from "../../helpers/fetch";
-import { addEvent, loadEvents, updateActiveEvent } from "./eventActions";
+import { loadEvents, updateActiveEvent } from "./eventActions";
 import { imgUpload } from "../../helpers/imgUpload";
 import { useDate } from "./hooks/useDate";
 import { EventEmptyList } from "./EventEmptyList";
 import { EventButtonsView } from "./EventButtonsView";
+import { useUser } from "../activeEvent/hooks/useUser";
 
 export const EventDataContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -22,7 +23,13 @@ export const EventDataContainer: React.FC = () => {
   const [, setError] = useState("");
   const [modalShowCreate, setModalShowCreate] = useState(false);
   const [modalShowJoin, setModalShowJoin] = useState(false);
-  const [img, setImg] = useState("http://placeimg.com/120/120/cats");
+  const [img, setImg] = useState(
+    "https://res.cloudinary.com/dq9ut69am/image/upload/v1604313583/tpaxsiaivnuh3f390u3e.png"
+  );
+  const [value, setValue] = useState(null);
+  const [eventName, setEventName] = useState("");
+  const [nmax, setNmax] = useState("1");
+  const user: UserObjects = useUser();
   const dates = useDate();
   const { events } = useSelector((state: RootState) => state.event);
   const { username } = useSelector((state: RootState) => state.auth);
@@ -35,30 +42,52 @@ export const EventDataContainer: React.FC = () => {
     dispatch(updateActiveEvent(event));
   };
 
-  const handleCreateEvent = (event: EventObject) => {
-    fetchApi("addevent", "GET")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        dispatch(addEvent(responseJson.data));
-        dispatch(
-          addEvent(
-            (event = {
-              idevent: "qew123qwe",
-              users: [],
-              name: "qweqweqwe",
-              nmax: 10,
-              location: "qweqwe",
-              end_date: "qweqw",
-              owner: "jqew",
-              start_date: "213",
-            })
-          )
-        );
-        dispatch(updateActiveEvent(responseJson.data));
-        setModalShowCreate(false);
-      })
-      .catch((err) => setError(err));
+  const handleSubmitCreateEvent = () => {
+    const newEvent: EventObject = {
+      end_date: dates.dateEnd.getTime(),
+      // idEvent por backend
+      location: value,
+      name: eventName,
+      nmax: parseInt(nmax),
+      owner: user.uid,
+      start_date: dates.dateStart.getTime(),
+      img: img,
+      users: [
+        {
+          username: user.username,
+          uid: user.uid,
+          rank: user.rank,
+          color: user.color,
+        },
+      ],
+    };
+    console.log(newEvent);
   };
+
+  // const handleCreateEvent = (event: EventObject) => {
+  //   fetchApi("addevent", "GET")
+  //     .then((response) => response.json())
+  //     .then((responseJson) => {
+  //       dispatch(addEvent(responseJson.data));
+  //       dispatch(
+  //         addEvent(
+  //           (event = {
+  //             idevent: "qew123qwe",
+  //             users: [],
+  //             name: "qweqweqwe",
+  //             nmax: 10,
+  //             location: "qweqwe",
+  //             end_date: 12,
+  //             owner: "122",
+  //             start_date: 123,
+  //           })
+  //         )
+  //       );
+  //       dispatch(updateActiveEvent(responseJson.data));
+  //       setModalShowCreate(false);
+  //     })
+  //     .catch((err) => setError(err));
+  // };
   const handleChangeImg = (e: any) => {
     imgUpload(e.target.files[0]).then((resp) => setImg(resp));
   };
@@ -89,12 +118,18 @@ export const EventDataContainer: React.FC = () => {
         onHide={() => setModalShowJoin(false)}
       />
       <CreateEventModal
+        handleSubmitCreateEvent={handleSubmitCreateEvent}
         handleChange={handleChangeImg}
         img={img}
         dates={dates}
-        handleCreateEvent={handleCreateEvent}
         show={modalShowCreate}
         onHide={() => setModalShowCreate(false)}
+        eventName={eventName}
+        setEventName={setEventName}
+        setValue={setValue}
+        value={value}
+        nmax={nmax}
+        setNmax={setNmax}
       />
     </>
   );

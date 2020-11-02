@@ -6,11 +6,13 @@ import { deleteEvent } from "../home/eventActions";
 import { useDispatch } from "react-redux";
 import history from "../../routing/history";
 import { SidebarLeft } from "../../components/joinder/ui/SidebarLeft";
-import { useUsers } from "./hooks/useUsers";
+import { useAevent } from "./hooks/useAevent";
 
 export const ActiveEventDataContainer: React.FunctionComponent = () => {
   const [, setError] = useState("");
   const dispatch = useDispatch();
+  const { users, location } = useAevent();
+  console.log(location);
 
   const handleDeleteEvent = () => {
     fetchApi("deleteevent", "GET")
@@ -23,7 +25,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
   };
   return (
     <>
-      <SidebarLeft users={useUsers()} />
+      <SidebarLeft users={users} />
 
       <Container>
         <Col md={1}>

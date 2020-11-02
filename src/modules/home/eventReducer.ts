@@ -14,9 +14,10 @@ const initialState: iInitialState = {
     nmax: 0,
     name: "",
     owner: "",
-    start_date: "",
-    end_date: "",
+    start_date: 0,
+    end_date: 0,
     location: "",
+    img: "",
     users: [],
   },
 };

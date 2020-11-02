@@ -3,7 +3,7 @@ import GooglePlacesAutocomplete from "react-google-places-autocomplete";
 
 interface SearchBarParams {
   selectProps: {
-    value: null;
+    value: any;
     onChange: any;
   };
 }
