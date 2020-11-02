@@ -5,7 +5,7 @@ interface JoinEventModalParams {
   show: boolean;
   onHide: () => void;
 }
-export const JoinEventModal = (props: JoinEventModalParams) => {
+export const JoinEventModalView = (props: JoinEventModalParams) => {
   return (
     <Modal {...props} centered aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>

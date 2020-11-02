@@ -4,8 +4,8 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../redux/rootReducer";
 import Swal from "sweetalert2";
 import "./EventStyle.scss";
-import { JoinEventModal } from "../../components/modals/JoinEventModal";
-import { CreateEventModal } from "../../components/modals/CreateEventModal";
+import { JoinEventModalView } from "../../components/modals/JoinEventModalView";
+import { CreateEventModalView } from "../../components/modals/CreateEventModalView";
 import { EventListView } from "./EventListView";
 import { logout } from "../auth/authActions";
 import { EventObject, UserObjects } from "../../models/models";
@@ -113,11 +113,11 @@ export const EventDataContainer: React.FC = () => {
         setModalShowCreate={setModalShowCreate}
         setModalShowJoin={setModalShowJoin}
       />
-      <JoinEventModal
+      <JoinEventModalView
         show={modalShowJoin}
         onHide={() => setModalShowJoin(false)}
       />
-      <CreateEventModal
+      <CreateEventModalView
         handleSubmitCreateEvent={handleSubmitCreateEvent}
         handleChange={handleChangeImg}
         img={img}

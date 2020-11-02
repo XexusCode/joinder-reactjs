@@ -32,7 +32,7 @@ interface CreateEventModalParams {
   };
 }
 
-export const CreateEventModal = (props: CreateEventModalParams) => {
+export const CreateEventModalView = (props: CreateEventModalParams) => {
   return (
     <Container>
       <Form

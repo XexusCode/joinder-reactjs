@@ -1,10 +1,10 @@
 .event{
-  color: #6a2c70;
+  color: #000000;
 
 
 
   &:hover{
-    background-color: darken(#f08a5d,20%);
+    background-color: darken(#7cbeec,20%);
     text-decoration: lavender;
     text-underline: none;
 
@@ -12,7 +12,7 @@
   }
 }
 .fondo{
-  background-color: #f08a5d;
+  background-color: #7cbeec;
 }
 
 .badge{
@@ -21,4 +21,13 @@
 .nmax{
 
   padding-top: 10px;
+}
+hr{
+  border: none;
+}
+.easy-edit-not-allowed{
+  &:hover{
+    cursor: auto;
+
+  }
 }

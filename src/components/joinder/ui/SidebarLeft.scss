@@ -3,13 +3,15 @@
   position: fixed;
   width: 36px;
   height: 30px;
-  left: 36px;
-  top: 36px;
+  left: -16px;
+  top: 50%;
+
 }
 
 /* Color/shape of burger icon bars */
 .bm-burger-bars {
   background: #373a47;
+
 }
 
 /* Color/shape of burger icon bars on hover*/
@@ -26,6 +28,7 @@
 /* Color/shape of close button cross */
 .bm-cross {
   background: #bdc3c7;
+
 }
 
 /*
@@ -35,6 +38,7 @@ Note: Beware of modifying this element as it can break the animations - you shou
 .bm-menu-wrap {
   position: fixed;
   height: 100%;
+
 }
 
 /* General sidebar styles */

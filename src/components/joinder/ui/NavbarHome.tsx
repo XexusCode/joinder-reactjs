@@ -10,11 +10,7 @@ interface NavbarParams {
 export const NavbarHome = ({ handleLogout, username }: NavbarParams) => {
   return (
     <div>
-      <Navbar
-        style={{ backgroundColor: "#b83b5e" }}
-        collapseOnSelect
-        expand="lg"
-      >
+      <Navbar bg="dark" variant="dark" collapseOnSelect expand="lg">
         <Navbar.Brand href={Routes.HOME}>{username}</Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
