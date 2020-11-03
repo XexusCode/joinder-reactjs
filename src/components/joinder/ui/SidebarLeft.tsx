@@ -8,12 +8,14 @@ interface SidebarLeftParams {
   users: Array<UserObjects>;
   handleRankUp: () => void;
   handleKickOut: () => void;
+  userRank: number;
 }
 
 export const SidebarLeft = ({
   users,
   handleKickOut,
   handleRankUp,
+  userRank,
 }: SidebarLeftParams) => {
   return (
     <Menu>
@@ -26,6 +28,7 @@ export const SidebarLeft = ({
             handleKickOut={handleKickOut}
             handleRankUp={handleRankUp}
             user={user}
+            userRank={userRank}
             key={user.uid}
           />
         ))}

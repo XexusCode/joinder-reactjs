@@ -2,12 +2,12 @@ import { EventObject } from "../../models/models";
 import { ReduxAction } from "../../redux/ReduxAction";
 import { ReduxActionType } from "../../redux/ReduxActionType";
 
-interface iInitialState {
+interface InitialStateEventParams {
   events: Array<EventObject>;
   activeEvent: EventObject;
 }
 
-const initialState: iInitialState = {
+const initialState: InitialStateEventParams = {
   events: [],
   activeEvent: {
     idevent: "000",

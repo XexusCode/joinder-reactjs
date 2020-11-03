@@ -7,14 +7,16 @@ interface UserCardParams {
   user: UserObjects;
   handleKickOut: () => void;
   handleRankUp: () => void;
+  userRank: number;
 }
 
 export const UserCard = ({
   user,
   handleKickOut,
   handleRankUp,
+  userRank,
 }: UserCardParams) => {
-  const { uid, rank } = useUser();
+  const { uid } = useUser();
 
   return (
     <div className="pb-3">
@@ -25,7 +27,7 @@ export const UserCard = ({
         ) : (
           <span />
         )}
-        {rank <= 2 && uid != user.uid ? (
+        {userRank <= 2 && uid != user.uid ? (
           <span className="pl-3">
             <span onClick={handleRankUp} className="crown">
               <FaCrown />

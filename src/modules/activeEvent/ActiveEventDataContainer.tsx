@@ -11,15 +11,20 @@ import MapView from "../../components/maps/MapView";
 import { NavbarEvent } from "../../components/joinder/ui/NavbarEvent";
 import { ActiveEventInfoView } from "./ActiveEventInfoView";
 import { useUser } from "./hooks/useUser";
+import { UserObjects } from "../../models/models";
 import { ActiveEventImportantInfoView } from "./ActiveEventImportanInfoView";
 
 export const ActiveEventDataContainer: React.FunctionComponent = () => {
   const [, setError] = useState("");
   const dispatch = useDispatch();
   const { users, name } = useAevent();
-  const { rank } = useUser();
+  const { uid } = useUser();
   const [value, setValue] = useState("");
   const [edit, setEdit] = useState(false);
+
+  const userRank = users.find((user: UserObjects) => user.uid === uid).rank;
+
+  console.log(value);
 
   const handleDeleteEvent = () => {
     fetchApi("deleteevent", "GET")
@@ -40,7 +45,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
-    rank <= 2 ? setEdit(true) : setEdit(false);
+    userRank < 2 ? setEdit(true) : setEdit(false);
   }, []);
 
   return (
@@ -49,6 +54,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
         handleKickOut={handleKickOut}
         handleRankUp={handleRankUp}
         users={users}
+        userRank={userRank}
       />
       <NavbarEvent
         name={name}

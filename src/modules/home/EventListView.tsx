@@ -2,7 +2,7 @@ import React from "react";
 import { EventObject } from "../../models/models";
 import { EventCard } from "../../components/joinder/event/EventCard";
 
-interface iHomeViewEventList {
+interface HomeViewEventListParams {
   events: Array<EventObject>;
   handleActiveEvent: (event: EventObject) => void;
 }
@@ -11,7 +11,7 @@ export const EventListView = ({
   events,
 
   handleActiveEvent,
-}: iHomeViewEventList) => {
+}: HomeViewEventListParams) => {
   return (
     <div>
       {events.map((event: EventObject) => (
