@@ -4,18 +4,18 @@ import { EditableForm } from "../../components/joinder/event/EditableForm";
 
 export const ActiveEventInfoView = ({ value, setValue, edit }: any) => {
   return (
-    <Col className="info-event text-center">
+    <Col className="info-event ">
       <Row>
-        <h2>Información de el evento </h2>
+        <p>Información de el evento </p>
       </Row>
       <Row>
-        <h5>Localizacion: Castellon</h5>
+        <p>Localizacion: Castellon</p>
       </Row>
       <Row>
-        <h5>
+        <p>
           Descripcion:{" "}
           <EditableForm edit={edit} setValue={setValue} value={value} />
-        </h5>
+        </p>
       </Row>
     </Col>
   );

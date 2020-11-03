@@ -6,9 +6,15 @@ import { UserObjects } from "../../../models/models";
 
 interface SidebarLeftParams {
   users: Array<UserObjects>;
+  handleRankUp: () => void;
+  handleKickOut: () => void;
 }
 
-export const SidebarLeft = ({ users }: SidebarLeftParams) => {
+export const SidebarLeft = ({
+  users,
+  handleKickOut,
+  handleRankUp,
+}: SidebarLeftParams) => {
   return (
     <Menu>
       <h4>Usuarios Activos</h4>
@@ -16,7 +22,12 @@ export const SidebarLeft = ({ users }: SidebarLeftParams) => {
       {users
         .sort((a, b) => (a.rank >= b.rank ? 1 : -1))
         .map((user) => (
-          <UserCard key={user.uid} {...user} />
+          <UserCard
+            handleKickOut={handleKickOut}
+            handleRankUp={handleRankUp}
+            user={user}
+            key={user.uid}
+          />
         ))}
     </Menu>
   );

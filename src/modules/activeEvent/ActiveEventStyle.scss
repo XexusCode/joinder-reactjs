@@ -5,8 +5,35 @@
 
 .info-event{
   color: #282c34;
-  background-color: #fcf7f7;
-  height: 100%;
+  background-color: #7cbeec;
+  height: 50vh;
   width: 100%;
+  text-align: center;
+  border: 3px solid gray;
 
+}
+
+.important-event{
+  color: #282c34;
+  background-color: #7cbeec;
+  height: 50vh;
+  width: 70%;
+
+}
+
+.mapview{
+  margin-left:auto; margin-right:0;
+}
+.crown{
+  &:hover{
+    color: gold;
+
+  }
+}
+
+.trash{
+  &:hover{
+    color: red;
+
+  }
 }

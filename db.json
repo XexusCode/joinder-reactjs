@@ -4,10 +4,10 @@
       "code":200,
       "message":"Usuario Logueado",
       "data":{
-         "username": "string",
+         "username": "Jesús",
          "uid": "123",
-         "color": "123",
-         "rank": "123"
+         "color": "darkblue",
+         "rank": "1"
       }
    },
    "register":{

@@ -7,7 +7,7 @@ const MapView = () => {
     zoom: 14,
   };
   return (
-    <div style={{ height: "300px", width: "300px" }}>
+    <div style={{ height: "325px", width: "100%" }}>
       <GoogleMapReact
         bootstrapURLKeys={{ key: `${process.env.REACT_APP_API_GOOGLE}` }}
         defaultCenter={defaultProps.center}
