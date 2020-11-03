@@ -8,9 +8,14 @@
   background-color: #7cbeec;
   height: 50vh;
   width: 100%;
-  text-align: center;
   border: 3px solid gray;
 
+  h4{
+    width: 50%;
+    margin: 0 auto;
+
+
+  }
 }
 
 .important-event{
@@ -21,9 +26,7 @@
 
 }
 
-.mapview{
-  margin-left:auto; margin-right:0;
-}
+
 .crown{
   &:hover{
     color: gold;

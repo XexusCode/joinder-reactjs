@@ -20,7 +20,7 @@ export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
       <Col>
         <hr />
         <Row>
-          <Container className="fondo event rounded ">
+          <Container className="fondo event  ">
             <Col>
               <Row>
                 <Col md={5}>

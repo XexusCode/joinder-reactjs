@@ -79,12 +79,10 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
 
         {/* Columns start at 50% wide on mobile and bump up to 33.3% wide on desktop */}
         <Row>
-          <Col xs={6} md={4}>
-            xs=6 md=4
+          <Col xs={6} md={8}>
+            <ActiveEventImportantInfoView />{" "}
           </Col>
-          <Col xs={6} md={4}>
-            xs=6 md=4
-          </Col>
+
           <Col xs={6} md={4}>
             <div>
               <ActiveEventImportantInfoView />

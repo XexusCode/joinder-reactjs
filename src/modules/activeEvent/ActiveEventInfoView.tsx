@@ -6,7 +6,7 @@ export const ActiveEventInfoView = ({ value, setValue, edit }: any) => {
   return (
     <Col className="info-event ">
       <Row>
-        <p>Información de el evento </p>
+        <h4>Información de el evento </h4>
       </Row>
       <Row>
         <p>Localizacion: Castellon</p>

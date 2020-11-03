@@ -14,7 +14,7 @@ export const EventButtonsView = ({
       <Col>
         <Row md={6} xs={12}>
           <Button
-            variant="outline-secondary"
+            variant="secondary"
             className="buttonadd"
             size="lg"
             onClick={() => {
@@ -29,7 +29,7 @@ export const EventButtonsView = ({
         <Row md={6} xs={12}>
           <Button
             className="buttonjoin"
-            variant="outline-primary"
+            variant="primary"
             size="lg"
             onClick={() => {
               setModalShowJoin(true);

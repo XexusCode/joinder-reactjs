@@ -1,4 +1,4 @@
-import { Button, FormControl, FormGroup, Row } from "react-bootstrap";
+import "../login/AuthStyle.scss";
 import React from "react";
 
 interface RegisterParams {
@@ -31,73 +31,79 @@ export const RegisterFormView = ({
   handleInputPassword2,
 }: RegisterParams) => {
   return (
-    <div className="register">
-      <h1>Register</h1>
-      <Row>
-        <form
-          onSubmit={(e) => {
-            e.preventDefault();
-            handleSubmit(e, username, email, password, password2);
-          }}
-        >
-          <FormGroup controlId="username">
-            <label>Username</label>
-            <FormControl
+    <>
+      <div className="wrapper fadeInDown">
+        <div id="formContent">
+          <div className="fadeIn first">
+            <img
+              src="https://i.pinimg.com/originals/46/bf/f2/46bff2a47eea2421c50e52f1200266d5.png"
+              id="icon"
+              alt="User Icon"
+            />
+            <h1>Joinder</h1>
+          </div>
+
+          <form
+            onSubmit={(e) => {
+              e.preventDefault();
+              handleSubmit(e, username, email, password, password2);
+            }}
+          >
+            <input
               type="text"
-              name="username"
-              placeholder="Enter your username"
+              id="name"
+              className="fadeIn second"
+              name="login"
               value={username}
               onChange={(e) => {
                 handleInputName(e.target.value);
               }}
+              placeholder="Enter your Username"
             />
-          </FormGroup>
 
-          <FormGroup controlId="email">
-            <label>Email</label>
-            <FormControl
-              type="text"
-              name="email"
-              placeholder="Enter your email"
+            <input
+              type="email"
+              id="login"
+              className="fadeIn second"
+              name="login"
               value={email}
               onChange={(e) => {
                 handleInputEmail(e.target.value);
               }}
+              placeholder="Enter your Email"
             />
-          </FormGroup>
 
-          <FormGroup controlId="password">
-            <label> Password </label>
-            <FormControl
+            <input
               type="password"
-              name="password"
-              placeholder="Enter your password"
+              id="password"
+              className="fadeIn third"
+              name="login"
               value={password}
               onChange={(e) => {
                 handleInputPassword(e.target.value);
               }}
+              placeholder="Password"
             />
-          </FormGroup>
 
-          <FormGroup controlId="password2">
-            <label> Repeat Password </label>
-            <FormControl
+            <input
               type="password"
-              name="password2"
-              placeholder="Repeat your password"
+              id="password2"
+              className="fadeIn third"
+              name="login"
               value={password2}
               onChange={(e) => {
                 handleInputPassword2(e.target.value);
               }}
+              placeholder="Repeat Password"
             />
-          </FormGroup>
+            <input type="submit" className="fadeIn fourth" value="Register" />
+          </form>
 
-          <Button type="submit">Sign-In</Button>
-
-          <Button className="btn-secondary ml-5 ">Login in</Button>
-          <Row className="mb-lg-n5" />
-        </form>
-      </Row>
-    </div>
+          <div id="formFooter">
+            <a className="underlineHover" href="#" />
+          </div>
+        </div>
+      </div>
+    </>
   );
 };
