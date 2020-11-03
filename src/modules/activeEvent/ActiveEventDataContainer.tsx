@@ -30,7 +30,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
     fetchApi("deleteevent", "GET")
       .then((response) => response.json())
       .then(() => {
-        history.goBack();
+        history.replace("/home");
         dispatch(deleteEvent());
       })
       .catch((err) => setError(err));
