@@ -12,10 +12,10 @@ export const ActiveEventInfoView = ({ value, setValue, edit }: any) => {
         <p>Localizacion: Castellon</p>
       </Row>
       <Row>
-        <p>
+        <div>
           Descripcion:{" "}
           <EditableForm edit={edit} setValue={setValue} value={value} />
-        </p>
+        </div>
       </Row>
     </Col>
   );

@@ -11,18 +11,15 @@ import MapView from "../../components/maps/MapView";
 import { NavbarEvent } from "../../components/joinder/ui/NavbarEvent";
 import { ActiveEventInfoView } from "./ActiveEventInfoView";
 import { useUser } from "./hooks/useUser";
-import { UserObjects } from "../../models/models";
 import { ActiveEventImportantInfoView } from "./ActiveEventImportanInfoView";
 
 export const ActiveEventDataContainer: React.FunctionComponent = () => {
   const [, setError] = useState("");
   const dispatch = useDispatch();
   const { users, name } = useAevent();
-  const { uid } = useUser();
+  const { rank } = useUser();
   const [value, setValue] = useState("");
   const [edit, setEdit] = useState(false);
-
-  console.log(value);
 
   const handleDeleteEvent = () => {
     fetchApi("deleteevent", "GET")
@@ -43,9 +40,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
-    users.find((user: UserObjects) => user.uid === uid).rank < 2
-      ? setEdit(true)
-      : setEdit(false);
+    rank <= 2 ? setEdit(true) : setEdit(false);
   }, []);
 
   return (
@@ -61,7 +56,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
         idEvent="213213"
       />
 
-      <Container>
+      <Container fluid>
         {/* Stack the columns on mobile by making one full-width and the other half-width */}
         <Row>
           <Col xs={12} md={8}>
