@@ -19,6 +19,7 @@ const initialState: InitialStateEventParams = {
     location: "",
     img: "",
     users: [],
+    items: ["", "", "", ""],
   },
 };
 
@@ -34,6 +35,7 @@ export const eventReducer = (
       };
 
     case ReduxActionType.eventUpdateActive:
+      console.log(action.payload);
       return {
         ...state,
         events: state.events.map((event) =>

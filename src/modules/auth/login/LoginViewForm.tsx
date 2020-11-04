@@ -1,5 +1,7 @@
 import React from "react";
 import "./AuthStyle.scss";
+import { Link } from "react-router-dom";
+import { Routes } from "../../../routing/routes";
 
 interface LoginViewFormProps {
   handleSubmit: (email: string, password: string) => void;
@@ -58,9 +60,10 @@ export const LoginViewForm = ({
           </form>
 
           <div id="formFooter">
-            <a className="underlineHover" href="#">
-              ¿Aún no tienes cuenta? Regístrate
-            </a>
+            <Link to={Routes.AUTH_REGISTER}>
+              {" "}
+              ¿Aún no tienes cuenta? Regístrate{" "}
+            </Link>
           </div>
         </div>
       </div>

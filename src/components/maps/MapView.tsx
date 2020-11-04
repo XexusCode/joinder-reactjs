@@ -4,7 +4,7 @@ import GoogleMapReact from "google-map-react";
 const MapView = () => {
   const defaultProps = {
     center: { lat: 39.9945711, lng: -1.0689003 },
-    zoom: 14,
+    zoom: 8,
   };
   return (
     <div style={{ height: "100%", width: "100%" }}>

@@ -3,22 +3,20 @@ import React from "react";
 import EasyEdit from "react-easy-edit";
 import { GoCheck, GoX } from "react-icons/all";
 import "./EventCard.scss";
+import { ActiveEventEditableParams } from "../../../modules/activeEvent/ActiveEventParams";
 
-export const EditableForm = ({ value, edit, setValue }: any) => {
-  const save = (value: any) => {
-    setValue(value);
-  };
-  const cancel = () => {
-    alert("Cancelled");
-  };
-
+export const EditableForm = ({
+  editable,
+  edit,
+  handleSaveValue,
+}: ActiveEventEditableParams) => {
   return (
     <EasyEdit
       className="easy-edit-not-allowed"
       type="text"
-      value={value}
-      onSave={save}
-      onCancel={cancel}
+      value={editable}
+      onSave={handleSaveValue}
+      onCancel={() => {}}
       allowEdit={edit}
       saveButtonLabel={<GoCheck />}
       cancelButtonLabel={<GoX />}

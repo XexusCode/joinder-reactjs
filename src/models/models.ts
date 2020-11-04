@@ -14,5 +14,7 @@ export interface EventObject {
   location: any;
   nmax: number;
   img: string;
+  description?: string;
   users: Array<UserObjects>;
+  items?: Array<string>;
 }

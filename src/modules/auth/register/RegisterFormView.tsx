@@ -98,10 +98,6 @@ export const RegisterFormView = ({
             />
             <input type="submit" className="fadeIn fourth" value="Register" />
           </form>
-
-          <div id="formFooter">
-            <a className="underlineHover" href="#" />
-          </div>
         </div>
       </div>
     </>
