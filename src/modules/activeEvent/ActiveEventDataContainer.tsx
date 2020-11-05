@@ -16,12 +16,13 @@ import { valuePlaceholder } from "./PlaceholderTypes";
 export const ActiveEventDataContainer: React.FunctionComponent = () => {
   const [, setError] = useState("");
   const dispatch = useDispatch();
-  const aevent = useAevent();
+  const aEvent = useAevent();
   const { uid } = useUser();
   const [editable, setEditable] = useState(`${valuePlaceholder.DESCRIPTION}`);
   const [edit, setEdit] = useState(false);
+  const [show, setShow] = useState(false);
 
-  const userRank = aevent.users.find((user: UserObjects) => user.uid === uid)
+  const userRank = aEvent.users.find((user: UserObjects) => user.uid === uid)
     .rank;
 
   const handleDeleteEvent = () => {
@@ -48,28 +49,38 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
 
   const handleSaveDescription = (result: string) => {
     setEditable(result);
-    dispatch(updateActiveEvent({ ...aevent, description: result }));
+    dispatch(updateActiveEvent({ ...aEvent, description: result }));
   };
 
   const handleSaveTodoList = (result: string, id: number) => {
-    aevent.items.splice(id, 1, { id: id, text: result });
+    aEvent.items.splice(id, 1, { id: id, text: result });
     dispatch(
       updateActiveEvent({
-        ...aevent,
-        items: aevent.items,
+        ...aEvent,
+        items: aEvent.items,
       })
     );
   };
+
+  const handleEditDate = () => {
+    // <DatePicker
+    //   date={aEvent.start_date}
+    //   setDate={(date) => {
+    //     dispatch(updateActiveEvent({ ...aEvent, start_date: date.getTime() }));
+    //   }}
+    // />;
+  };
+
   return (
     <>
       <SidebarLeft
         handleKickOut={handleKickOut}
         handleRankUp={handleRankUp}
-        users={aevent.users}
+        users={aEvent.users}
         userRank={userRank}
       />
       <NavbarEvent
-        name={aevent.name}
+        name={aEvent.name}
         handleDeleteEvent={handleDeleteEvent}
         idEvent="213213"
       />
@@ -78,9 +89,13 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
           <div className="col-md-12 "></div>
 
           <ActiveEventInfoView
+            handleEditDate={handleEditDate}
             handleSaveValue={handleSaveDescription}
             edit={edit}
             editable={editable}
+            show={show}
+            setShow={setShow}
+            aEvent={aEvent}
           />
         </div>
         <div className="row ">
@@ -88,7 +103,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
           <div className="col-md-4 p-0 ">
             <ActiveEventImportantInfoView
               edit={edit}
-              items={aevent.items}
+              items={aEvent.items}
               handleSaveValue={handleSaveTodoList}
             />
           </div>

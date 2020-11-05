@@ -1,13 +1,17 @@
 import React from "react";
 import MapView from "../../components/maps/MapView";
-import { ActiveEventEditableParams } from "./ActiveEventParams";
 import { EditableForm } from "../../components/joinder/event/EditableForm";
+import { DateChangeModal } from "../../components/modals/DateChangeModal";
 
 export const ActiveEventInfoView = ({
   editable,
   edit,
   handleSaveValue,
-}: ActiveEventEditableParams) => {
+  show,
+  setShow,
+  aEvent,
+}: any) => {
+  //Chang
   return (
     <>
       <div className="container">
@@ -28,8 +32,16 @@ export const ActiveEventInfoView = ({
                 style={{ border: "0px solid gray" }}
               >
                 <h3 className="mb-3">Localización: Castellón </h3>
-                <h5 className="mb-3" style={{ color: "#337ab7" }}>
-                  27/10:2020 10:10 - 28/10:2020 10:30
+
+                <DateChangeModal show={show} setShow={setShow} />
+                <h5
+                  onClick={() => {
+                    setShow(true);
+                  }}
+                  className="mb-3"
+                  style={{ color: "#337ab7" }}
+                >
+                  {aEvent.start_date} - {aEvent.end_date}
                 </h5>
                 <h6 className="title-price mb-3">2/20</h6>
                 <h3 className="mb-3" style={{ marginTop: "0px" }}>
