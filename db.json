@@ -28,8 +28,8 @@
             "idevent":"111",
             "name":"evento1",
             "owner":"222",
-            "start_date":"11-20-30 11:23",
-            "end_date":"21-20-30 11:23",
+            "start_date":1604997900000,
+            "end_date":16752395410000,
             "location":"Castellon",
 			"nmax":7,
             "items": [{
@@ -67,8 +67,8 @@
          {
             "idevent":"112",
             "name":"evento2",
-            "start_date":"13-20-30 11:23",
-            "end_date":"14-20-30 11:23",
+            "start_date":1605084300000,
+            "end_date":1604221810000,
             "location":"Castellon",
 			"nmax":7,
             "items": [{
@@ -113,8 +113,8 @@
       "data":{
          "idevent":"112",
          "name":"evento2",
-         "start_date":"13-20-30 11:23",
-         "end_date":"14-20-30 11:23",
+         "start_date":"13/20/30 11:23",
+         "end_date":"14/20/30 11:23",
          "location":"Castellon",
 		 "nmax":7,
          "users":[

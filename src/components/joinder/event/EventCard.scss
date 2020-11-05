@@ -2,6 +2,7 @@
   color: #000000;
   border-radius: 15px 50px;
   border: 5px solid black;
+  background-color: #7cbeec;
 
 
 
@@ -12,9 +13,19 @@
 
 
   }
+
 }
+
+.eventold{
+  color: #000000;
+  border-radius: 15px 50px;
+  border: 5px solid black;
+  opacity: 0.5;
+  background-color: gray;
+}
+
 .fondo{
-  background-color: #7cbeec;
+
 }
 
 .badge{

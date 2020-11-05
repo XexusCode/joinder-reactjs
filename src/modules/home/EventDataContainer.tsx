@@ -44,18 +44,13 @@ export const EventDataContainer: React.FC = () => {
 
   const handleSubmitCreateEvent = () => {
     const newEvent: EventObject = {
-      start_date: `${dates.dateStart.getDate()}/${
-        dates.dateStart.getMonth() + 1
-      }/${dates.dateStart.getFullYear()}`,
-
-      end_date: `${dates.dateEnd.getDate()}/${
-        dates.dateEnd.getMonth() + 1
-      }/${dates.dateEnd.getFullYear()}`,
+      end_date: dates.dateEnd.getTime(),
       // idEvent por backend
       location: value,
       name: eventName,
       nmax: parseInt(nmax),
       owner: user.uid,
+      start_date: dates.dateStart.getTime(),
       img: img,
       users: [
         {

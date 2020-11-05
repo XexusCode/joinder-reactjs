@@ -3,6 +3,7 @@ import "./EventCard.scss";
 import { Badge, Col, Container, Image, Row } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import { EventObject } from "../../../models/models";
+import moment from "moment";
 interface EventCardParams {
   handleActiveEvent: (event: EventObject) => void;
   event: EventObject;
@@ -20,7 +21,9 @@ export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
       <Col>
         <hr />
         <Row>
-          <Container className="fondo event  ">
+          <Container
+            className={` ${event.end_date < Date.now() ? "eventold" : "event"}`}
+          >
             <Col>
               <Row>
                 <Col md={5}>
@@ -40,8 +43,17 @@ export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
                     <hr />{" "}
                   </Row>
                   <Row md={10}>
-                    <Badge variant="success">{event.start_date}</Badge> <hr />
-                    <Badge variant="danger">{event.end_date}</Badge>
+                    <Badge variant="success">
+                      {moment(event.start_date).format(
+                        "DD/MM/YYYY [a las] h:mm:ss  "
+                      )}
+                    </Badge>{" "}
+                    <hr />
+                    <Badge variant="danger">
+                      {moment(event.end_date).format(
+                        "DD/MM/YYYY [a las] h:mm:ss  "
+                      )}
+                    </Badge>
                   </Row>
                 </Col>
                 <Col md={1}>

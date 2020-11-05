@@ -1,7 +1,7 @@
 import React from "react";
-import MapView from "../../components/maps/MapView";
 import { EditableForm } from "../../components/joinder/event/EditableForm";
 import { DateChangeModal } from "../../components/modals/DateChangeModal";
+import { MapView } from "../../components/maps/MapView";
 
 export const ActiveEventInfoView = ({
   editable,
@@ -11,7 +11,7 @@ export const ActiveEventInfoView = ({
   setShow,
   aEvent,
 }: any) => {
-  //Chang
+  //Change
   return (
     <>
       <div className="container">
@@ -38,7 +38,7 @@ export const ActiveEventInfoView = ({
                   onClick={() => {
                     setShow(true);
                   }}
-                  className="mb-3"
+                  className="mb-3 editable"
                   style={{ color: "#337ab7" }}
                 >
                   {aEvent.start_date} - {aEvent.start_date}

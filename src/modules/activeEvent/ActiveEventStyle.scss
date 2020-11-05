@@ -51,3 +51,11 @@
   font-size: 12px;
   line-height: 1.42857;
 }
+
+.editable {
+  &:hover{
+    font-style: italic;
+
+  }
+
+}
