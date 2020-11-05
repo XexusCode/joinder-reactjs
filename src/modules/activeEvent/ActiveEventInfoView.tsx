@@ -41,7 +41,7 @@ export const ActiveEventInfoView = ({
                   className="mb-3"
                   style={{ color: "#337ab7" }}
                 >
-                  {aEvent.start_date} - {aEvent.end_date}
+                  {aEvent.start_date} - {aEvent.start_date}
                 </h5>
                 <h6 className="title-price mb-3">2/20</h6>
                 <h3 className="mb-3" style={{ marginTop: "0px" }}>
