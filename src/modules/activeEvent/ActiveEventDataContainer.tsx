@@ -16,18 +16,13 @@ import { valuePlaceholder } from "./PlaceholderTypes";
 export const ActiveEventDataContainer: React.FunctionComponent = () => {
   const [, setError] = useState("");
   const dispatch = useDispatch();
-  const { users, name } = useAevent();
   const aevent = useAevent();
   const { uid } = useUser();
   const [editable, setEditable] = useState(`${valuePlaceholder.DESCRIPTION}`);
-  const [listOption0, setListOption0] = useState(`${valuePlaceholder.OPTION}`);
-  const [listOption1, setListOption1] = useState(`${valuePlaceholder.OPTION}`);
-  const [listOption2, setListOption2] = useState(`${valuePlaceholder.OPTION}`);
-  const [listOption3, setListOption3] = useState(`${valuePlaceholder.OPTION}`);
-
   const [edit, setEdit] = useState(false);
 
-  const userRank = users.find((user: UserObjects) => user.uid === uid).rank;
+  const userRank = aevent.users.find((user: UserObjects) => user.uid === uid)
+    .rank;
 
   const handleDeleteEvent = () => {
     fetchApi("deleteevent", "GET")
@@ -47,65 +42,34 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
     console.log("rank up");
   };
 
-  const handleSaveOption0 = (result: string) => {
-    setListOption0(result);
-
-    dispatch(
-      updateActiveEvent({
-        ...aevent,
-        items: [result, listOption1, listOption2, listOption3],
-      })
-    );
-  };
-  const handleSaveOption1 = (result: string) => {
-    setListOption1(result);
-    dispatch(
-      updateActiveEvent({
-        ...aevent,
-        items: [listOption0, result, listOption2, listOption3],
-      })
-    );
-  };
-  const handleSaveOption2 = (result: string) => {
-    setListOption2(result);
-
-    dispatch(
-      updateActiveEvent({
-        ...aevent,
-        items: [listOption0, listOption1, result, listOption3],
-      })
-    );
-  };
-  const handleSaveOption3 = (result: string) => {
-    setListOption3(result);
-
-    dispatch(
-      updateActiveEvent({
-        ...aevent,
-        items: [listOption0, listOption1, listOption2, result],
-      })
-    );
-  };
-
   useEffect(() => {
     userRank < 2 ? setEdit(true) : setEdit(false);
-  }, []);
+  }, [userRank]);
 
   const handleSaveDescription = (result: string) => {
     setEditable(result);
     dispatch(updateActiveEvent({ ...aevent, description: result }));
   };
 
+  const handleSaveTodoList = (result: string, id: number) => {
+    aevent.items.splice(id, 1, { id: id, text: result });
+    dispatch(
+      updateActiveEvent({
+        ...aevent,
+        items: aevent.items,
+      })
+    );
+  };
   return (
     <>
       <SidebarLeft
         handleKickOut={handleKickOut}
         handleRankUp={handleRankUp}
-        users={users}
+        users={aevent.users}
         userRank={userRank}
       />
       <NavbarEvent
-        name={name}
+        name={aevent.name}
         handleDeleteEvent={handleDeleteEvent}
         idEvent="213213"
       />
@@ -124,14 +88,8 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
           <div className="col-md-4 p-0 ">
             <ActiveEventImportantInfoView
               edit={edit}
-              handleSaveOption0={handleSaveOption0}
-              handleSaveOption1={handleSaveOption1}
-              handleSaveOption2={handleSaveOption2}
-              handleSaveOption3={handleSaveOption3}
-              listOption0={listOption0}
-              listOption1={listOption1}
-              listOption2={listOption2}
-              listOption3={listOption3}
+              items={aevent.items}
+              handleSaveValue={handleSaveTodoList}
             />
           </div>
         </div>

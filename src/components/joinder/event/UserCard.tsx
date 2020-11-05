@@ -27,7 +27,7 @@ export const UserCard = ({
         ) : (
           <span />
         )}
-        {userRank <= 2 && uid != user.uid ? (
+        {userRank <= 2 && uid !== user.uid ? (
           <span className="pl-3">
             <span onClick={handleRankUp} className="crown">
               <FaCrown />

@@ -19,7 +19,7 @@ const initialState: InitialStateEventParams = {
     location: "",
     img: "",
     users: [],
-    items: ["", "", "", ""],
+    items: [{ id: 0, text: "e" }],
   },
 };
 
@@ -35,7 +35,6 @@ export const eventReducer = (
       };
 
     case ReduxActionType.eventUpdateActive:
-      console.log(action.payload);
       return {
         ...state,
         events: state.events.map((event) =>
@@ -51,7 +50,6 @@ export const eventReducer = (
       };
 
     case ReduxActionType.eventDelete:
-      console.log(state.activeEvent.idevent);
       return {
         ...state,
         events: state.events.filter(

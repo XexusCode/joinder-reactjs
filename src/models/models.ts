@@ -16,5 +16,10 @@ export interface EventObject {
   img: string;
   description?: string;
   users: Array<UserObjects>;
-  items?: Array<string>;
+  items?: Array<ItemObject>;
+}
+
+export interface ItemObject {
+  id: number;
+  text: string;
 }

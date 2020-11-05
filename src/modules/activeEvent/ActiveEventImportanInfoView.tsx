@@ -1,18 +1,13 @@
 import React from "react";
 import { EditableForm } from "../../components/joinder/event/EditableForm";
-import { ActiveEventEditableItemsParams } from "./ActiveEventParams";
+import { ActiveEventEditableParams } from "./ActiveEventParams";
+import { ItemObject } from "../../models/models";
 
 export const ActiveEventImportantInfoView = ({
-  listOption0,
-  listOption1,
-  listOption2,
-  listOption3,
-  handleSaveOption0,
-  handleSaveOption1,
-  handleSaveOption2,
-  handleSaveOption3,
+  items,
+  handleSaveValue,
   edit,
-}: ActiveEventEditableItemsParams) => {
+}: ActiveEventEditableParams) => {
   return (
     <>
       <div className="container">
@@ -32,32 +27,15 @@ export const ActiveEventImportantInfoView = ({
                   style={{ color: "#337ab7", fontSize: "12" }}
                 >
                   <div className="pb-2">
-                    <EditableForm
-                      edit={edit}
-                      editable={listOption0}
-                      handleSaveValue={handleSaveOption0}
-                    />
-                  </div>
-                  <div className="pb-2">
-                    <EditableForm
-                      edit={edit}
-                      editable={listOption1}
-                      handleSaveValue={handleSaveOption1}
-                    />
-                  </div>
-                  <div className="pb-2">
-                    <EditableForm
-                      edit={edit}
-                      editable={listOption2}
-                      handleSaveValue={handleSaveOption2}
-                    />
-                  </div>
-                  <div className="pb-2">
-                    <EditableForm
-                      edit={edit}
-                      editable={listOption3}
-                      handleSaveValue={handleSaveOption3}
-                    />
+                    {items.map((item: ItemObject) => (
+                      <EditableForm
+                        editable={item.text}
+                        id={item.id}
+                        key={item.id}
+                        edit={edit}
+                        handleSaveValue={handleSaveValue}
+                      />
+                    ))}
                   </div>
                 </div>
 

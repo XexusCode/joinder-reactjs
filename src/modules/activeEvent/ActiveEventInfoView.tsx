@@ -42,7 +42,7 @@ export const ActiveEventInfoView = ({
                     handleSaveValue={handleSaveValue}
                   />
                 </div>
-                <h6 className="title-price mb-3"></h6>
+                <h6 className="title-price mb-3">hola :)</h6>
                 <br />
               </div>
             </div>
