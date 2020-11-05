@@ -88,6 +88,7 @@ export const CreateEventModalView = (props: CreateEventModalParams) => {
                   <DatePicker
                     date={props.dates.dateStart}
                     setDate={props.dates.setDateStart}
+                    minDate={Date.now()}
                   />
                 </Col>
                 <Col xs={12} md={6}>
@@ -95,6 +96,7 @@ export const CreateEventModalView = (props: CreateEventModalParams) => {
                   <DatePicker
                     date={props.dates.dateEnd}
                     setDate={props.dates.setDateEnd}
+                    minDate={props.dates.dateStart.getTime()}
                   />
                 </Col>
               </Row>

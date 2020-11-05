@@ -1,5 +1,7 @@
 import "../login/AuthStyle.scss";
 import React from "react";
+import { Link } from "react-router-dom";
+import { Routes } from "../../../routing/routes";
 
 interface RegisterParams {
   username: string;
@@ -98,6 +100,12 @@ export const RegisterFormView = ({
             />
             <input type="submit" className="fadeIn fourth" value="Register" />
           </form>
+          <div id="formFooter">
+            <Link to={Routes.AUTH_LOGIN}>
+              {" "}
+              ¿Ya tienes una cuenta? Logueate{" "}
+            </Link>
+          </div>
         </div>
       </div>
     </>

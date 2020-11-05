@@ -2,21 +2,28 @@ import React from "react";
 import "flatpickr/dist/themes/material_green.css";
 import Flatpickr from "react-flatpickr";
 
-interface iDatePicker {
+interface DatePickerParams {
   date: Date;
-  setDate: (d: Date) => void;
+  setDate: (date: Date) => void;
+  minDate: number;
 }
 
-const DatePicker = ({ date, setDate }: iDatePicker) => (
-  <div>
-    <Flatpickr
-      data-enable-time
-      value={date}
-      onChange={(d) => {
-        setDate(d[0]);
-      }}
-    />
-  </div>
-);
+const DatePicker = ({ date, setDate, minDate }: DatePickerParams) => {
+  const options = {
+    minDate,
+  };
+  return (
+    <div>
+      <Flatpickr
+        data-enable-time
+        value={date}
+        options={options}
+        onChange={(date) => {
+          setDate(date[0]);
+        }}
+      />
+    </div>
+  );
+};
 
 export default DatePicker;

@@ -1,6 +1,5 @@
 import React from "react";
 import { Button, Modal } from "react-bootstrap";
-import DatePicker from "../date/DatePicker";
 
 interface DataChangeModalParams {
   show: boolean;
@@ -15,7 +14,7 @@ export const DateChangeModal = ({ show, setShow }: DataChangeModalParams) => {
           <Modal.Title>Cambiar datos de evento</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <DatePicker setDate={() => {}} date={new Date()} />
+          {/*<DatePicker setDate={() => {}} date={new Date()} />*/}
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={() => setShow(false)}>

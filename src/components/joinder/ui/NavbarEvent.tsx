@@ -20,12 +20,17 @@ export const NavbarEvent = ({
         <Nav className="mr-auto" />
         <Nav>
           <Nav.Link onClick={handleDeleteEvent}>Borrar Evento</Nav.Link>
-          <Nav.Link eventKey={2} href="#memes">
+          <Nav.Item
+            onClick={() => {
+              navigator.clipboard.writeText(idEvent);
+              alert("ID COPIADO EN PORTAPAPELES");
+            }}
+          >
             ID EVENTO:{" "}
             <span className="pl-3 " style={{ color: "red", fontSize: 18 }}>
               {idEvent}
             </span>
-          </Nav.Link>
+          </Nav.Item>
         </Nav>
       </Navbar.Collapse>
     </Navbar>
