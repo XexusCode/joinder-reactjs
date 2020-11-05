@@ -61,6 +61,39 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
       })
     );
   };
+  const handleAddTodo = () => {
+    let index: number;
+    const item = aEvent.items[aEvent.items.length - 1];
+
+    if (item === undefined) {
+      index = -1;
+    } else {
+      index = item.id;
+    }
+
+    dispatch(
+      updateActiveEvent({
+        ...aEvent,
+        items: [
+          ...aEvent.items,
+          { id: index + 1, text: `${valuePlaceholder.OPTION}` },
+        ],
+      })
+    );
+  };
+
+  const handleDeleteTodo = () => {
+    aEvent.items.splice(-1, 1);
+
+    console.log(aEvent.items);
+
+    dispatch(
+      updateActiveEvent({
+        ...aEvent,
+        items: [...aEvent.items],
+      })
+    );
+  };
 
   const handleEditDate = () => {
     // <DatePicker
@@ -105,6 +138,8 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
               edit={edit}
               items={aEvent.items}
               handleSaveValue={handleSaveTodoList}
+              handleAddTodo={handleAddTodo}
+              handleDeleteTodo={handleDeleteTodo}
             />
           </div>
         </div>

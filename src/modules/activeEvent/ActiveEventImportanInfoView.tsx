@@ -1,13 +1,15 @@
 import React from "react";
 import { EditableForm } from "../../components/joinder/event/EditableForm";
-import { ActiveEventEditableParams } from "./ActiveEventParams";
 import { ItemObject } from "../../models/models";
+import { AiOutlineMinusCircle, GoPlus } from "react-icons/all";
 
 export const ActiveEventImportantInfoView = ({
   items,
   handleSaveValue,
   edit,
-}: ActiveEventEditableParams) => {
+  handleAddTodo,
+  handleDeleteTodo,
+}: any) => {
   return (
     <>
       <div className="container">
@@ -22,6 +24,21 @@ export const ActiveEventImportantInfoView = ({
                 style={{ border: "0px solid gray" }}
               >
                 <h2 className="mb-3">Cosas Importantes </h2>
+                <button
+                  onClick={handleAddTodo}
+                  type="button"
+                  className="btn btn-primary btn-circle"
+                >
+                  <GoPlus />
+                </button>
+
+                <button
+                  onClick={handleDeleteTodo}
+                  type="button"
+                  className="btn btn-danger btn-circle"
+                >
+                  <AiOutlineMinusCircle />
+                </button>
                 <div
                   className="mb-3"
                   style={{ color: "#337ab7", fontSize: "12" }}
@@ -38,7 +55,6 @@ export const ActiveEventImportantInfoView = ({
                     ))}
                   </div>
                 </div>
-
                 <br />
               </div>
             </div>
