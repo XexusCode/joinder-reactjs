@@ -24,21 +24,29 @@ export const ActiveEventImportantInfoView = ({
                 style={{ border: "0px solid gray" }}
               >
                 <h2 className="mb-3">Cosas Importantes </h2>
-                <button
-                  onClick={handleAddTodo}
-                  type="button"
-                  className="btn btn-primary btn-circle"
-                >
-                  <GoPlus />
-                </button>
 
-                <button
-                  onClick={handleDeleteTodo}
-                  type="button"
-                  className="btn btn-danger btn-circle"
-                >
-                  <AiOutlineMinusCircle />
-                </button>
+                {edit === true ? (
+                  <span className="pl-2">
+                    <button
+                      onClick={handleAddTodo}
+                      type="button"
+                      className="p btn btn-primary btn-circle"
+                    >
+                      <GoPlus />
+                    </button>
+
+                    <button
+                      onClick={handleDeleteTodo}
+                      type="button"
+                      className="btn btn-danger btn-circle"
+                    >
+                      <AiOutlineMinusCircle />
+                    </button>
+                  </span>
+                ) : (
+                  <span />
+                )}
+
                 <div
                   className="mb-3"
                   style={{ color: "#337ab7", fontSize: "12" }}
