@@ -64,30 +64,6 @@ export const EventDataContainer: React.FC = () => {
     console.log(newEvent);
   };
 
-  // const handleCreateEvent = (event: EventObject) => {
-  //   fetchApi("addevent", "GET")
-  //     .then((response) => response.json())
-  //     .then((responseJson) => {
-  //       dispatch(addEvent(responseJson.data));
-  //       dispatch(
-  //         addEvent(
-  //           (event = {
-  //             idevent: "qew123qwe",
-  //             users: [],
-  //             name: "qweqweqwe",
-  //             nmax: 10,
-  //             location: "qweqwe",
-  //             end_date: 12,
-  //             owner: "122",
-  //             start_date: 123,
-  //           })
-  //         )
-  //       );
-  //       dispatch(updateActiveEvent(responseJson.data));
-  //       setModalShowCreate(false);
-  //     })
-  //     .catch((err) => setError(err));
-  // };
   const handleChangeImg = (e: any) => {
     imgUpload(e.target.files[0]).then((resp) => setImg(resp));
   };

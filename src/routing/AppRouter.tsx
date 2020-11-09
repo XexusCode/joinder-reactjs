@@ -7,6 +7,8 @@ import { AuthRoute } from "./AuthRoute";
 import { Routes } from "./routes";
 import { DashboardRoutes } from "./DashboardRoutes";
 import history from "./history";
+import "bootstrap/dist/css/bootstrap.css";
+
 export const AppRouter: React.FC = () => {
   return (
     <Router history={history}>

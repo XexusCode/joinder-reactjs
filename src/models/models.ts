@@ -23,3 +23,8 @@ export interface ItemObject {
   id: number;
   text: string;
 }
+export interface CommentObject {
+  name: string;
+  message: string;
+  time: number;
+}

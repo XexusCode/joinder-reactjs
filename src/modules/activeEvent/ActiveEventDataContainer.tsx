@@ -9,21 +9,23 @@ import "./ActiveEventStyle.scss";
 import { NavbarEvent } from "../../components/joinder/ui/NavbarEvent";
 import { ActiveEventInfoView } from "./ActiveEventInfoView";
 import { useUser } from "./hooks/useUser";
-import { UserObjects } from "../../models/models";
+import { CommentObject, UserObjects } from "../../models/models";
 import { ActiveEventImportantInfoView } from "./ActiveEventImportanInfoView";
 import { valuePlaceholder } from "./PlaceholderTypes";
+import { CommentPage } from "../../components/joinder/event/comments/CommentPage";
 
 export const ActiveEventDataContainer: React.FunctionComponent = () => {
   const [, setError] = useState("");
   const dispatch = useDispatch();
   const aEvent = useAevent();
-  const { uid } = useUser();
+  const { uid, username } = useUser();
   const [editable, setEditable] = useState(`${valuePlaceholder.DESCRIPTION}`);
   const [edit, setEdit] = useState(false);
   const [show, setShow] = useState(false);
-
-  const userRank = aEvent.users.find((user: UserObjects) => user.uid === uid)
-    .rank;
+  const [loading,] = useState(false);
+  const [comments, setComments] = useState<CommentObject[]>([]);
+  const [message, setMessage] = useState("");
+  const yourUser = aEvent.users.find((user: UserObjects) => user.uid === uid);
 
   const handleDeleteEvent = () => {
     fetchApi("deleteevent", "GET")
@@ -44,8 +46,8 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
   };
 
   useEffect(() => {
-    userRank < 2 ? setEdit(true) : setEdit(false);
-  }, [userRank]);
+    yourUser.rank < 2 ? setEdit(true) : setEdit(false);
+  }, [yourUser.rank]);
 
   const handleSaveDescription = (result: string) => {
     setEditable(result);
@@ -104,13 +106,23 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
     // />;
   };
 
+  const handleAddComment = () => {
+    const comment: CommentObject = {
+      name: username,
+      message,
+      time: Date.now(),
+    };
+    setComments([...comments, comment]);
+    setMessage("");
+  };
+
   return (
     <>
       <SidebarLeft
         handleKickOut={handleKickOut}
         handleRankUp={handleRankUp}
         users={aEvent.users}
-        userRank={userRank}
+        userRank={yourUser.rank}
       />
       <NavbarEvent
         name={aEvent.name}
@@ -132,7 +144,16 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
           />
         </div>
         <div className="row ">
-          <div className="col-md-8"></div>
+          <div className="col-md-8 pt-5">
+            <CommentPage
+              color={yourUser.color}
+              handleAddComment={handleAddComment}
+              message={message}
+              setMessage={setMessage}
+              loading={loading}
+              comments={comments}
+            />
+          </div>
           <div className="col-md-4 p-0 ">
             <ActiveEventImportantInfoView
               edit={edit}

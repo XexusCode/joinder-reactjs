@@ -2,6 +2,7 @@ import React from "react";
 import { EditableForm } from "../../components/joinder/event/EditableForm";
 import { DateChangeModal } from "../../components/modals/DateChangeModal";
 import { MapView } from "../../components/maps/MapView";
+import moment from "moment";
 
 export const ActiveEventInfoView = ({
   editable,
@@ -41,7 +42,13 @@ export const ActiveEventInfoView = ({
                   className="mb-3 editable"
                   style={{ color: "#337ab7" }}
                 >
-                  {aEvent.start_date} - {aEvent.start_date}
+                  {moment(aEvent.start_date).format(
+                    "DD/MM/YYYY [a las] h:mm:ss  "
+                  )}{" "}
+                  -{" "}
+                  {moment(aEvent.end_date).format(
+                    "DD/MM/YYYY [a las] h:mm:ss  "
+                  )}
                 </h5>
                 <h6 className="title-price mb-3">2/20</h6>
                 <h3 className="mb-3" style={{ marginTop: "0px" }}>

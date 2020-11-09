@@ -9,7 +9,6 @@ interface HomeViewEventListParams {
 
 export const EventListView = ({
   events,
-
   handleActiveEvent,
 }: HomeViewEventListParams) => {
   return (
