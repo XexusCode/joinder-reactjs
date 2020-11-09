@@ -5,7 +5,7 @@ import Flatpickr from "react-flatpickr";
 interface DatePickerParams {
   date: Date;
   setDate: (date: Date) => void;
-  minDate: number;
+  minDate?: number;
 }
 
 const DatePicker = ({ date, setDate, minDate }: DatePickerParams) => {

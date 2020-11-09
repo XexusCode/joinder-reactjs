@@ -22,7 +22,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
   const [editable, setEditable] = useState(`${valuePlaceholder.DESCRIPTION}`);
   const [edit, setEdit] = useState(false);
   const [show, setShow] = useState(false);
-  const [loading,] = useState(false);
+  const [loading] = useState(false);
   const [comments, setComments] = useState<CommentObject[]>([]);
   const [message, setMessage] = useState("");
   const yourUser = aEvent.users.find((user: UserObjects) => user.uid === uid);
@@ -96,23 +96,13 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
       })
     );
   };
-
-  const handleEditDate = () => {
-    // <DatePicker
-    //   date={aEvent.start_date}
-    //   setDate={(date) => {
-    //     dispatch(updateActiveEvent({ ...aEvent, start_date: date.getTime() }));
-    //   }}
-    // />;
-  };
-
   const handleAddComment = () => {
     const comment: CommentObject = {
       name: username,
       message,
       time: Date.now(),
     };
-    setComments([...comments, comment]);
+    setComments([comment, ...comments]);
     setMessage("");
   };
 
@@ -125,6 +115,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
         userRank={yourUser.rank}
       />
       <NavbarEvent
+        rank={yourUser.rank}
         name={aEvent.name}
         handleDeleteEvent={handleDeleteEvent}
         idEvent="213213"
@@ -134,7 +125,6 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
           <div className="col-md-12 "></div>
 
           <ActiveEventInfoView
-            handleEditDate={handleEditDate}
             handleSaveValue={handleSaveDescription}
             edit={edit}
             editable={editable}
@@ -144,7 +134,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
           />
         </div>
         <div className="row ">
-          <div className="col-md-8 pt-5">
+          <div className="col-md-8 pt-5 ">
             <CommentPage
               color={yourUser.color}
               handleAddComment={handleAddComment}

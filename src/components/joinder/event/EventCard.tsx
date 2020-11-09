@@ -18,8 +18,8 @@ export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
       style={{ textDecoration: "none" }}
       to={`./evento/${event.idevent}`}
     >
-      <Col>
-        <hr />
+      <Col className="animate__animated animate__fadeInLeft">
+        <hr style={{ border: "none" }} />
         <Row>
           <Container
             className={` ${event.end_date < Date.now() ? "eventold" : "event"}`}

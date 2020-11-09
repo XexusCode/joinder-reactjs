@@ -42,7 +42,7 @@ export const CreateEventModalView = (props: CreateEventModalParams) => {
         }}
       >
         <Modal
-          {...props}
+          show={props.show}
           centered
           aria-labelledby="contained-modal-title-vcenter"
         >
@@ -88,7 +88,6 @@ export const CreateEventModalView = (props: CreateEventModalParams) => {
                   <DatePicker
                     date={props.dates.dateStart}
                     setDate={props.dates.setDateStart}
-                    minDate={Date.now()}
                   />
                 </Col>
                 <Col xs={12} md={6}>

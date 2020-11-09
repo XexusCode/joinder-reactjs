@@ -3,6 +3,16 @@ import { EditableForm } from "../../components/joinder/event/EditableForm";
 import { DateChangeModal } from "../../components/modals/DateChangeModal";
 import { MapView } from "../../components/maps/MapView";
 import moment from "moment";
+import { EventObject } from "../../models/models";
+
+interface ActiveEventInfoViewParams {
+  editable: string;
+  edit: boolean;
+  handleSaveValue: (arg: string, id: number) => void;
+  show: boolean;
+  setShow: (arg: boolean) => void;
+  aEvent: EventObject;
+}
 
 export const ActiveEventInfoView = ({
   editable,
@@ -11,8 +21,7 @@ export const ActiveEventInfoView = ({
   show,
   setShow,
   aEvent,
-}: any) => {
-  //Change
+}: ActiveEventInfoViewParams) => {
   return (
     <>
       <div className="container">

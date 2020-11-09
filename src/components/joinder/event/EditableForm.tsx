@@ -11,22 +11,24 @@ export const EditableForm = ({
   handleSaveValue,
 }: ActiveEventEditableParams) => {
   return (
-    <EasyEdit
-      className="easy-edit-not-allowed"
-      type="text"
-      value={editable}
-      onSave={(value: string) => {
-        if (id != null) {
-          handleSaveValue(value, id);
-        } else {
-          handleSaveValue(value, (id = 0));
-        }
-      }}
-      onCancel={() => {}}
-      allowEdit={edit}
-      saveButtonLabel={<GoCheck />}
-      cancelButtonLabel={<GoX />}
-      attributes={{ name: "awesome-input", id: 1 }}
-    />
+    <div className="animate__animated animate__fadeIn">
+      <EasyEdit
+        className="easy-edit-not-allowed"
+        type="text"
+        value={editable}
+        onSave={(value: string) => {
+          if (id != null) {
+            handleSaveValue(value, id);
+          } else {
+            handleSaveValue(value, (id = 0));
+          }
+        }}
+        onCancel={() => {}}
+        allowEdit={edit}
+        saveButtonLabel={<GoCheck />}
+        cancelButtonLabel={<GoX />}
+        attributes={{ name: "awesome-input", id: 1 }}
+      />
+    </div>
   );
 };

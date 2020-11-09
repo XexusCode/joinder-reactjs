@@ -31,7 +31,7 @@ export const ActiveEventImportantInfoView = ({
                       <button
                         onClick={handleAddTodo}
                         type="button"
-                        className=" btn btn-primary btn-circle"
+                        className=" btn-primary boton-circle"
                       >
                         <GoPlus />
                       </button>
@@ -40,7 +40,7 @@ export const ActiveEventImportantInfoView = ({
                       <button
                         onClick={handleDeleteTodo}
                         type="button"
-                        className="btn btn-danger btn-circle"
+                        className="btn-danger boton-circle"
                       >
                         <AiOutlineMinusCircle />
                       </button>
