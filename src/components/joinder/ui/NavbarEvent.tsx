@@ -33,7 +33,7 @@ export const NavbarEvent = ({
           {rank <= 1 ? (
             <Nav.Link onClick={handleDeleteEvent}>Borrar Evento</Nav.Link>
           ) : (
-            <span/>
+            <span />
           )}
 
           <Nav.Item
