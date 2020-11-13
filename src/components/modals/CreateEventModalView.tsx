@@ -43,6 +43,7 @@ export const CreateEventModalView = (props: CreateEventModalParams) => {
       >
         <Modal
           show={props.show}
+          onHide={props.onHide}
           centered
           aria-labelledby="contained-modal-title-vcenter"
         >
