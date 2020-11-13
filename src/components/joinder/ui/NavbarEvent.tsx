@@ -42,9 +42,9 @@ export const NavbarEvent = ({
               alert("ID COPIADO EN PORTAPAPELES");
             }}
           >
-            ID EVENTO:{" "}
             <span className="pl-3 " style={{ color: "red", fontSize: 18 }}>
-              {idEvent}
+              {" "}
+              ID EVENTO: {idEvent}
             </span>
           </Nav.Item>
         </Nav>

@@ -55,29 +55,29 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
   };
 
   const handleSaveTodoList = (result: string, id: number) => {
-    aEvent.items.splice(id, 1, { id: id, text: result });
+    aEvent.todos.splice(id, 1, { id: id, text: result });
     dispatch(
       updateActiveEvent({
         ...aEvent,
-        items: aEvent.items,
+        todos: aEvent.todos,
       })
     );
   };
   const handleAddTodo = () => {
     let index: number;
-    const item = aEvent.items[aEvent.items.length - 1];
+    const todo = aEvent.todos[aEvent.todos.length - 1];
 
-    if (item === undefined) {
+    if (todo === undefined) {
       index = -1;
     } else {
-      index = item.id;
+      index = todo.id;
     }
 
     dispatch(
       updateActiveEvent({
         ...aEvent,
-        items: [
-          ...aEvent.items,
+        todos: [
+          ...aEvent.todos,
           { id: index + 1, text: `${valuePlaceholder.OPTION}` },
         ],
       })
@@ -85,14 +85,12 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
   };
 
   const handleDeleteTodo = () => {
-    aEvent.items.splice(-1, 1);
-
-    console.log(aEvent.items);
+    aEvent.todos.splice(-1, 1);
 
     dispatch(
       updateActiveEvent({
         ...aEvent,
-        items: [...aEvent.items],
+        todos: [...aEvent.todos],
       })
     );
   };
@@ -147,7 +145,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
           <div className="col-md-4 p-0 ">
             <ActiveEventImportantInfoView
               edit={edit}
-              items={aEvent.items}
+              todos={aEvent.todos}
               handleSaveValue={handleSaveTodoList}
               handleAddTodo={handleAddTodo}
               handleDeleteTodo={handleDeleteTodo}

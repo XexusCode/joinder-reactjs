@@ -16,10 +16,10 @@ export interface EventObject {
   img: string;
   description?: string;
   users: Array<UserObjects>;
-  items?: Array<ItemObject>;
+  todos?: Array<TodoObject>;
 }
 
-export interface ItemObject {
+export interface TodoObject {
   id: number;
   text: string;
 }

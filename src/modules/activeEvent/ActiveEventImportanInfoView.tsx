@@ -1,15 +1,23 @@
 import React from "react";
 import { EditableForm } from "../../components/joinder/event/EditableForm";
-import { ItemObject } from "../../models/models";
+import { TodoObject } from "../../models/models";
 import { AiOutlineMinusCircle, GoPlus } from "react-icons/all";
 
+interface ActiveEventImportantInfoViewParams {
+  todos: Array<TodoObject>;
+  handleSaveValue: (result: string, id: number) => void;
+  edit: boolean;
+  handleAddTodo: () => void;
+  handleDeleteTodo: () => void;
+}
+
 export const ActiveEventImportantInfoView = ({
-  items,
+  todos,
   handleSaveValue,
   edit,
   handleAddTodo,
   handleDeleteTodo,
-}: any) => {
+}: ActiveEventImportantInfoViewParams) => {
   return (
     <>
       <div className="container">
@@ -25,7 +33,7 @@ export const ActiveEventImportantInfoView = ({
               >
                 <h2 className="mb-3">Cosas Importantes </h2>
 
-                {edit === true ? (
+                {edit ? (
                   <span>
                     <span className="pr-2">
                       <button
@@ -55,11 +63,11 @@ export const ActiveEventImportantInfoView = ({
                   style={{ color: "#337ab7", fontSize: "12" }}
                 >
                   <div className="pb-2">
-                    {items.map((item: ItemObject) => (
+                    {todos.map((todo: TodoObject) => (
                       <EditableForm
-                        editable={item.text}
-                        id={item.id}
-                        key={item.id}
+                        editable={todo.text}
+                        id={todo.id}
+                        key={todo.id}
                         edit={edit}
                         handleSaveValue={handleSaveValue}
                       />

@@ -19,7 +19,7 @@ const initialState: InitialStateEventParams = {
     location: "",
     img: "",
     users: [],
-    items: [{ id: 0, text: "e" }],
+    todos: [{ id: 0, text: "e" }],
   },
 };
 

@@ -32,7 +32,7 @@
             "end_date":16752395410000,
             "location":"Castellon",
 			"nmax":7,
-            "items": [{
+            "todos": [{
                "id": 0 ,
                "text": "prueba1"
             },
@@ -71,7 +71,7 @@
             "end_date":1604221810000,
             "location":"Castellon",
 			"nmax":7,
-            "items": [{
+            "todos": [{
                "id": 0 ,
                "text": "prueba1"
             },
