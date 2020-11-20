@@ -1,10 +1,10 @@
-import { UserObjects } from "../../../models/models";
+import { UserEventObject } from "../../../models/models";
 import React from "react";
 import { AiFillStar, CgTrash, FaCrown, RiUserFill } from "react-icons/all";
 import { useUser } from "../../../modules/activeEvent/hooks/useUser";
 
 interface UserCardParams {
-  user: UserObjects;
+  user: UserEventObject;
   handleKickOut: () => void;
   handleRankUp: () => void;
   userRank: number;
@@ -16,7 +16,7 @@ export const UserCard = ({
   handleRankUp,
   userRank,
 }: UserCardParams) => {
-  const { uid } = useUser();
+  const { username } = useUser();
 
   return (
     <div className="pb-3">
@@ -27,7 +27,7 @@ export const UserCard = ({
         ) : (
           <span />
         )}
-        {userRank <= 2 && uid !== user.uid ? (
+        {userRank <= 2 && username !== user.username ? (
           <span className="pl-3">
             <span onClick={handleRankUp} className="crown">
               <FaCrown />
@@ -39,7 +39,11 @@ export const UserCard = ({
         ) : (
           <span />
         )}
-        {uid === user.uid ? <span className="pl-3">[YOU]</span> : <div />}
+        {username === user.username ? (
+          <span className="pl-3">[YOU]</span>
+        ) : (
+          <div />
+        )}
       </span>
     </div>
   );

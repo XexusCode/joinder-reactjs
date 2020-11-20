@@ -15,4 +15,7 @@ export enum ReduxActionType {
   eventUpdateActive = "[event] Set active",
   eventUnsetActive = "[event] Unset active",
   eventLogout = "[event] Unset active",
-};
+  addComment = "[event/comment] Add Comment",
+  addTodo = "[event/todo] Add TODO",
+  removeTodo = "[event/todo] Add TODO",
+}

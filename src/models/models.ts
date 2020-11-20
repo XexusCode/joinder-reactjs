@@ -1,22 +1,27 @@
-export interface UserObjects {
+export interface UserEventObject {
   username: string;
   uid: string;
   color: string;
   rank: number;
 }
 
+export interface UserAuth {
+  uid: string;
+  username: string;
+}
+
 export interface EventObject {
-  idevent?: string;
-  name: string;
-  owner: string;
-  start_date: number;
-  end_date: number;
+  id?: string;
+  title: string;
+  startDate: string;
+  endDate: string;
   location: any;
   nmax: number;
   img: string;
   description?: string;
-  users: Array<UserObjects>;
-  todos?: Array<TodoObject>;
+  userEvents: Array<UserEventObject>;
+  todos: Array<TodoObject>;
+  comments: Array<CommentObject>;
 }
 
 export interface TodoObject {
@@ -24,7 +29,8 @@ export interface TodoObject {
   text: string;
 }
 export interface CommentObject {
-  name: string;
-  message: string;
-  time: number;
+  id: number;
+  userEventUsername: string;
+  text: string;
+  date: string;
 }

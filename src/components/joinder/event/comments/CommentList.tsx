@@ -27,8 +27,8 @@ export const CommentList = ({
         </div>
       ) : null}
       <span>
-        {comments.map((comment: any, index: number) => (
-          <Comment color={color} key={index} comment={comment} />
+        {comments.map((comment: CommentObject) => (
+          <Comment color={color} key={comment.id} comment={comment} />
         ))}{" "}
       </span>
     </div>

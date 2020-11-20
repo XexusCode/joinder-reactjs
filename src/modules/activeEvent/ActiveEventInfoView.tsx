@@ -6,7 +6,6 @@ import moment from "moment";
 import { EventObject } from "../../models/models";
 
 interface ActiveEventInfoViewParams {
-  editable: string;
   edit: boolean;
   handleSaveValue: (arg: string, id: number) => void;
   show: boolean;
@@ -15,7 +14,6 @@ interface ActiveEventInfoViewParams {
 }
 
 export const ActiveEventInfoView = ({
-  editable,
   edit,
   handleSaveValue,
   show,
@@ -41,7 +39,7 @@ export const ActiveEventInfoView = ({
                 className="col-sm-10 col-md-8 order-md-2 col-xs-8 "
                 style={{ border: "0px solid gray" }}
               >
-                <h3 className="mb-3">Localización: Castellón </h3>
+                <h3 className="mb-3">Localización: {aEvent.location} </h3>
 
                 <DateChangeModal show={show} setShow={setShow} />
                 <h5
@@ -51,22 +49,24 @@ export const ActiveEventInfoView = ({
                   className="mb-3 editable"
                   style={{ color: "#337ab7" }}
                 >
-                  {moment(aEvent.start_date).format(
+                  {moment(parseInt(aEvent.startDate)).format(
                     "DD/MM/YYYY [a las] h:mm:ss  "
                   )}{" "}
                   -{" "}
-                  {moment(aEvent.end_date).format(
+                  {moment(parseInt(aEvent.endDate)).format(
                     "DD/MM/YYYY [a las] h:mm:ss  "
                   )}
                 </h5>
-                <h6 className="title-price mb-3">2/20</h6>
+                <h6 className="title-price mb-3">
+                  {aEvent.userEvents.length}/{aEvent.nmax}
+                </h6>
                 <h3 className="mb-3" style={{ marginTop: "0px" }}>
                   Descripción
                 </h3>
                 <div>
                   <EditableForm
                     edit={edit}
-                    editable={editable}
+                    editable={aEvent.description}
                     handleSaveValue={handleSaveValue}
                   />
                 </div>

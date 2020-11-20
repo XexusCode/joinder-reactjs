@@ -2,10 +2,10 @@ import { slide as Menu } from "react-burger-menu";
 import React from "react";
 import "./SidebarLeft.scss";
 import { UserCard } from "../event/UserCard";
-import { UserObjects } from "../../../models/models";
+import { UserEventObject } from "../../../models/models";
 
 interface SidebarLeftParams {
-  users: Array<UserObjects>;
+  users: Array<UserEventObject>;
   handleRankUp: () => void;
   handleKickOut: () => void;
   userRank: number;
@@ -29,7 +29,7 @@ export const SidebarLeft = ({
             handleRankUp={handleRankUp}
             user={user}
             userRank={userRank}
-            key={user.uid}
+            key={user.username}
           />
         ))}
     </Menu>

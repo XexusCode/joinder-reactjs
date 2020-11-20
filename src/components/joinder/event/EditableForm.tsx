@@ -1,5 +1,4 @@
 import React from "react";
-// @ts-ignore
 import EasyEdit from "react-easy-edit";
 import { GoCheck, GoX } from "react-icons/all";
 import "./EventCard.scss";

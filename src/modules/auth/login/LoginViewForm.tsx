@@ -38,13 +38,13 @@ export const LoginViewForm = ({
             }}
           >
             <input
-              type="email"
+              type="text"
               id="login"
               className="fadeIn second"
               name="login"
               value={email}
               onChange={(e) => handleInputEmail(e.target.value)}
-              placeholder="Enter your email"
+              placeholder="Introduce tu nombre de usuario"
             />
 
             <input
@@ -54,7 +54,7 @@ export const LoginViewForm = ({
               name="login"
               value={password}
               onChange={(e) => handleInputPassword(e.target.value)}
-              placeholder="Enter your password"
+              placeholder="Introduce tu contraseña"
             />
             <input type="submit" className="fadeIn fourth" value="Log In" />
           </form>

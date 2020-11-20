@@ -50,11 +50,6 @@ export class MapView extends React.PureComponent {
   };
 
   render() {
-    return (
-      <MyMapComponent
-        isMarkerShown={this.state.isMarkerShown}
-        onMarkerClick={this.handleMarkerClick}
-      />
-    );
+    return <MyMapComponent />;
   }
 }

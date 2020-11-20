@@ -9,7 +9,7 @@ interface propsParams {
 }
 
 export default function Comment({ comment, color }: propsParams) {
-  const { name, message, time } = comment;
+  const { userEventUsername, text, date } = comment;
 
   return (
     <div className="media mb-3 animate__animated animate__fadeIn  ">
@@ -18,10 +18,10 @@ export default function Comment({ comment, color }: propsParams) {
       <div className="media-body p-2 shadow-sm rounded bg-light border">
         <small className="float-right text-muted">
           {" "}
-          {moment(time).fromNow()}
+          {moment(parseInt(date)).fromNow()}
         </small>
-        <h6 className="mt-0 mb-1 text-muted">{name}</h6>
-        <span>{message}</span>
+        <h6 className="mt-0 mb-1 text-muted">{userEventUsername}</h6>
+        <span>{text}</span>
       </div>
     </div>
   );

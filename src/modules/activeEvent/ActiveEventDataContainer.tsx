@@ -1,6 +1,10 @@
 import React, { useEffect, useState } from "react";
-import { fetchApi } from "../../helpers/fetch";
-import { deleteEvent, updateActiveEvent } from "../home/eventActions";
+import { fetchConToken } from "../../helpers/fetch";
+import {
+  addComment,
+  deleteEvent,
+  updateActiveEvent,
+} from "../home/eventActions";
 import { useDispatch } from "react-redux";
 import history from "../../routing/history";
 import { SidebarLeft } from "../../components/joinder/ui/SidebarLeft";
@@ -9,26 +13,27 @@ import "./ActiveEventStyle.scss";
 import { NavbarEvent } from "../../components/joinder/ui/NavbarEvent";
 import { ActiveEventInfoView } from "./ActiveEventInfoView";
 import { useUser } from "./hooks/useUser";
-import { CommentObject, UserObjects } from "../../models/models";
+import { UserEventObject } from "../../models/models";
 import { ActiveEventImportantInfoView } from "./ActiveEventImportanInfoView";
 import { valuePlaceholder } from "./PlaceholderTypes";
 import { CommentPage } from "../../components/joinder/event/comments/CommentPage";
+import Swal from "sweetalert2";
 
 export const ActiveEventDataContainer: React.FunctionComponent = () => {
   const [, setError] = useState("");
   const dispatch = useDispatch();
   const aEvent = useAevent();
-  const { uid, username } = useUser();
-  const [editable, setEditable] = useState(`${valuePlaceholder.DESCRIPTION}`);
+  const { username } = useUser();
   const [edit, setEdit] = useState(false);
   const [show, setShow] = useState(false);
   const [loading] = useState(false);
-  const [comments, setComments] = useState<CommentObject[]>([]);
   const [message, setMessage] = useState("");
-  const yourUser = aEvent.users.find((user: UserObjects) => user.uid === uid);
+  const yourUser = aEvent.userEvents.find(
+    (user: UserEventObject) => user.username === username
+  );
 
   const handleDeleteEvent = () => {
-    fetchApi("deleteevent", "GET")
+    fetchConToken(`events/${aEvent.id}`, {}, "DELETE")
       .then((response) => response.json())
       .then(() => {
         history.replace("/home");
@@ -50,7 +55,6 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
   }, [yourUser.rank]);
 
   const handleSaveDescription = (result: string) => {
-    setEditable(result);
     dispatch(updateActiveEvent({ ...aEvent, description: result }));
   };
 
@@ -95,12 +99,16 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
     );
   };
   const handleAddComment = () => {
-    const comment: CommentObject = {
-      name: username,
-      message,
-      time: Date.now(),
-    };
-    setComments([comment, ...comments]);
+    fetchConToken(`events/${aEvent.id}/comment`, { text: message }, "POST")
+      .then((response) => response.json())
+      .then((responseJson) => {
+        if (responseJson.success) {
+          Swal.fire("Success", responseJson.message, "success");
+          dispatch(addComment(responseJson.data));
+        } else {
+          Swal.fire("ERROR", responseJson.message, "error");
+        }
+      });
     setMessage("");
   };
 
@@ -109,7 +117,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
       <SidebarLeft
         handleKickOut={handleKickOut}
         handleRankUp={handleRankUp}
-        users={aEvent.users}
+        users={aEvent.userEvents}
         userRank={yourUser.rank}
       />
       <NavbarEvent
@@ -125,7 +133,6 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
           <ActiveEventInfoView
             handleSaveValue={handleSaveDescription}
             edit={edit}
-            editable={editable}
             show={show}
             setShow={setShow}
             aEvent={aEvent}
@@ -139,7 +146,7 @@ export const ActiveEventDataContainer: React.FunctionComponent = () => {
               message={message}
               setMessage={setMessage}
               loading={loading}
-              comments={comments}
+              comments={aEvent.comments}
             />
           </div>
           <div className="col-md-4 p-0 ">

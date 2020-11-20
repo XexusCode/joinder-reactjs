@@ -35,3 +35,8 @@ export const deleteEvent = () => ({
 export const logoutEvents = () => ({
   type: ReduxActionType.eventLogout,
 });
+
+export const addComment = (commentText: string) => ({
+  type: ReduxActionType.addComment,
+  payload: commentText,
+});

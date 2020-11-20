@@ -8,14 +8,11 @@ interface RegisterParams {
   handleInputName: (username: string) => void;
   handleInputPassword: (password: string) => void;
   handleInputPassword2: (password2: string) => void;
-  handleInputEmail: (email: string) => void;
-  email: string;
   password: string;
   password2: string;
   handleSubmit: (
     e: React.FormEvent<HTMLFormElement>,
     username: string,
-    email: string,
     password: string,
     password2: string
   ) => void;
@@ -23,11 +20,9 @@ interface RegisterParams {
 
 export const RegisterFormView = ({
   username,
-  email,
   password,
   password2,
   handleSubmit,
-  handleInputEmail,
   handleInputName,
   handleInputPassword,
   handleInputPassword2,
@@ -48,7 +43,7 @@ export const RegisterFormView = ({
           <form
             onSubmit={(e) => {
               e.preventDefault();
-              handleSubmit(e, username, email, password, password2);
+              handleSubmit(e, username, password, password2);
             }}
           >
             <input
@@ -61,18 +56,6 @@ export const RegisterFormView = ({
                 handleInputName(e.target.value);
               }}
               placeholder="Enter your Username"
-            />
-
-            <input
-              type="email"
-              id="login"
-              className="fadeIn second"
-              name="login"
-              value={email}
-              onChange={(e) => {
-                handleInputEmail(e.target.value);
-              }}
-              placeholder="Enter your Email"
             />
 
             <input

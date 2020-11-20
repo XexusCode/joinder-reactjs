@@ -16,27 +16,26 @@ export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
         handleActiveEvent(event);
       }}
       style={{ textDecoration: "none" }}
-      to={`./evento/${event.idevent}`}
+      to={`./evento/${event.id}`}
     >
       <Col className="animate__animated animate__fadeInLeft">
         <hr style={{ border: "none" }} />
         <Row>
           <Container
-            className={` ${event.end_date < Date.now() ? "eventold" : "event"}`}
+            className={` ${
+              parseInt(event.endDate) < Date.now() ? "eventold" : "event"
+            }`}
           >
             <Col>
               <Row>
                 <Col md={5}>
                   <div className="card-body  ">
-                    <Image
-                      src="http://placeimg.com/100/100/food"
-                      roundedCircle
-                    />
+                    <Image src={event.img} roundedCircle />
                   </div>
                 </Col>
                 <Col md={5}>
                   <div className="card-title  ">
-                    <h3>{event.name}</h3>
+                    <h3>{event.title}</h3>
                     <h6>Localizacion: {event.location}</h6>
                   </div>
                   <Row>
@@ -44,13 +43,13 @@ export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
                   </Row>
                   <Row md={10}>
                     <Badge variant="success">
-                      {moment(event.start_date).format(
+                      {moment(parseInt(event.startDate)).format(
                         "DD/MM/YYYY [a las] h:mm:ss  "
                       )}
                     </Badge>{" "}
                     <hr />
                     <Badge variant="danger">
-                      {moment(event.end_date).format(
+                      {moment(parseInt(event.endDate)).format(
                         "DD/MM/YYYY [a las] h:mm:ss  "
                       )}
                     </Badge>
@@ -59,13 +58,13 @@ export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
                 <Col md={1}>
                   <Row md={2}>
                     <div className="nmax">
-                      {event.nmax >= event.users.length ? (
+                      {event.nmax >= event.userEvents.length ? (
                         <h5 style={{ color: "green" }}>
-                          {event.users.length}/{event.nmax}{" "}
+                          {event.userEvents.length}/{event.nmax}{" "}
                         </h5>
                       ) : (
                         <h5 style={{ color: "red" }}>
-                          {event.users.length}/{event.nmax}{" "}
+                          {event.userEvents.length}/{event.nmax}{" "}
                         </h5>
                       )}
                     </div>

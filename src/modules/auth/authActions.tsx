@@ -1,8 +1,8 @@
-import { UserObjects } from "../../models/models";
+import { UserAuth } from "../../models/models";
 import { ReduxAction } from "../../redux/ReduxAction";
 import { ReduxActionType } from "../../redux/ReduxActionType";
 
-export const login = (user: UserObjects): ReduxAction<UserObjects> => ({
+export const login = (user: UserAuth): ReduxAction<UserAuth> => ({
   type: ReduxActionType.AUTH_LOGIN,
   payload: user,
 });

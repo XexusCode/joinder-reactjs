@@ -10,16 +10,16 @@ interface InitialStateEventParams {
 const initialState: InitialStateEventParams = {
   events: [],
   activeEvent: {
-    idevent: "000",
+    id: "000",
     nmax: 0,
-    name: "",
-    owner: "",
-    start_date: 0,
-    end_date: 0,
+    title: "",
+    startDate: "0",
+    endDate: "0",
     location: "",
     img: "",
-    users: [],
+    userEvents: [],
     todos: [{ id: 0, text: "e" }],
+    comments: [],
   },
 };
 
@@ -38,7 +38,7 @@ export const eventReducer = (
       return {
         ...state,
         events: state.events.map((event) =>
-          event.idevent === action.payload.idevent ? action.payload : event
+          event.id === action.payload.idevent ? action.payload : event
         ),
         activeEvent: action.payload,
       };
@@ -53,10 +53,10 @@ export const eventReducer = (
       return {
         ...state,
         events: state.events.filter(
-          (event) => event.idevent !== state.activeEvent.idevent
+          (event) => event.id !== state.activeEvent.id
         ),
         activeEvent: {
-          users: [],
+          userEvents: [],
         },
       };
 
@@ -65,7 +65,31 @@ export const eventReducer = (
         events: [],
         activeEvent: {},
       };
+    case ReduxActionType.addComment:
+      return {
+        ...state,
+        activeEvent: {
+          ...state.activeEvent,
+          comments: [action.payload, ...state.activeEvent.comments],
+        },
+      };
+    case ReduxActionType.addTodo:
+      return {
+        ...state,
+        activeEvent: {
+          ...state.activeEvent,
+          todos: [...state.activeEvent.todos, action.payload],
+        },
+      };
 
+    case ReduxActionType.removeTodo:
+      return {
+        ...state,
+        activeEvent: {
+          ...state.activeEvent,
+          todos: [...state.activeEvent.todos, action.payload],
+        },
+      };
     default:
       return state;
   }

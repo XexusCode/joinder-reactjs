@@ -149,8 +149,14 @@ export const CreateEventModalView = (props: CreateEventModalParams) => {
           </Modal.Body>
           <Modal.Footer>
             <Button onClick={props.onHide}>Close</Button>
-            <Button onClick={props.handleSubmitCreateEvent} type="submit">
-              JOIN
+            <Button
+              onClick={() => {
+                props.handleSubmitCreateEvent();
+                props.onHide();
+              }}
+              type="submit"
+            >
+              Crear Evento
             </Button>
           </Modal.Footer>
         </Modal>

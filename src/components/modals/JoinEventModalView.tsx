@@ -4,6 +4,8 @@ import React from "react";
 interface JoinEventModalParams {
   show: boolean;
   onHide: () => void;
+  handleJoinEvent: () => void;
+  setIdJoinEvent: (idEvent: number) => void;
 }
 export const JoinEventModalView = (props: JoinEventModalParams) => {
   return (
@@ -20,7 +22,13 @@ export const JoinEventModalView = (props: JoinEventModalParams) => {
               <Form>
                 <Form.Group controlId="idEvent">
                   <Form.Label>ID DE EL EVENTO</Form.Label>
-                  <Form.Control type="email" placeholder="ID EVENTO" />
+                  <Form.Control
+                    onChange={(e) =>
+                      props.setIdJoinEvent(parseInt(e.target.value))
+                    }
+                    type="text"
+                    placeholder="ID EVENTO"
+                  />
                   <Form.Text className="text-muted">
                     Introduce el id del evento al que quieras ingresar!
                   </Form.Text>
@@ -45,7 +53,14 @@ export const JoinEventModalView = (props: JoinEventModalParams) => {
       </Modal.Body>
       <Modal.Footer>
         <Button onClick={props.onHide}>Close</Button>
-        <Button onClick={props.onHide}>Join</Button>
+        <Button
+          onClick={() => {
+            props.handleJoinEvent();
+            props.onHide();
+          }}
+        >
+          Join
+        </Button>
       </Modal.Footer>
     </Modal>
   );
