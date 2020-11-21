@@ -1,6 +1,6 @@
 const baseUrl = process.env.REACT_APP_API_URL;
 
-export const fetchApi = (endpoint: string, data: any, method = "GET") => {
+export const fetchSinToken = (endpoint: string, data: any, method = "GET") => {
   const url = `${baseUrl}/${endpoint}`;
 
   if (method === "GET") {

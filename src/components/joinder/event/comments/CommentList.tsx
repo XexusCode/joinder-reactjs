@@ -5,14 +5,9 @@ import { CommentObject } from "../../../../models/models";
 interface CommentListParams {
   comments: Array<CommentObject>;
   loading: boolean;
-  color: string;
 }
 
-export const CommentList = ({
-  comments,
-  loading,
-  color,
-}: CommentListParams) => {
+export const CommentList = ({ comments, loading }: CommentListParams) => {
   return (
     <div>
       <h5 className="text-muted mb-4">
@@ -28,7 +23,7 @@ export const CommentList = ({
       ) : null}
       <span>
         {comments.map((comment: CommentObject) => (
-          <Comment color={color} key={comment.id} comment={comment} />
+          <Comment key={comment.id} comment={comment} />
         ))}{" "}
       </span>
     </div>

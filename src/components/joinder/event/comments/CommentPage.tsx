@@ -9,7 +9,6 @@ interface CommentPageParams {
   setMessage: (message: string) => void;
   loading: boolean;
   comments: Array<CommentObject>;
-  color: string;
 }
 
 export const CommentPage = ({
@@ -18,7 +17,6 @@ export const CommentPage = ({
   message,
   setMessage,
   loading,
-  color,
 }: CommentPageParams) => {
   return (
     <div className="">
@@ -33,7 +31,7 @@ export const CommentPage = ({
           />
         </div>
         <div className=" pt-3 bg-white">
-          <CommentList color={color} loading={loading} comments={comments} />
+          <CommentList loading={loading} comments={comments} />
         </div>
       </div>
     </div>

@@ -1,7 +1,7 @@
 import React from "react";
 import { EditableForm } from "../../components/joinder/event/EditableForm";
 import { DateChangeModal } from "../../components/modals/DateChangeModal";
-import { MapView } from "../../components/maps/MapView";
+import MapView from "../../components/maps/MapView";
 import moment from "moment";
 import { EventObject } from "../../models/models";
 
@@ -11,6 +11,7 @@ interface ActiveEventInfoViewParams {
   show: boolean;
   setShow: (arg: boolean) => void;
   aEvent: EventObject;
+  latLngLocation: { lat: number; lng: number } | any;
 }
 
 export const ActiveEventInfoView = ({
@@ -19,6 +20,7 @@ export const ActiveEventInfoView = ({
   show,
   setShow,
   aEvent,
+  latLngLocation,
 }: ActiveEventInfoViewParams) => {
   return (
     <>
@@ -33,7 +35,7 @@ export const ActiveEventInfoView = ({
                 id="product1"
                 className="col-sm-2 col-xs-4 col-md-4 order-md-1 item-photo"
               >
-                <MapView />
+                <MapView position={latLngLocation} center={latLngLocation} />
               </div>
               <div
                 className="col-sm-10 col-md-8 order-md-2 col-xs-8 "
@@ -70,7 +72,6 @@ export const ActiveEventInfoView = ({
                     handleSaveValue={handleSaveValue}
                   />
                 </div>
-                <h6 className="title-price mb-3">hola :)</h6>
                 <br />
               </div>
             </div>

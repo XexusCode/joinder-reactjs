@@ -1,7 +1,7 @@
 import { Dispatch } from "react";
 import { ReduxAction } from "../../redux/ReduxAction";
 import { ReduxActionType } from "../../redux/ReduxActionType";
-import { EventObject } from "../../models/models";
+import { CommentObject, EventObject, TodoObject } from "../../models/models";
 
 export const startLogoutEvents = () => {
   return async (dispatch: Dispatch<ReduxAction<any>>) => {
@@ -36,7 +36,16 @@ export const logoutEvents = () => ({
   type: ReduxActionType.eventLogout,
 });
 
-export const addComment = (commentText: string) => ({
+export const addComment = (comment: CommentObject) => ({
   type: ReduxActionType.addComment,
-  payload: commentText,
+  payload: comment,
+});
+
+export const addTodo = (todo: TodoObject) => ({
+  type: ReduxActionType.addTodo,
+  payload: todo,
+});
+
+export const deleteTodo = () => ({
+  type: ReduxActionType.deleteTodo,
 });

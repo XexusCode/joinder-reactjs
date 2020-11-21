@@ -1,19 +1,23 @@
 import React from "react";
-import { CommentObject } from "../../../../models/models";
+import { CommentObject, UserEventObject } from "../../../../models/models";
 import moment from "moment";
 import { RiUserFill } from "react-icons/all";
+import { useAevent } from "../../../../modules/activeEvent/hooks/useAevent";
 
 interface propsParams {
   comment: CommentObject;
-  color: string;
 }
 
-export default function Comment({ comment, color }: propsParams) {
+export default function Comment({ comment }: propsParams) {
+  const { userEvents } = useAevent();
   const { userEventUsername, text, date } = comment;
+  let userEvent = userEvents.find(
+    (user: UserEventObject) => user.username === userEventUsername
+  );
 
   return (
     <div className="media mb-3 animate__animated animate__fadeIn  ">
-      <RiUserFill size={50} color={color} />
+      <RiUserFill size={50} color={userEvent.color} />
 
       <div className="media-body p-2 shadow-sm rounded bg-light border">
         <small className="float-right text-muted">

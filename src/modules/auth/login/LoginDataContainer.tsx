@@ -2,51 +2,43 @@ import { useDispatch } from "react-redux";
 import React, { useEffect, useState } from "react";
 import { login } from "../authActions";
 import { LoginViewForm } from "./LoginViewForm";
-import { fetchApi, fetchConToken } from "../../../helpers/fetch";
-import { UserAuth } from "../../../models/models";
 import Swal from "sweetalert2";
+import { apiCaller } from "../../../helpers/apiCaller";
 
 export const LoginDataContainer: React.FunctionComponent = () => {
   const dispatch = useDispatch();
 
-  const [, setError] = useState("");
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
 
-  const handleSubmit = (username: string, password: string) => {
-    fetchApi("auth/signIn", { username, password }, "POST")
-      .then((response) =>
-        response.json().then((responsejson) => {
-          if (responsejson.success) {
-            const user: UserAuth = {
-              uid: responsejson.data.uid,
-              username: responsejson.data.username,
-            };
-            Swal.fire("Success", responsejson.message + "\n", "success");
-            localStorage.setItem("token", responsejson.data.accesstoken);
-            dispatch(login(user));
-          } else {
-            Swal.fire("ERROR", responsejson.message[0] + "\n", "error");
-          }
-        })
-      )
-      .catch((err) => setError(err));
+  const handleSubmit = async (username: string, password: string) => {
+    const respuesta = await apiCaller(
+      `auth/signIn`,
+      { username, password },
+      "POST",
+      false
+    );
+    if (respuesta.success) {
+      Swal.fire("Success", respuesta.message + "\n", "success");
+      localStorage.setItem("token", respuesta.data.accesstoken);
+      dispatch(
+        login({ uid: respuesta.data.uid, username: respuesta.data.username })
+      );
+    }
   };
 
   useEffect(() => {
-    fetchConToken("auth/renew", "GET")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        if (responseJson.success) {
-          localStorage.setItem("token", responseJson.data.accesstoken);
-          dispatch(
-            login({
-              uid: responseJson.data.uid,
-              username: responseJson.data.username,
-            })
-          );
-        }
-      });
+    apiCaller("auth/renew", {}, "GET", true).then((response) => {
+      if (response.success) {
+        localStorage.setItem("token", response.data.accesstoken);
+        dispatch(
+          login({
+            uid: response.data.uid,
+            username: response.data.username,
+          })
+        );
+      }
+    });
   }, [dispatch]);
 
   return (

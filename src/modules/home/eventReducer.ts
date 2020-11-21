@@ -82,12 +82,13 @@ export const eventReducer = (
         },
       };
 
-    case ReduxActionType.removeTodo:
+    case ReduxActionType.deleteTodo:
+      state.activeEvent.todos.pop();
       return {
         ...state,
         activeEvent: {
           ...state.activeEvent,
-          todos: [...state.activeEvent.todos, action.payload],
+          todos: [...state.activeEvent.todos],
         },
       };
     default:
