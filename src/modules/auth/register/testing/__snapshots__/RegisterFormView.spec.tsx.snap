@@ -1,0 +1,66 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`RegiserFormView tests should take a snapshot of <RegisterFormView/> 1`] = `
+<DocumentFragment>
+  <div
+    class="wrapper fadeInDown"
+  >
+    <div
+      id="formContent"
+    >
+      <div
+        class="fadeIn first"
+      >
+        <img
+          alt="User Icon"
+          id="icon"
+          src="https://i.pinimg.com/originals/46/bf/f2/46bff2a47eea2421c50e52f1200266d5.png"
+        />
+        <h1>
+          Joinder
+        </h1>
+      </div>
+      <form>
+        <input
+          class="fadeIn second"
+          id="name"
+          name="login"
+          placeholder="Enter your Username"
+          type="text"
+          value="testUsername"
+        />
+        <input
+          class="fadeIn third"
+          id="password"
+          name="login"
+          placeholder="Password"
+          type="password"
+          value="testPassword"
+        />
+        <input
+          class="fadeIn third"
+          id="password2"
+          name="login"
+          placeholder="Repeat Password"
+          type="password"
+          value="testPassword"
+        />
+        <input
+          class="fadeIn fourth"
+          type="submit"
+          value="Register"
+        />
+      </form>
+      <div
+        id="formFooter"
+      >
+        <a
+          href="/auth/login"
+        >
+           ¿Ya tienes una cuenta? Logueate 
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;

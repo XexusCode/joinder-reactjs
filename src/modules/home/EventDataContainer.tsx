@@ -9,11 +9,7 @@ import { CreateEventModalView } from "../../components/modals/CreateEventModalVi
 import { EventListView } from "./views/EventListView";
 import { logout } from "../auth/authActions";
 import { EventObject, UserEventObject } from "../../models/models";
-import {
-  addEvent,
-  loadEvents,
-  updateActiveEvent,
-} from "./eventActions";
+import { addEvent, loadEvents, updateActiveEvent } from "./eventActions";
 import { imgUpload } from "../../helpers/imgUpload";
 import { useDate } from "./hooks/useDate";
 import { EventEmptyList } from "./views/EventEmptyList";

@@ -1,0 +1,61 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LoginViewForm tests should make a snapshot of LoginViewForm 1`] = `
+<DocumentFragment>
+  <div
+    class="wrapper fadeInDown"
+  >
+    <div
+      id="formContent"
+    >
+      <div
+        class="fadeIn first"
+      >
+        <img
+          alt="User Icon"
+          id="icon"
+          src="https://i.pinimg.com/originals/46/bf/f2/46bff2a47eea2421c50e52f1200266d5.png"
+        />
+        <h1>
+          Joinder
+        </h1>
+      </div>
+      <form>
+        <input
+          class="fadeIn second"
+          data-testid="text-name"
+          id="login"
+          name="login"
+          placeholder="Introduce tu nombre de usuario"
+          type="text"
+          value="username"
+        />
+        <input
+          class="fadeIn third"
+          data-testid="text-password"
+          id="password"
+          name="login"
+          placeholder="Introduce tu contraseña"
+          type="password"
+          value="password"
+        />
+        <input
+          class="fadeIn fourth"
+          data-testid="button-submit"
+          type="submit"
+          value="Log In"
+        />
+      </form>
+      <div
+        id="formFooter"
+      >
+        <a
+          href="/auth/register"
+        >
+           ¿Aún no tienes cuenta? Regístrate 
+        </a>
+      </div>
+    </div>
+  </div>
+</DocumentFragment>
+`;
