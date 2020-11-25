@@ -3,7 +3,6 @@ import { render, cleanup, fireEvent, waitFor } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import history from "../../../../routing/history";
 import { RegisterFormView } from "../RegisterFormView";
-import { Provider } from "react-redux";
 
 describe("RegiserFormView tests", () => {
   const handleSubmit = jest.fn();
@@ -12,6 +11,7 @@ describe("RegiserFormView tests", () => {
   const handleInputPassword2 = jest.fn();
 
   it("should take a snapshot of <RegisterFormView/>", function () {
+    console.log("test");
     const { asFragment } = render(
       <Router history={history}>
         <RegisterFormView
