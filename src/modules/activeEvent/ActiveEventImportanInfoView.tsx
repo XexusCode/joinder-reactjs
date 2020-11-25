@@ -17,7 +17,7 @@ export const ActiveEventImportantInfoView = ({
   edit,
   handleAddTodo,
   handleDeleteTodo,
-}: ActiveEventImportantInfoViewParams) => {
+}: ActiveEventImportantInfoViewParams): JSX.Element => {
   return (
     <>
       <div className="container">
@@ -37,6 +37,7 @@ export const ActiveEventImportantInfoView = ({
                   <span>
                     <span className="pr-2">
                       <button
+                        aria-label="Add Todo"
                         onClick={handleAddTodo}
                         type="button"
                         className=" btn-primary boton-circle"
@@ -46,6 +47,7 @@ export const ActiveEventImportantInfoView = ({
                     </span>
                     <span>
                       <button
+                        aria-label="Delete todo"
                         onClick={handleDeleteTodo}
                         type="button"
                         className="btn-danger boton-circle"

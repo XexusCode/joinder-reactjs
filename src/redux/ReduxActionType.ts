@@ -18,4 +18,6 @@ export enum ReduxActionType {
   addComment = "[event/comment] Add Comment",
   addTodo = "[event/todo] Add TODO",
   deleteTodo = "[event/todo] Delete TODO",
+  deleteUser = "[event/user] Delete User",
+  upgradeUser = "[event/user] Upgrade User",
 }

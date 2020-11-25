@@ -1,4 +1,5 @@
 import React from "react";
+
 import { EventObject } from "../../../models/models";
 import { EventCard } from "../../../components/joinder/event/EventCard";
 
@@ -10,14 +11,14 @@ interface HomeViewEventListParams {
 export const EventListView = ({
   events,
   handleActiveEvent,
-}: HomeViewEventListParams) => {
+}: HomeViewEventListParams): JSX.Element => {
   return (
-    <div>
+    <div className=" container-fluid ">
       {events.map((event: EventObject) => (
         <EventCard
           handleActiveEvent={handleActiveEvent}
           key={event.id}
-          event={{ ...event }}
+          event={event}
         />
       ))}
     </div>

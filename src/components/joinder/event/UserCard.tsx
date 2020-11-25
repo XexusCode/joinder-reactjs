@@ -5,8 +5,8 @@ import { useUser } from "../../../modules/activeEvent/hooks/useUser";
 
 interface UserCardParams {
   user: UserEventObject;
-  handleKickOut: () => void;
-  handleRankUp: () => void;
+  handleKickOut: (username: string) => void;
+  handleRankUp: (username: string) => void;
   userRank: number;
 }
 
@@ -15,7 +15,7 @@ export const UserCard = ({
   handleKickOut,
   handleRankUp,
   userRank,
-}: UserCardParams) => {
+}: UserCardParams): JSX.Element => {
   const { username } = useUser();
 
   return (
@@ -29,10 +29,22 @@ export const UserCard = ({
         )}
         {userRank <= 2 && username !== user.username ? (
           <span className="pl-3">
-            <span onClick={handleRankUp} className="crown">
+            <span
+              role="button"
+              tabIndex={0}
+              onClick={() => handleRankUp(user.username)}
+              onKeyDown={() => handleRankUp(user.username)}
+              className="crown"
+            >
               <FaCrown />
             </span>{" "}
-            <span onClick={handleKickOut} className="trash">
+            <span
+              role="button"
+              tabIndex={-1}
+              onClick={() => handleKickOut(user.username)}
+              onKeyDown={() => handleKickOut(user.username)}
+              className="trash"
+            >
               <CgTrash />
             </span>{" "}
           </span>

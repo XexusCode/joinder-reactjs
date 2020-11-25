@@ -9,18 +9,21 @@ import { CreateEventModalView } from "../../components/modals/CreateEventModalVi
 import { EventListView } from "./views/EventListView";
 import { logout } from "../auth/authActions";
 import { EventObject, UserEventObject } from "../../models/models";
-import { fetchConToken } from "../../helpers/fetch";
-import { addEvent, loadEvents, updateActiveEvent } from "./eventActions";
+import {
+  addEvent,
+  loadEvents,
+  updateActiveEvent,
+} from "./eventActions";
 import { imgUpload } from "../../helpers/imgUpload";
 import { useDate } from "./hooks/useDate";
 import { EventEmptyList } from "./views/EventEmptyList";
 import { EventButtonsView } from "./views/EventButtonsView";
 import { useUser } from "../activeEvent/hooks/useUser";
 import { Eventmapping } from "./mapping/eventmapping";
+import { apiCaller } from "../../helpers/apiCaller";
 
 export const EventDataContainer: React.FC = () => {
   const dispatch = useDispatch();
-  const [, setError] = useState("");
   const [modalShowCreate, setModalShowCreate] = useState(false);
   const [modalShowJoin, setModalShowJoin] = useState(false);
   const [img, setImg] = useState(
@@ -64,19 +67,11 @@ export const EventDataContainer: React.FC = () => {
         img,
         [newUserEvent]
       );
-      fetchConToken("events", newEvent, "POST")
-        .then((response) => response.json())
-        .then((responseJson) => {
-          {
-            if (responseJson.success) {
-              Swal.fire("Sucess", responseJson.message, "success");
-              dispatch(addEvent(responseJson.data));
-            } else {
-              Swal.fire("ERROR", responseJson.message, "error");
-            }
-          }
-        })
-        .catch((err) => setError(err));
+      const respuesta = await apiCaller(`events/`, newEvent, "POST", true);
+      if (respuesta.success) {
+        dispatch(addEvent(respuesta.data));
+        Swal.fire("Sucess", respuesta.message, "success");
+      }
     }
   };
 
@@ -84,33 +79,31 @@ export const EventDataContainer: React.FC = () => {
     imgUpload(e.target.files[0]).then((resp) => setImg(resp));
   };
 
-  const handleJoinEvent = () => {
+  const handleJoinEvent = async () => {
     if (!isNaN(idJoinEvent)) {
-      fetchConToken(`events/${idJoinEvent}/userevent`, {}, "POST")
-        .then((response) => response.json())
-        .then((responseJson) => {
-          if (responseJson.success) {
-            Swal.fire("Sucess", responseJson.message, "success");
-            dispatch(addEvent(responseJson.data));
-          } else {
-            Swal.fire("ERROR", responseJson.message, "error");
-          }
-        });
+      const respuesta = await apiCaller(
+        `events/${idJoinEvent}/userevent`,
+        {},
+        "POST",
+        true
+      );
+      if (respuesta.success) {
+        dispatch(addEvent(respuesta.data));
+        Swal.fire("Sucess", respuesta.message, "success");
+      }
     }
   };
 
   useEffect(() => {
-    console.log("recargado");
-    fetchConToken("events", "GET")
-      .then((response) => response.json())
-      .then((responseJson) => {
-        dispatch(loadEvents(responseJson.data));
-      })
-      .catch((err) => setError(err));
+    apiCaller(`events`, {}, "GET", true).then((respuesta) => {
+      if (respuesta.success) {
+        dispatch(loadEvents(respuesta.data));
+      }
+    });
   }, [dispatch]);
 
   return (
-    <>
+    <div role="main">
       <NavbarHome handleLogout={handleLogout} username={username} />
       {events.length === 0 ? (
         <EventEmptyList />
@@ -136,11 +129,11 @@ export const EventDataContainer: React.FC = () => {
         onHide={() => setModalShowCreate(false)}
         eventName={eventName}
         setEventName={setEventName}
-        setValue={setValue}
+        setLocationValue={setValue}
         value={locationValue}
         nmax={nmax}
         setNmax={setNmax}
       />
-    </>
+    </div>
   );
 };

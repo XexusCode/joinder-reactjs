@@ -8,7 +8,7 @@ interface EventButtonsViewParams {
 export const EventButtonsView = ({
   setModalShowJoin,
   setModalShowCreate,
-}: EventButtonsViewParams) => {
+}: EventButtonsViewParams): JSX.Element => {
   return (
     <Container>
       <Col>
@@ -29,7 +29,8 @@ export const EventButtonsView = ({
         <Row md={6} xs={12}>
           <Button
             className="buttonjoin"
-            variant="primary"
+            style={{ color: "snow" }}
+            variant="secondary"
             size="lg"
             onClick={() => {
               setModalShowJoin(true);

@@ -5,9 +5,11 @@ import history from "../../../routing/history";
 
 interface NavbarEventParams {
   handleDeleteEvent: () => void;
+  handleLeaveEvent: (username: string) => void;
   idEvent: string;
   name: string;
   rank: number;
+  username: string;
 }
 
 export const NavbarEvent = ({
@@ -15,9 +17,17 @@ export const NavbarEvent = ({
   idEvent,
   handleDeleteEvent,
   name,
-}: NavbarEventParams) => {
+  handleLeaveEvent,
+  username,
+}: NavbarEventParams): JSX.Element => {
   return (
-    <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+    <Navbar
+      role="navigation"
+      collapseOnSelect
+      expand="lg"
+      bg="dark"
+      variant="dark"
+    >
       <Navbar.Brand>
         <IoMdArrowRoundBack
           onClick={() => {
@@ -25,11 +35,20 @@ export const NavbarEvent = ({
           }}
         />
       </Navbar.Brand>
-      <Navbar.Brand>{name}</Navbar.Brand>
+      <Navbar.Brand>
+        <h1>{name}</h1>
+      </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto" />
         <Nav>
+          <Nav.Link
+            onClick={() => {
+              handleLeaveEvent(username);
+            }}
+          >
+            Dejar Evento
+          </Nav.Link>
           {rank <= 1 ? (
             <Nav.Link onClick={handleDeleteEvent}>Borrar Evento</Nav.Link>
           ) : (

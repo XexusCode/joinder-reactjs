@@ -7,7 +7,9 @@ interface JoinEventModalParams {
   handleJoinEvent: () => void;
   setIdJoinEvent: (idEvent: number) => void;
 }
-export const JoinEventModalView = (props: JoinEventModalParams) => {
+export const JoinEventModalView = (
+  props: JoinEventModalParams
+): JSX.Element => {
   return (
     <Modal {...props} centered aria-labelledby="contained-modal-title-vcenter">
       <Modal.Header closeButton>

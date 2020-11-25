@@ -8,7 +8,11 @@ interface DatePickerParams {
   minDate?: number;
 }
 
-const DatePicker = ({ date, setDate, minDate }: DatePickerParams) => {
+const DatePicker = ({
+  date,
+  setDate,
+  minDate,
+}: DatePickerParams): JSX.Element => {
   const options = {
     minDate,
   };

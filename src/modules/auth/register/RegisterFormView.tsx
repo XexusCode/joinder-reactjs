@@ -26,7 +26,7 @@ export const RegisterFormView = ({
   handleInputName,
   handleInputPassword,
   handleInputPassword2,
-}: RegisterParams) => {
+}: RegisterParams): JSX.Element => {
   return (
     <>
       <div className="wrapper fadeInDown">
@@ -81,7 +81,12 @@ export const RegisterFormView = ({
               }}
               placeholder="Repeat Password"
             />
-            <input type="submit" className="fadeIn fourth" value="Register" />
+            <input
+              type="submit"
+              aria-label="register-button"
+              className="fadeIn fourth"
+              value="Register"
+            />
           </form>
           <div id="formFooter">
             <Link to={Routes.AUTH_LOGIN}>

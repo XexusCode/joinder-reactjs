@@ -1,5 +1,5 @@
 import React from "react";
-// @ts-ignore
+
 import EasyEdit from "react-easy-edit";
 import { GoCheck, GoX } from "react-icons/all";
 import "./EventCard.scss";
@@ -9,7 +9,7 @@ export const EditableForm = ({
   editable,
   edit,
   handleSaveValue,
-}: ActiveEventEditableParams) => {
+}: ActiveEventEditableParams): JSX.Element => {
   return (
     <div className="animate__animated animate__fadeIn">
       <EasyEdit
@@ -23,7 +23,6 @@ export const EditableForm = ({
             handleSaveValue(value, (id = 0));
           }
         }}
-        onCancel={() => {}}
         allowEdit={edit}
         saveButtonLabel={<GoCheck />}
         cancelButtonLabel={<GoX />}

@@ -17,12 +17,12 @@ export const CommentPage = ({
   message,
   setMessage,
   loading,
-}: CommentPageParams) => {
+}: CommentPageParams): JSX.Element => {
   return (
-    <div className="">
-      <div className="">
-        <div className="  ">
-          <h6>¿Que quieres decir?</h6>
+    <div>
+      <div>
+        <div>
+          <h4>¿Que quieres decir?</h4>
           <CommentForm
             message={message}
             setMessage={setMessage}

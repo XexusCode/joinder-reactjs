@@ -5,7 +5,7 @@ import { login } from "../authActions";
 import Swal from "sweetalert2";
 import { apiCaller } from "../../../helpers/apiCaller";
 
-export const RegisterDataContainer = () => {
+export const RegisterDataContainer = (): JSX.Element => {
   const dispatch = useDispatch();
 
   const [username, setUsername] = useState("");

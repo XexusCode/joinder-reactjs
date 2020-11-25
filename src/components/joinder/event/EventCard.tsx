@@ -9,7 +9,10 @@ interface EventCardParams {
   event: EventObject;
 }
 
-export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
+export const EventCard = ({
+  event,
+  handleActiveEvent,
+}: EventCardParams): JSX.Element => {
   return (
     <Link
       onClick={() => {
@@ -30,13 +33,13 @@ export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
               <Row>
                 <Col md={5}>
                   <div className="card-body  ">
-                    <Image src={event.img} roundedCircle />
+                    <Image alt="imagen_grupo" src={event.img} roundedCircle />
                   </div>
                 </Col>
                 <Col md={5}>
                   <div className="card-title  ">
-                    <h3>{event.title}</h3>
-                    <h6>Localizacion: {event.location}</h6>
+                    <h2>{event.title}</h2>
+                    <h3>Localizacion: {event.location}</h3>
                   </div>
                   <Row>
                     <hr />{" "}
@@ -59,13 +62,13 @@ export const EventCard = ({ event, handleActiveEvent }: EventCardParams) => {
                   <Row md={2}>
                     <div className="nmax">
                       {event.nmax >= event.userEvents.length ? (
-                        <h5 style={{ color: "green" }}>
+                        <h4 style={{ color: "green" }}>
                           {event.userEvents.length}/{event.nmax}{" "}
-                        </h5>
+                        </h4>
                       ) : (
-                        <h5 style={{ color: "red" }}>
+                        <h4 style={{ color: "red" }}>
                           {event.userEvents.length}/{event.nmax}{" "}
-                        </h5>
+                        </h4>
                       )}
                     </div>
                   </Row>

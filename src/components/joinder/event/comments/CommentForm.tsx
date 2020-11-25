@@ -1,7 +1,7 @@
 import React from "react";
 
 interface CommentFormParams {
-  addComment: any;
+  addComment: () => void;
   message: string;
   setMessage: (message: string) => void;
   loading: boolean;
@@ -12,7 +12,7 @@ export const CommentForm = ({
   message,
   setMessage,
   loading,
-}: CommentFormParams) => {
+}: CommentFormParams): JSX.Element => {
   return (
     <React.Fragment>
       <form
@@ -26,6 +26,7 @@ export const CommentForm = ({
           <textarea
             onChange={(e) => setMessage(e.target.value)}
             value={message}
+            aria-label="Comment Area"
             className="form-control"
             placeholder="🤬 Tu comentario!"
             name="message"

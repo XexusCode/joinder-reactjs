@@ -8,7 +8,7 @@ interface SearchBarParams {
   };
 }
 
-const SearchBar = ({ selectProps }: SearchBarParams) => {
+const SearchBar = ({ selectProps }: SearchBarParams): JSX.Element => {
   return (
     <GooglePlacesAutocomplete
       selectProps={selectProps}

@@ -4,6 +4,8 @@ import {
   addTodo,
   deleteEvent,
   deleteTodo,
+  deleteUser,
+  upgradeUser,
 } from "../home/eventActions";
 import Geocode from "react-geocode";
 import { useDispatch } from "react-redux";
@@ -19,6 +21,7 @@ import { ActiveEventImportantInfoView } from "./ActiveEventImportanInfoView";
 import { CommentPage } from "../../components/joinder/event/comments/CommentPage";
 import Swal from "sweetalert2";
 import { apiCaller } from "../../helpers/apiCaller";
+import { useEventModal } from "../../customHooks/useEventModal";
 
 export const ActiveEventDataContainer: () => JSX.Element = () => {
   Geocode.setApiKey("AIzaSyDezLhIcYAe7hrj0P3fF9oa6XAnEiHLEqs");
@@ -26,14 +29,14 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
   const dispatch = useDispatch();
   const aEvent = useAevent();
   const { username } = useUser();
-  const [edit, setEdit] = useState(false);
-  const [show, setShow] = useState(false);
+  const [avariableEdit, setAvariableEdit] = useState(false);
   const [loading] = useState(false);
   const [message, setMessage] = useState("");
   const yourUser = aEvent.userEvents.find(
     (user: UserEventObject) => user.username === username
   );
   const [latLng, setLatLng] = useState({ lat: 0, lng: 0 });
+  const eventModal = useEventModal(aEvent);
 
   const handleDeleteEvent = async () => {
     const respuesta = await apiCaller(
@@ -48,12 +51,33 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
     }
   };
 
-  const handleKickOut = () => {
-    console.log("kicked");
+  const handleKickOut = async (username: string) => {
+    const respuesta = await apiCaller(
+      `events/${aEvent.id}/userevent/${username}`,
+      {},
+      "DELETE",
+      true
+    );
+    if (respuesta.success) {
+      dispatch(deleteUser(username));
+    }
   };
 
-  const handleRankUp = () => {
-    console.log("rank up");
+  const handleRankUp = async (username: string) => {
+    const user: UserEventObject = aEvent.userEvents.find(
+      (user: UserEventObject) => user.username === username
+    );
+    if (user.rank > 0) user.rank--;
+
+    const respuesta = await apiCaller(
+      `events/${aEvent.id}/userevent/${username}`,
+      user,
+      "PATCH",
+      true
+    );
+    if (respuesta.success) {
+      dispatch(upgradeUser());
+    }
   };
 
   useEffect(() => {
@@ -61,7 +85,7 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
       const { lat, lng } = response.results[0].geometry.location;
       setLatLng({ lat, lng });
     });
-    yourUser.rank < 2 ? setEdit(true) : setEdit(false);
+    yourUser.rank < 2 ? setAvariableEdit(true) : setAvariableEdit(false);
   }, [yourUser.rank]);
 
   const handleSaveDescription = async (result: string) => {
@@ -108,16 +132,32 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
     }
   };
   const handleAddComment = async () => {
-    const data = { text: message };
     const respuesta = await apiCaller(
       `events/${aEvent.id}/comment`,
-      data,
+      { text: message },
       "POST",
       true
     );
     if (respuesta.success) {
       dispatch(addComment(respuesta.data));
       Swal.fire("Success", respuesta.message, "success");
+    }
+  };
+
+  const handleLeaveEvent = async () => {
+    const respuesta = await apiCaller(
+      `events/${aEvent.id}/userevent/${username}`,
+      {},
+      "DELETE",
+      true
+    );
+    if (respuesta.success) {
+      history.replace("/home");
+      Swal.fire(
+        "Success",
+        "Te has salido del evento satisfactoriamente",
+        "success"
+      );
     }
   };
 
@@ -130,20 +170,21 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
         userRank={yourUser.rank}
       />
       <NavbarEvent
+        handleLeaveEvent={handleLeaveEvent}
         rank={yourUser.rank}
         name={aEvent.title}
         handleDeleteEvent={handleDeleteEvent}
-        idEvent="213213"
+        idEvent={aEvent.id}
+        username={yourUser.username}
       />
-      <div className="container">
+      <div className="container" role="main">
         <div className="row">
           <div className="col-md-12 "></div>
 
           <ActiveEventInfoView
             handleSaveValue={handleSaveDescription}
-            edit={edit}
-            show={show}
-            setShow={setShow}
+            edit={avariableEdit}
+            eventModal={eventModal}
             aEvent={aEvent}
             latLngLocation={latLng}
           />
@@ -160,7 +201,7 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
           </div>
           <div className="col-md-4 p-0 ">
             <ActiveEventImportantInfoView
-              edit={edit}
+              edit={avariableEdit}
               todos={aEvent.todos}
               handleSaveValue={handleSaveTodo}
               handleAddTodo={handleAddTodo}

@@ -8,10 +8,10 @@ interface propsParams {
   comment: CommentObject;
 }
 
-export default function Comment({ comment }: propsParams) {
+export default function Comment({ comment }: propsParams): JSX.Element {
   const { userEvents } = useAevent();
   const { userEventUsername, text, date } = comment;
-  let userEvent = userEvents.find(
+  const userEvent = userEvents.find(
     (user: UserEventObject) => user.username === userEventUsername
   );
 

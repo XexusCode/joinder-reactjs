@@ -15,7 +15,7 @@ export interface EventObject {
   title: string;
   startDate: string;
   endDate: string;
-  location: any;
+  location: string;
   nmax: number;
   img: string;
   description?: string;

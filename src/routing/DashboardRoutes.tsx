@@ -4,7 +4,7 @@ import { EventScreen } from "../modules/home/EventScreen";
 import { Routes } from "./routes";
 import { ActiveEventScreen } from "../modules/activeEvent/ActiveEventScreen";
 
-export const DashboardRoutes = () => {
+export const DashboardRoutes = (): JSX.Element => {
   return (
     <>
       <div>

@@ -17,7 +17,7 @@ export const LoginViewForm = ({
   handleInputEmail,
   handleInputPassword,
   password,
-}: LoginViewFormProps) => {
+}: LoginViewFormProps): JSX.Element => {
   return (
     <>
       <div className="wrapper fadeInDown">
@@ -38,6 +38,7 @@ export const LoginViewForm = ({
             }}
           >
             <input
+              data-testid="text-name"
               type="text"
               id="login"
               className="fadeIn second"
@@ -48,6 +49,7 @@ export const LoginViewForm = ({
             />
 
             <input
+              data-testid="text-password"
               type="password"
               id="password"
               className="fadeIn third"
@@ -56,7 +58,12 @@ export const LoginViewForm = ({
               onChange={(e) => handleInputPassword(e.target.value)}
               placeholder="Introduce tu contraseña"
             />
-            <input type="submit" className="fadeIn fourth" value="Log In" />
+            <input
+              data-testid="button-submit"
+              type="submit"
+              className="fadeIn fourth"
+              value="Log In"
+            />
           </form>
 
           <div id="formFooter">

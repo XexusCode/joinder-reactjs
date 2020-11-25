@@ -18,7 +18,7 @@ interface CreateEventModalParams {
   show: boolean;
   onHide: () => void;
   value: any;
-  setValue: (value: any) => void;
+  setLocationValue: (value: any) => void;
   eventName: string;
   setEventName: (name: string) => void;
   nmax: string;
@@ -32,7 +32,9 @@ interface CreateEventModalParams {
   };
 }
 
-export const CreateEventModalView = (props: CreateEventModalParams) => {
+export const CreateEventModalView = (
+  props: CreateEventModalParams
+): JSX.Element => {
   return (
     <Container>
       <Form
@@ -49,7 +51,7 @@ export const CreateEventModalView = (props: CreateEventModalParams) => {
         >
           <Modal.Header closeButton>
             <Modal.Title id="contained-modal-title-vcenter">
-              Crear evento
+              Información del evento
             </Modal.Title>
           </Modal.Header>
           <Modal.Body className="show-grid">
@@ -76,7 +78,7 @@ export const CreateEventModalView = (props: CreateEventModalParams) => {
                   <SearchBar
                     selectProps={{
                       value: props.value,
-                      onChange: props.setValue,
+                      onChange: props.setLocationValue,
                     }}
                   />
                 </Col>

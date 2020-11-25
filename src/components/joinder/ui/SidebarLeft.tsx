@@ -6,8 +6,8 @@ import { UserEventObject } from "../../../models/models";
 
 interface SidebarLeftParams {
   users: Array<UserEventObject>;
-  handleRankUp: () => void;
-  handleKickOut: () => void;
+  handleRankUp: (username: string) => void;
+  handleKickOut: (username: string) => void;
   userRank: number;
 }
 
@@ -16,22 +16,24 @@ export const SidebarLeft = ({
   handleKickOut,
   handleRankUp,
   userRank,
-}: SidebarLeftParams) => {
+}: SidebarLeftParams): JSX.Element => {
   return (
-    <Menu>
-      <h4>Usuarios Activos</h4>
-      <hr />
-      {users
-        .sort((a, b) => (a.rank >= b.rank ? 1 : -1))
-        .map((user) => (
-          <UserCard
-            handleKickOut={handleKickOut}
-            handleRankUp={handleRankUp}
-            user={user}
-            userRank={userRank}
-            key={user.username}
-          />
-        ))}
-    </Menu>
+    <div role="complementary">
+      <Menu>
+        <h4>Usuarios Activos</h4>
+        <hr />
+        {users
+          .sort((a, b) => (a.rank >= b.rank ? 1 : -1))
+          .map((user) => (
+            <UserCard
+              handleKickOut={handleKickOut}
+              handleRankUp={handleRankUp}
+              user={user}
+              userRank={userRank}
+              key={user.username}
+            />
+          ))}
+      </Menu>
+    </div>
   );
 };

@@ -6,18 +6,31 @@ interface NavbarParams {
   username: string;
 }
 
-export const NavbarHome = ({ handleLogout, username }: NavbarParams) => {
+export const NavbarHome = ({
+  handleLogout,
+  username,
+}: NavbarParams): JSX.Element => {
   return (
     <div>
-      <Navbar bg="dark" variant="dark" collapseOnSelect expand="lg">
-        <Navbar.Brand>{username}</Navbar.Brand>
+      <Navbar
+        role="navigation"
+        bg="dark"
+        variant="dark"
+        collapseOnSelect
+        expand="lg"
+      >
+        <Navbar.Brand>
+          <h1>{username}</h1>
+        </Navbar.Brand>
         <Navbar.Toggle aria-controls="responsive-navbar-nav" />
         <Navbar.Collapse id="responsive-navbar-nav">
           <Nav className="mr-auto" />
           <Nav>
-            <Nav.Link onClick={handleLogout}>LOGOUT</Nav.Link>
+            <Nav.Link style={{ color: "white" }} onClick={handleLogout}>
+              LOGOUT
+            </Nav.Link>
 
-            <Nav.Link eventKey={2} href="#home">
+            <Nav.Link style={{ color: "white" }} eventKey={2} href="#home">
               Joinder 0.1
             </Nav.Link>
           </Nav>

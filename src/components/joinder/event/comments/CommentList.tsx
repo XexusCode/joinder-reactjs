@@ -7,7 +7,10 @@ interface CommentListParams {
   loading: boolean;
 }
 
-export const CommentList = ({ comments, loading }: CommentListParams) => {
+export const CommentList = ({
+  comments,
+  loading,
+}: CommentListParams): JSX.Element => {
   return (
     <div>
       <h5 className="text-muted mb-4">

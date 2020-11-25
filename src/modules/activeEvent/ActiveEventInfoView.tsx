@@ -8,23 +8,21 @@ import { EventObject } from "../../models/models";
 interface ActiveEventInfoViewParams {
   edit: boolean;
   handleSaveValue: (arg: string, id: number) => void;
-  show: boolean;
-  setShow: (arg: boolean) => void;
   aEvent: EventObject;
-  latLngLocation: { lat: number; lng: number } | any;
+  latLngLocation: { lat: number; lng: number };
+  eventModal: any;
 }
 
 export const ActiveEventInfoView = ({
   edit,
   handleSaveValue,
-  show,
-  setShow,
+  eventModal,
   aEvent,
   latLngLocation,
-}: ActiveEventInfoViewParams) => {
+}: ActiveEventInfoViewParams): JSX.Element => {
   return (
     <>
-      <div className="container">
+      <div className="container-fluid">
         <div className="row">
           <div
             className="container border"
@@ -32,8 +30,9 @@ export const ActiveEventInfoView = ({
           >
             <div className="row">
               <div
+                aria-label="Mapa"
                 id="product1"
-                className="col-sm-2 col-xs-4 col-md-4 order-md-1 item-photo"
+                className="col-sm-12 col-xs-8 col-md-4 order-md-12 item-photo"
               >
                 <MapView position={latLngLocation} center={latLngLocation} />
               </div>
@@ -41,12 +40,18 @@ export const ActiveEventInfoView = ({
                 className="col-sm-10 col-md-8 order-md-2 col-xs-8 "
                 style={{ border: "0px solid gray" }}
               >
-                <h3 className="mb-3">Localización: {aEvent.location} </h3>
+                <h2 className="mb-3">{`${aEvent.location}`}</h2>
 
-                <DateChangeModal show={show} setShow={setShow} />
-                <h5
+                <DateChangeModal
+                  eventModal={eventModal}
+                  onHide={() => eventModal.setShow(false)}
+                />
+                <button
+                  onKeyDown={() => {
+                    eventModal.setShow(true);
+                  }}
                   onClick={() => {
-                    setShow(true);
+                    eventModal.setShow(true);
                   }}
                   className="mb-3 editable"
                   style={{ color: "#337ab7" }}
@@ -58,10 +63,10 @@ export const ActiveEventInfoView = ({
                   {moment(parseInt(aEvent.endDate)).format(
                     "DD/MM/YYYY [a las] h:mm:ss  "
                   )}
-                </h5>
-                <h6 className="title-price mb-3">
+                </button>
+                <h3 className="title-price mb-3">
                   {aEvent.userEvents.length}/{aEvent.nmax}
-                </h6>
+                </h3>
                 <h3 className="mb-3" style={{ marginTop: "0px" }}>
                   Descripción
                 </h3>

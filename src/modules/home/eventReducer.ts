@@ -26,7 +26,7 @@ const initialState: InitialStateEventParams = {
 export const eventReducer = (
   state = initialState,
   action: ReduxAction<any>
-) => {
+): any => {
   switch (action.type) {
     case ReduxActionType.eventsLoad:
       return {
@@ -50,20 +50,19 @@ export const eventReducer = (
       };
 
     case ReduxActionType.eventDelete:
+      state.events = state.events.filter(
+        (event) => event.id !== state.activeEvent.id
+      );
       return {
         ...state,
-        events: state.events.filter(
-          (event) => event.id !== state.activeEvent.id
-        ),
-        activeEvent: {
-          userEvents: [],
-        },
+        events: [...state.events],
+        activeEvent: { ...state.activeEvent, userEvents: [] },
       };
 
     case ReduxActionType.authLogout:
       return {
         events: [],
-        activeEvent: {},
+        activeEvent: initialState.activeEvent,
       };
     case ReduxActionType.addComment:
       return {
@@ -91,6 +90,29 @@ export const eventReducer = (
           todos: [...state.activeEvent.todos],
         },
       };
+
+    case ReduxActionType.deleteUser:
+      state.activeEvent.userEvents = state.activeEvent.userEvents.filter(
+        (user) => user.username !== action.payload
+      );
+
+      return {
+        ...state,
+        activeEvent: {
+          ...state.activeEvent,
+          userEvents: [...state.activeEvent.userEvents],
+        },
+      };
+
+    case ReduxActionType.upgradeUser:
+      return {
+        ...state,
+        activeEvent: {
+          ...state.activeEvent,
+          userEvents: [...state.activeEvent.userEvents],
+        },
+      };
+
     default:
       return state;
   }
