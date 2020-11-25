@@ -1,8 +1,6 @@
 import { ReduxAction } from "../../redux/ReduxAction";
 import { ReduxActionType } from "../../redux/ReduxActionType";
 
-
-
 const initialState = {
   checking: true,
   uid: null,

@@ -3,7 +3,6 @@ import { render, cleanup, fireEvent, waitFor } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import history from "../../../../routing/history";
 import { RegisterFormView } from "../RegisterFormView";
-import { Provider } from "react-redux";
 
 describe("RegiserFormView tests", () => {
   const handleSubmit = jest.fn();
