@@ -30,6 +30,7 @@ describe("test for EventCard", function () {
         />
       </Router>
     );
+    console.log('change on the ')
 
     expect(asFragment).toMatchSnapshot();
   });
