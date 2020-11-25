@@ -11,6 +11,7 @@ describe("RegiserFormView tests", () => {
   const handleInputPassword2 = jest.fn();
 
   it("should take a snapshot of <RegisterFormView/>", function () {
+    console.log("test");
     const { asFragment } = render(
       <Router history={history}>
         <RegisterFormView
