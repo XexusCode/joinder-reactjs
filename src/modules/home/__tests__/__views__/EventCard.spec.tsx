@@ -18,6 +18,7 @@ describe("test for EventCard", function () {
       nmax: 0,
       startDate: "",
       title: "TEST",
+      password: "e",
       todos: [],
       userEvents: [],
     };

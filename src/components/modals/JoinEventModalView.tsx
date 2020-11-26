@@ -6,12 +6,22 @@ interface JoinEventModalParams {
   onHide: () => void;
   handleJoinEvent: () => void;
   setIdJoinEvent: (idEvent: number) => void;
+  setPasswordJoinEvent: (password: string) => void;
 }
-export const JoinEventModalView = (
-  props: JoinEventModalParams
-): JSX.Element => {
+export const JoinEventModalView = ({
+  show,
+  onHide,
+  handleJoinEvent,
+  setIdJoinEvent,
+  setPasswordJoinEvent,
+}: JoinEventModalParams): JSX.Element => {
   return (
-    <Modal {...props} centered aria-labelledby="contained-modal-title-vcenter">
+    <Modal
+      show={show}
+      onHide={onHide}
+      centered
+      aria-labelledby="contained-modal-title-vcenter"
+    >
       <Modal.Header closeButton>
         <Modal.Title id="contained-modal-title-vcenter">
           Unirse a evento
@@ -25,9 +35,7 @@ export const JoinEventModalView = (
                 <Form.Group controlId="idEvent">
                   <Form.Label>ID DE EL EVENTO</Form.Label>
                   <Form.Control
-                    onChange={(e) =>
-                      props.setIdJoinEvent(parseInt(e.target.value))
-                    }
+                    onChange={(e) => setIdJoinEvent(parseInt(e.target.value))}
                     type="text"
                     placeholder="ID EVENTO"
                   />
@@ -43,7 +51,11 @@ export const JoinEventModalView = (
               <Form>
                 <Form.Group controlId="passwordEvent">
                   <Form.Label>Contraseña de el evento</Form.Label>
-                  <Form.Control type="email" placeholder="Password" />
+                  <Form.Control
+                    onChange={(e) => setPasswordJoinEvent(e.target.value)}
+                    type="email"
+                    placeholder="Password"
+                  />
                   <Form.Text className="text-muted">
                     Introduce la contraseña de el evento!
                   </Form.Text>
@@ -54,11 +66,11 @@ export const JoinEventModalView = (
         </Container>
       </Modal.Body>
       <Modal.Footer>
-        <Button onClick={props.onHide}>Close</Button>
+        <Button onClick={onHide}>Close</Button>
         <Button
           onClick={() => {
-            props.handleJoinEvent();
-            props.onHide();
+            handleJoinEvent();
+            onHide();
           }}
         >
           Join

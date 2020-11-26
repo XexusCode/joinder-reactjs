@@ -27,7 +27,7 @@ export const UserCard = ({
         ) : (
           <span />
         )}
-        {userRank <= 2 && username !== user.username ? (
+        {userRank < 2 && username !== user.username ? (
           <span className="pl-3">
             <span
               role="button"
