@@ -1,6 +1,6 @@
 import { EventObject, UserEventObject } from "../../../models/models";
 
-export class Eventmapping {
+export class EventMapping {
   static async toEvent(
     title: string,
     location: string,
@@ -8,21 +8,21 @@ export class Eventmapping {
     startDate: string,
     endDate: string,
     img: string,
+    passwordJoinEvent: string,
     userEvents: Array<UserEventObject>
   ): Promise<EventObject> {
-    const event: EventObject = {
+    return {
       title,
       location,
       nmax,
       startDate,
       endDate,
       img,
+      password: passwordJoinEvent,
       userEvents,
       comments: [],
       todos: [],
     };
-
-    return event;
   }
   static async toUserEvent(
     uid: string,
@@ -30,14 +30,12 @@ export class Eventmapping {
     rank: number,
     color: string
   ): Promise<UserEventObject> {
-    const userEvent: UserEventObject = {
+    return {
       uid,
       username,
       rank,
       color,
     };
-
-    return userEvent;
   }
   static async toEditEvent(
     title: string,
@@ -47,20 +45,20 @@ export class Eventmapping {
     endDate: string,
     img: string,
     event: EventObject
-  ) {
-    const editadedEvent: EventObject = {
+  ): Promise<EventObject> {
+    return {
       title,
       location,
       nmax,
       startDate,
       endDate,
       img,
+      password: event.password,
       description: event.description,
       userEvents: event.userEvents,
       todos: event.todos,
       comments: event.comments,
       id: event.id,
     };
-    return editadedEvent;
   }
 }

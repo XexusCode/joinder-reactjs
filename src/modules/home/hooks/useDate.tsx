@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-interface useDateParams {
+export interface useDateParams {
   dateStart: Date;
   setDateStart: (date: Date) => void;
   dateEnd: Date;

@@ -1,13 +1,29 @@
 import { useState } from "react";
-import { useDate } from "../modules/home/hooks/useDate";
+import { useDate, useDateParams } from "../modules/home/hooks/useDate";
 import { EventObject } from "../models/models";
 import { imgUpload } from "../helpers/imgUpload";
 import { apiCaller } from "../helpers/apiCaller";
 import { useDispatch } from "react-redux";
-import { Eventmapping } from "../modules/home/mapping/eventmapping";
+import { EventMapping } from "../modules/home/mapping/EventMapping";
 import { updateActiveEvent } from "../modules/home/eventActions";
 
-export const useEventModal = (event: EventObject) => {
+export interface UseEventModalParams {
+  img: string;
+  setImg: (img: string) => void;
+  dates: useDateParams;
+  eventName: string;
+  setEventName: (eventName: string) => void;
+  locationValue: string;
+  setLocationValue: (location: string) => void;
+  nmax: number;
+  setNmax: (nmax: number) => void;
+  show: boolean;
+  setShow: (show: boolean) => void;
+  handleChangeImg: (e: any) => void;
+  handleEditEvent: () => void;
+}
+
+export const useEventModal = (event: EventObject): UseEventModalParams => {
   const dispatch = useDispatch();
   const [img, setImg] = useState(event.img);
   const dates = useDate(
@@ -25,9 +41,8 @@ export const useEventModal = (event: EventObject) => {
   };
 
   const handleEditEvent = () => {
-    console.log("prueba");
     if (locationValue !== null) {
-      Eventmapping.toEditEvent(
+      EventMapping.toEditEvent(
         eventName,
         label,
         nmax,
@@ -39,7 +54,6 @@ export const useEventModal = (event: EventObject) => {
         apiCaller(`events/${event.id}`, newEvent, "PATCH", true).then(
           (respuesta) => {
             if (respuesta.success) {
-              console.log("funciona ?");
               dispatch(updateActiveEvent(newEvent));
             } else {
             }

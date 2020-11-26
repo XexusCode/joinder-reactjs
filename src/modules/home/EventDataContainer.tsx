@@ -15,8 +15,8 @@ import { useDate } from "./hooks/useDate";
 import { EventEmptyList } from "./views/EventEmptyList";
 import { EventButtonsView } from "./views/EventButtonsView";
 import { useUser } from "../activeEvent/hooks/useUser";
-import { Eventmapping } from "./mapping/eventmapping";
 import { apiCaller } from "../../helpers/apiCaller";
+import { EventMapping } from "./mapping/EventMapping";
 
 export const EventDataContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -33,6 +33,8 @@ export const EventDataContainer: React.FC = () => {
   const { events } = useSelector((state: RootState) => state.event);
   const { username } = useSelector((state: RootState) => state.auth);
   const [idJoinEvent, setIdJoinEvent] = useState(0);
+  const [passwordJoinEvent, setPasswordJoinEvent] = useState("");
+
   const handleLogout = () => {
     localStorage.clear();
     dispatch(logout());
@@ -46,7 +48,7 @@ export const EventDataContainer: React.FC = () => {
     if (locationValue == null) {
       Swal.fire("ERROR", "La localización debe ser un lugar valido!", "error");
     } else {
-      const newUserEvent = await Eventmapping.toUserEvent(
+      const newUserEvent = await EventMapping.toUserEvent(
         userEvent.uid,
         userEvent.username,
         userEvent.rank,
@@ -54,19 +56,21 @@ export const EventDataContainer: React.FC = () => {
       );
 
       const { label }: any = locationValue;
-      const newEvent = await Eventmapping.toEvent(
+      const newEvent = await EventMapping.toEvent(
         eventName,
         label,
         parseInt(nmax),
         dates.dateStart.getTime().toString(),
         dates.dateEnd.getTime().toString(),
         img,
+        passwordJoinEvent,
         [newUserEvent]
       );
+
       const respuesta = await apiCaller(`events/`, newEvent, "POST", true);
       if (respuesta.success) {
         dispatch(addEvent(respuesta.data));
-        Swal.fire("Sucess", respuesta.message, "success");
+        Swal.fire("Success", respuesta.message, "success");
       }
     }
   };
@@ -79,7 +83,7 @@ export const EventDataContainer: React.FC = () => {
     if (!isNaN(idJoinEvent)) {
       const respuesta = await apiCaller(
         `events/${idJoinEvent}/userevent`,
-        {},
+        { password: passwordJoinEvent },
         "POST",
         true
       );
@@ -113,6 +117,7 @@ export const EventDataContainer: React.FC = () => {
       <JoinEventModalView
         handleJoinEvent={handleJoinEvent}
         setIdJoinEvent={setIdJoinEvent}
+        setPasswordJoinEvent={setPasswordJoinEvent}
         show={modalShowJoin}
         onHide={() => setModalShowJoin(false)}
       />

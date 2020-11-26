@@ -4,13 +4,14 @@ import { DateChangeModal } from "../../components/modals/DateChangeModal";
 import MapView from "../../components/maps/MapView";
 import moment from "moment";
 import { EventObject } from "../../models/models";
+import { UseEventModalParams } from "../../customHooks/useEventModal";
 
 interface ActiveEventInfoViewParams {
   edit: boolean;
   handleSaveValue: (arg: string, id: number) => void;
   aEvent: EventObject;
   latLngLocation: { lat: number; lng: number };
-  eventModal: any;
+  eventModal: UseEventModalParams;
 }
 
 export const ActiveEventInfoView = ({

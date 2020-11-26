@@ -17,6 +17,7 @@ const initialState: InitialStateEventParams = {
     endDate: "0",
     location: "",
     img: "",
+    password: "",
     userEvents: [],
     todos: [{ id: 0, text: "e" }],
     comments: [],

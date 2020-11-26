@@ -6,7 +6,10 @@ const initialState = {
   uid: null,
 };
 
-export const authReducer = (state = initialState, action: ReduxAction<any>) => {
+export const authReducer = (
+  state = initialState,
+  action: ReduxAction<any>
+): any => {
   switch (action.type) {
     case ReduxActionType.AUTH_LOGIN:
       return {

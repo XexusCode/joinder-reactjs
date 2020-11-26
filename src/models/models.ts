@@ -18,6 +18,7 @@ export interface EventObject {
   location: string;
   nmax: number;
   img: string;
+  password: string;
   description?: string;
   userEvents: Array<UserEventObject>;
   todos: Array<TodoObject>;
