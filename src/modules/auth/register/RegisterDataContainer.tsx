@@ -18,6 +18,7 @@ export const RegisterDataContainer = (): JSX.Element => {
     password: string,
     password2: string
   ) => {
+    Swal.fire("Success", "respuesta.message" + "\n", "success");
     if (password === password2) {
       const respuesta = await apiCaller(
         `auth/signUp`,

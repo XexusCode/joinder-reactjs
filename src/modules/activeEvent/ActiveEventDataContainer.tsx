@@ -28,7 +28,7 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
 
   const dispatch = useDispatch();
   const aEvent = useAevent();
-  const { username } = useUser();
+  const { username, rank } = useUser();
   const [avariableEdit, setAvariableEdit] = useState(false);
   const [loading] = useState(false);
   const [message, setMessage] = useState("");
@@ -90,6 +90,7 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
 
   const handleSaveDescription = async (result: string) => {
     const newAEvent = aEvent;
+
     newAEvent.description = result;
     await apiCaller(`events/${aEvent.id}`, newAEvent, "PATCH", true);
   };
@@ -145,6 +146,37 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
   };
 
   const handleLeaveEvent = async () => {
+    const indexOfYourUser = aEvent.userEvents.indexOf(yourUser);
+    console.log(indexOfYourUser, "indexofyouruser");
+    if (aEvent.userEvents.length <= 1) {
+      handleDeleteEvent();
+      return;
+    }
+
+    if (
+      // you are admin and nomore admins
+      yourUser.rank === 0 &&
+      aEvent.userEvents.filter((user: UserEventObject) => user.rank === 0)
+        .length <= 1
+    ) {
+      const indexModerator = aEvent.userEvents.indexOf(
+        (user: UserEventObject) => user.rank === 2
+      );
+
+      if (indexModerator === -1) {
+        console.log("prueba 1");
+        handleRankUp(
+          aEvent.userEvents.find(
+            (user: UserEventObject) => username !== user.username
+          ).username
+        ); // rank up other user
+      } else {
+        console.log("prueba 2");
+
+        handleRankUp(aEvent.userEvents[indexModerator].username);
+      }
+    }
+
     const respuesta = await apiCaller(
       `events/${aEvent.id}/userevent/${username}`,
       {},

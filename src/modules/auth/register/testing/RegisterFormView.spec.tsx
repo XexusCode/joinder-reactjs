@@ -1,9 +1,5 @@
 import * as React from "react";
-import {
-  render,
-  cleanup,
-  fireEvent,
-} from "@testing-library/react";
+import { render, cleanup, fireEvent, waitFor } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import history from "../../../../routing/history";
 import { RegisterFormView } from "../RegisterFormView";
@@ -16,10 +12,6 @@ describe("RegiserFormView tests", () => {
   const handleInputPassword = jest.fn();
   const handleInputName = jest.fn();
   const handleInputPassword2 = jest.fn();
-
-  jest.mock("sweetalert2", () => ({
-    fire: jest.fn(),
-  }));
 
   it("should take a snapshot of <RegisterFormView/>", function () {
     const { asFragment } = render(
@@ -41,6 +33,7 @@ describe("RegiserFormView tests", () => {
   });
 
   it("the register button calls handleSubmit ", async function () {
+    Swal.fire.prototype = jest.fn();
     const { getByLabelText } = render(
       <Router history={history}>
         <RegisterFormView
@@ -54,9 +47,13 @@ describe("RegiserFormView tests", () => {
         />
       </Router>
     );
+
     expect(handleSubmit).not.toHaveBeenCalled();
     fireEvent.click(getByLabelText("register-button"));
+
     expect(handleSubmit).toHaveBeenCalled();
-    await waitForElement(() => expect(Swal.fire()).toHaveBeenCalledTimes(1));
+    waitFor(() => {
+      expect(() => Swal.fire.prototype).toHaveBeenCalledTimes(1);
+    });
   });
 });
