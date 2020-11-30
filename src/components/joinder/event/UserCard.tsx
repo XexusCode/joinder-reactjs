@@ -23,11 +23,14 @@ export const UserCard = ({
       <span>
         <RiUserFill size={28} color={user.color} /> {user.username}{" "}
         {user.rank === 0 || user.rank === 1 ? (
-          <AiFillStar color={user.rank === 0 ? "gold" : "#00aae4"} />
+          <AiFillStar
+            data-testid="test-rank"
+            color={user.rank === 0 ? "gold" : "#00aae4"}
+          />
         ) : (
           <span />
         )}
-        {userRank < 2 && username !== user.username ? (
+        {userRank <= 2 && username !== user.username ? (
           <span className="pl-3">
             <span
               role="button"
@@ -40,6 +43,7 @@ export const UserCard = ({
             </span>{" "}
             <span
               role="button"
+              data-testid="test-rankup"
               tabIndex={-1}
               onClick={() => handleKickOut(user.username)}
               onKeyDown={() => handleKickOut(user.username)}

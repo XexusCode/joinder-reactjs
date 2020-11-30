@@ -89,10 +89,7 @@ export const RegisterFormView = ({
             />
           </form>
           <div id="formFooter">
-            <Link to={Routes.AUTH_LOGIN}>
-              {" "}
-              ¿Ya tienes una cuenta? Logueate{" "}
-            </Link>
+            <Link to={Routes.AUTH_LOGIN}> ¿Ya tienes una cuenta? Logueate</Link>
           </div>
         </div>
       </div>

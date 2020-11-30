@@ -38,7 +38,7 @@ export const EventCard = ({
                 </Col>
                 <Col md={5}>
                   <div className="card-title  ">
-                    <h2>{event.title}</h2>
+                    <h2 data-testid="test-title">{event.title}</h2>
                     <h3>Localizacion: {event.location}</h3>
                   </div>
                   <Row>

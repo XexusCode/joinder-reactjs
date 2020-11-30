@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`RegiserFormView tests should take a snapshot of <RegisterFormView/> 1`] = `
+exports[`RegiserFormView __tests__ should take a snapshot of <RegisterFormView/> 1`] = `
 <DocumentFragment>
   <div
     class="wrapper fadeInDown"
@@ -46,6 +46,7 @@ exports[`RegiserFormView tests should take a snapshot of <RegisterFormView/> 1`]
           value="testPassword"
         />
         <input
+          aria-label="register-button"
           class="fadeIn fourth"
           type="submit"
           value="Register"
@@ -57,7 +58,7 @@ exports[`RegiserFormView tests should take a snapshot of <RegisterFormView/> 1`]
         <a
           href="/auth/login"
         >
-           ¿Ya tienes una cuenta? Logueate 
+           ¿Ya tienes una cuenta? Logueate
         </a>
       </div>
     </div>

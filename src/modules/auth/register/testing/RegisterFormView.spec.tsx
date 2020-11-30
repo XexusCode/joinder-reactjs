@@ -1,11 +1,10 @@
 import * as React from "react";
-import { render, cleanup, fireEvent, waitFor } from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 import { Router } from "react-router-dom";
 import history from "../../../../routing/history";
 import { RegisterFormView } from "../RegisterFormView";
-import Swal from "sweetalert2";
 
-describe("RegiserFormView tests", () => {
+describe("RegiserFormView __tests__", () => {
   afterEach(cleanup);
 
   const handleSubmit = jest.fn();
@@ -33,7 +32,6 @@ describe("RegiserFormView tests", () => {
   });
 
   it("the register button calls handleSubmit ", async function () {
-    Swal.fire.prototype = jest.fn();
     const { getByLabelText } = render(
       <Router history={history}>
         <RegisterFormView
@@ -52,8 +50,5 @@ describe("RegiserFormView tests", () => {
     fireEvent.click(getByLabelText("register-button"));
 
     expect(handleSubmit).toHaveBeenCalled();
-    waitFor(() => {
-      expect(() => Swal.fire.prototype).toHaveBeenCalledTimes(1);
-    });
   });
 });

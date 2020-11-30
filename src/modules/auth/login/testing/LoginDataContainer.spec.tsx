@@ -6,7 +6,7 @@ import { LoginDataContainer } from "../LoginDataContainer";
 import { Provider } from "react-redux";
 import { store } from "../../../../redux/store/store";
 
-describe("LoginDataContainer tests", () => {
+describe("LoginDataContainer __tests__", () => {
   it("should take a snapshot of <LoginDataContainer/>", function () {
     const { asFragment } = render(
       <Provider store={store}>

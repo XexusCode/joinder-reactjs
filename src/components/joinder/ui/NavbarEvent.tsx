@@ -36,7 +36,7 @@ export const NavbarEvent = ({
         />
       </Navbar.Brand>
       <Navbar.Brand>
-        <h1>{name}</h1>
+        <h1 data-testid="test-title">{name}</h1>
       </Navbar.Brand>
       <Navbar.Toggle aria-controls="responsive-navbar-nav" />
       <Navbar.Collapse id="responsive-navbar-nav">

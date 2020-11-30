@@ -4,7 +4,7 @@ import { LoginViewForm } from "../LoginViewForm";
 import { Router } from "react-router-dom";
 import history from "../../../../routing/history";
 
-describe("LoginViewForm tests", () => {
+describe("LoginViewForm __tests__", () => {
   const handleSubmit = jest.fn();
   const handleInputEmail = jest.fn();
   const handleInputPassword = jest.fn();
@@ -36,7 +36,7 @@ describe("LoginViewForm tests", () => {
   test("the login button calls handlesubmit", () => {
     module.exports = jest.fn();
 
-    const { getByTestId, getByText, asFragment } = render(
+    const { getByTestId,} = render(
       <Router history={history}>
         <LoginViewForm
           handleSubmit={handleSubmit}

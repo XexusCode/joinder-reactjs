@@ -1,4 +1,4 @@
-import { render, cleanup } from "@testing-library/react";
+import { render, cleanup, fireEvent } from "@testing-library/react";
 import React from "react";
 import { EventObject } from "../../../../models/models";
 import { Router } from "react-router-dom";
@@ -9,7 +9,7 @@ describe("test for EventCard", function () {
   const handleActiveEventMock = jest.fn();
   afterEach(cleanup);
 
-  it("should take a snapshot from the component", function () {
+  it("should have a event created", function () {
     const eventtest: EventObject = {
       comments: [],
       endDate: "",
@@ -22,8 +22,7 @@ describe("test for EventCard", function () {
       todos: [],
       userEvents: [],
     };
-
-    const { asFragment } = render(
+    const { getByTestId } = render(
       <Router history={history}>
         <EventCard
           event={eventtest}
@@ -32,6 +31,21 @@ describe("test for EventCard", function () {
       </Router>
     );
 
-    expect(asFragment).toMatchSnapshot();
+    fireEvent.click(getByTestId("test-title"));
+
+    expect(getByTestId("test-title")).toHaveTextContent("TEST");
+    expect(handleActiveEventMock).toHaveBeenCalled();
   });
+
+  // it('should ', function () {
+  // const eventtest = jest.fn()
+  //
+  //   const { getByTestId } = render(
+  //       <Router history={history}>
+  //         <EventCard
+  //             handleActiveEvent={handleActiveEventMock}
+  //          event={ }/>
+  //       </Router>
+  //   );
+  // });
 });

@@ -28,7 +28,7 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
 
   const dispatch = useDispatch();
   const aEvent = useAevent();
-  const { username, rank } = useUser();
+  const { username } = useUser();
   const [avariableEdit, setAvariableEdit] = useState(false);
   const [loading] = useState(false);
   const [message, setMessage] = useState("");
@@ -154,7 +154,7 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
     }
 
     if (
-      // you are admin and nomore admins
+      // you are admin and no more admins
       yourUser.rank === 0 &&
       aEvent.userEvents.filter((user: UserEventObject) => user.rank === 0)
         .length <= 1
@@ -164,16 +164,13 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
       );
 
       if (indexModerator === -1) {
-        console.log("prueba 1");
-        handleRankUp(
-          aEvent.userEvents.find(
-            (user: UserEventObject) => username !== user.username
-          ).username
-        ); // rank up other user
+        const userRandomUsername = aEvent.userEvents.find(
+          (user: UserEventObject) => username !== user.username
+        ).username;
+        handleRankUp(userRandomUsername);
+        handleRankUp(userRandomUsername); // rank up other user
       } else {
-        console.log("prueba 2");
-
-        handleRankUp(aEvent.userEvents[indexModerator].username);
+        handleRankUp(aEvent.userEvents[indexModerator].username); //rank up moderator
       }
     }
 
