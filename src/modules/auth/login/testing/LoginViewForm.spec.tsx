@@ -36,7 +36,7 @@ describe("LoginViewForm __tests__", () => {
   test("the login button calls handlesubmit", () => {
     module.exports = jest.fn();
 
-    const { getByTestId,} = render(
+    const { getByTestId } = render(
       <Router history={history}>
         <LoginViewForm
           handleSubmit={handleSubmit}
