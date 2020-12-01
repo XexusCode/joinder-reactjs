@@ -61,7 +61,7 @@ export const EventCard = ({
                 <Col md={1}>
                   <Row md={2}>
                     <div className="nmax">
-                      {event.nmax >= event.userEvents.length ? (
+                      {event.nmax > event.userEvents.length ? (
                         <h4 style={{ color: "green" }}>
                           {event.userEvents.length}/{event.nmax}{" "}
                         </h4>
