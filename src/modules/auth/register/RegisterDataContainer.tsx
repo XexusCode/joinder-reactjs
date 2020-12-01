@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import { login } from "../authActions";
 import Swal from "sweetalert2";
 import { apiCaller } from "../../../helpers/apiCaller";
+import { Helmet } from "react-helmet";
 
 export const RegisterDataContainer = (): JSX.Element => {
   const dispatch = useDispatch();
@@ -65,6 +66,12 @@ export const RegisterDataContainer = (): JSX.Element => {
         password2={password2}
         handleSubmit={handleSubmit}
       />
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Registro | Joinder</title>
+        <meta name="description" content="Registro del usuario" />
+      </Helmet>
     </>
   );
 };

@@ -22,6 +22,7 @@ import { CommentPage } from "../../components/joinder/event/comments/CommentPage
 import Swal from "sweetalert2";
 import { apiCaller } from "../../helpers/apiCaller";
 import { useEventModal } from "../../customHooks/useEventModal";
+import { Helmet } from "react-helmet";
 
 export const ActiveEventDataContainer: () => JSX.Element = () => {
   Geocode.setApiKey("AIzaSyDezLhIcYAe7hrj0P3fF9oa6XAnEiHLEqs");
@@ -243,6 +244,13 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
           <div className="col-md-12"></div>
         </div>
       </div>
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{aEvent.title} | Joinder</title>
+        <meta name="description" content="Información de el evento" />
+         />
+      </Helmet>
     </>
   );
 };

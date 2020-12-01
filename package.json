@@ -23,6 +23,7 @@
     "react-geocode": "^0.2.2",
     "react-google-maps": "^9.4.5",
     "react-google-places-autocomplete": "^3.0.0",
+    "react-helmet": "^6.1.0",
     "react-icons": "^3.11.0",
     "react-redux": "^7.2.1",
     "react-router-dom": "^5.2.0",

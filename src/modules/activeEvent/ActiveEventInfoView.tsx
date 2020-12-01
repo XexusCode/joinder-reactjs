@@ -5,6 +5,7 @@ import MapView from "../../components/maps/MapView";
 import moment from "moment";
 import { EventObject } from "../../models/models";
 import { UseEventModalParams } from "../../customHooks/useEventModal";
+import { FaEdit } from "react-icons/all";
 
 interface ActiveEventInfoViewParams {
   edit: boolean;
@@ -42,29 +43,21 @@ export const ActiveEventInfoView = ({
                 style={{ border: "0px solid gray" }}
               >
                 <h2 className="mb-3">{`${aEvent.location}`}</h2>
-
                 <DateChangeModal
                   eventModal={eventModal}
                   onHide={() => eventModal.setShow(false)}
                 />
-                <button
-                  onKeyDown={() => {
-                    eventModal.setShow(true);
-                  }}
-                  onClick={() => {
-                    eventModal.setShow(true);
-                  }}
-                  className="mb-3 editable"
-                  style={{ color: "#337ab7" }}
-                >
+                <span className="badge badge-success pr-3">
                   {moment(parseInt(aEvent.startDate)).format(
-                    "DD/MM/YYYY [a las] h:mm:ss  "
-                  )}{" "}
-                  -{" "}
+                    "DD/MM/YYYY [a las] h:mm:ss     "
+                  )}
+                </span>
+                <span className="badge badge-danger ">
                   {moment(parseInt(aEvent.endDate)).format(
                     "DD/MM/YYYY [a las] h:mm:ss  "
                   )}
-                </button>
+                </span>
+
                 <h3 className="title-price mb-3">
                   {aEvent.userEvents.length}/{aEvent.nmax}
                 </h3>
@@ -81,6 +74,9 @@ export const ActiveEventInfoView = ({
                 <br />
               </div>
             </div>
+            <span className="editable">
+              <FaEdit onClick={() => eventModal.setShow(true)} size={30} />
+            </span>
           </div>
         </div>
       </div>

@@ -4,6 +4,7 @@ import { login } from "../authActions";
 import { LoginViewForm } from "./LoginViewForm";
 import Swal from "sweetalert2";
 import { apiCaller } from "../../../helpers/apiCaller";
+import { Helmet } from "react-helmet";
 
 export const LoginDataContainer: React.FunctionComponent = () => {
   const dispatch = useDispatch();
@@ -50,6 +51,12 @@ export const LoginDataContainer: React.FunctionComponent = () => {
         handleInputPassword={setPassword}
         password={password}
       />
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>Login | Joinder</title>
+        <meta name="description" content="Login del usuario " />
+      </Helmet>
     </div>
   );
 };

@@ -17,6 +17,7 @@ import { EventButtonsView } from "./views/EventButtonsView";
 import { useUser } from "../activeEvent/hooks/useUser";
 import { apiCaller } from "../../helpers/apiCaller";
 import { EventMapping } from "./mapping/EventMapping";
+import { Helmet } from "react-helmet";
 
 export const EventDataContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -135,6 +136,12 @@ export const EventDataContainer: React.FC = () => {
         nmax={nmax}
         setNmax={setNmax}
       />
+
+      <Helmet>
+        <meta charSet="utf-8" />
+        <title>{username} | Joinder</title>
+        <meta name="description" content="Home del usuario" />
+      </Helmet>
     </div>
   );
 };
