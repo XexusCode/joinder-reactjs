@@ -1,5 +1,5 @@
 import React from "react";
-import { Nav, Navbar } from "react-bootstrap";
+import { Nav, Navbar, NavDropdown } from "react-bootstrap";
 import { IoMdArrowRoundBack } from "react-icons/all";
 import history from "../../../routing/history";
 
@@ -10,6 +10,7 @@ interface NavbarEventParams {
   name: string;
   rank: number;
   username: string;
+  passwordEvent: string;
 }
 
 export const NavbarEvent = ({
@@ -19,6 +20,7 @@ export const NavbarEvent = ({
   name,
   handleLeaveEvent,
   username,
+  passwordEvent,
 }: NavbarEventParams): JSX.Element => {
   return (
     <Navbar
@@ -42,6 +44,24 @@ export const NavbarEvent = ({
       <Navbar.Collapse id="responsive-navbar-nav">
         <Nav className="mr-auto" />
         <Nav>
+          <NavDropdown title="Informacion" id="collasible-nav-dropdown">
+            <NavDropdown.Item
+              onClick={() => {
+                navigator.clipboard.writeText(idEvent);
+                alert("ID COPIADO EN PORTAPAPELES");
+              }}
+            >
+              ID EVENTO: <span style={{ color: "blue" }}>{idEvent}</span>
+            </NavDropdown.Item>
+            <NavDropdown.Item
+              onClick={() => {
+                navigator.clipboard.writeText(passwordEvent);
+                alert("PASSWORD COPIADO EN PORTAPAPELES");
+              }}
+            >
+              Password: : <span style={{ color: "blue" }}>{passwordEvent}</span>
+            </NavDropdown.Item>
+          </NavDropdown>
           <Nav.Link
             onClick={() => {
               handleLeaveEvent(username);
@@ -54,18 +74,6 @@ export const NavbarEvent = ({
           ) : (
             <span />
           )}
-
-          <Nav.Item
-            onClick={() => {
-              navigator.clipboard.writeText(idEvent);
-              alert("ID COPIADO EN PORTAPAPELES");
-            }}
-          >
-            <span className="pl-3 " style={{ color: "red", fontSize: 18 }}>
-              {" "}
-              ID EVENTO: {idEvent}
-            </span>
-          </Nav.Item>
         </Nav>
       </Navbar.Collapse>
     </Navbar>

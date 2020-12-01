@@ -205,6 +205,7 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
         handleDeleteEvent={handleDeleteEvent}
         idEvent={aEvent.id}
         username={yourUser.username}
+        passwordEvent={aEvent.password}
       />
       <div className="container" role="main">
         <div className="row">
