@@ -4,7 +4,7 @@ import { LoginViewForm } from "../LoginViewForm";
 import { Router } from "react-router-dom";
 import history from "../../../../routing/history";
 
-describe("LoginViewForm __tests__", () => {
+describe("LoginViewForm tests", () => {
   const handleSubmit = jest.fn();
   const handleInputEmail = jest.fn();
   const handleInputPassword = jest.fn();
