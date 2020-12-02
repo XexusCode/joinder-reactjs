@@ -56,10 +56,10 @@ export const deleteTodo = (): { type: ReduxActionType.deleteTodo } => ({
 });
 
 export const deleteUser = (
-  username: string
+  targetId: string
 ): { type: ReduxActionType.deleteUser; payload: string } => ({
   type: ReduxActionType.deleteUser,
-  payload: username,
+  payload: targetId,
 });
 
 export const upgradeUser = (): { type: ReduxActionType.upgradeUser } => ({

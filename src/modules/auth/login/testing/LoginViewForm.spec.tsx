@@ -33,7 +33,7 @@ describe("LoginViewForm tests", () => {
     expect(firstRender).toMatchSnapshot();
   });
 
-  test("the login button calls handlesubmit", () => {
+  it("the login button calls handlesubmit", () => {
     module.exports = jest.fn();
 
     const { getByTestId } = render(

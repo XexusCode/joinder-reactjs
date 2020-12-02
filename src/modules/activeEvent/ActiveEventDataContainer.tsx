@@ -52,15 +52,15 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
     }
   };
 
-  const handleKickOut = async (username: string) => {
+  const handleKickOut = async (idUser: string) => {
     const respuesta = await apiCaller(
-      `events/${aEvent.id}/userevent/${username}`,
+      `events/${aEvent.id}/userevent/${idUser}`,
       {},
       "DELETE",
       true
     );
     if (respuesta.success) {
-      dispatch(deleteUser(username));
+      dispatch(deleteUser(idUser));
     }
   };
 

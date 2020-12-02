@@ -5,8 +5,8 @@ import { useUser } from "../../../modules/activeEvent/hooks/useUser";
 
 interface UserCardParams {
   user: UserEventObject;
-  handleKickOut: (username: string) => void;
-  handleRankUp: (username: string) => void;
+  handleKickOut: (targetId: string) => void;
+  handleRankUp: (targetId: string) => void;
   userRank: number;
 }
 
@@ -35,8 +35,8 @@ export const UserCard = ({
             <span
               role="button"
               tabIndex={0}
-              onClick={() => handleRankUp(user.username)}
-              onKeyDown={() => handleRankUp(user.username)}
+              onClick={() => handleRankUp(user.uid)}
+              onKeyDown={() => handleRankUp(user.uid)}
               className="crown"
             >
               <FaCrown />
@@ -45,8 +45,8 @@ export const UserCard = ({
               role="button"
               data-testid="test-rankup"
               tabIndex={-1}
-              onClick={() => handleKickOut(user.username)}
-              onKeyDown={() => handleKickOut(user.username)}
+              onClick={() => handleKickOut(user.uid)}
+              onKeyDown={() => handleKickOut(user.uid)}
               className="trash"
             >
               <CgTrash />
