@@ -1,35 +1,28 @@
-import React, { useEffect, useState } from "react";
-import {
-  addComment,
-  addTodo,
-  deleteEvent,
-  deleteTodo,
-  deleteUser,
-  upgradeUser,
-} from "../home/eventActions";
+import React, {useEffect, useState} from "react";
+import {addComment, addTodo, deleteEvent, deleteTodo, deleteUser, upgradeUser,} from "../home/eventActions";
 import Geocode from "react-geocode";
-import { useDispatch } from "react-redux";
+import {useDispatch} from "react-redux";
 import history from "../../routing/history";
-import { SidebarLeft } from "../../components/joinder/ui/SidebarLeft";
-import { useAevent } from "./hooks/useAevent";
+import {SidebarLeft} from "../../components/joinder/ui/SidebarLeft";
+import {useAevent} from "./hooks/useAevent";
 import "./ActiveEventStyle.scss";
-import { NavbarEvent } from "../../components/joinder/ui/NavbarEvent";
-import { ActiveEventInfoView } from "./ActiveEventInfoView";
-import { useUser } from "./hooks/useUser";
-import { UserEventObject } from "../../models/models";
-import { ActiveEventImportantInfoView } from "./ActiveEventImportanInfoView";
-import { CommentPage } from "../../components/joinder/event/comments/CommentPage";
+import {NavbarEvent} from "../../components/joinder/ui/NavbarEvent";
+import {ActiveEventInfoView} from "./ActiveEventInfoView";
+import {useUser} from "./hooks/useUser";
+import {UserEventObject} from "../../models/models";
+import {ActiveEventImportantInfoView} from "./ActiveEventImportanInfoView";
+import {CommentPage} from "../../components/joinder/event/comments/CommentPage";
 import Swal from "sweetalert2";
-import { apiCaller } from "../../helpers/apiCaller";
-import { useEventModal } from "../../customHooks/useEventModal";
-import { Helmet } from "react-helmet";
+import {apiCaller} from "../../helpers/apiCaller";
+import {useEventModal} from "../../customHooks/useEventModal";
+import {Helmet} from "react-helmet";
 
 export const ActiveEventDataContainer: () => JSX.Element = () => {
   Geocode.setApiKey("AIzaSyDezLhIcYAe7hrj0P3fF9oa6XAnEiHLEqs");
 
   const dispatch = useDispatch();
   const aEvent = useAevent();
-  const { username } = useUser();
+  const {username} = useUser();
   const [avariableEdit, setAvariableEdit] = useState(false);
   const [loading] = useState(false);
   const [message, setMessage] = useState("");
@@ -52,15 +45,15 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
     }
   };
 
-  const handleKickOut = async (idUser: string) => {
+  const handleKickOut = async (usernameTarget: string) => {
     const respuesta = await apiCaller(
-      `events/${aEvent.id}/userevent/${idUser}`,
-      {},
-      "DELETE",
-      true
+        `events/${aEvent.id}/userevent/${usernameTarget}`,
+        {},
+        "DELETE",
+        true
     );
     if (respuesta.success) {
-      dispatch(deleteUser(idUser));
+      dispatch(deleteUser(usernameTarget));
     }
   };
 

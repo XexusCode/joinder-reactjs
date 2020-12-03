@@ -1,30 +1,30 @@
-import React, { useEffect, useState } from "react";
-import { NavbarHome } from "../../components/joinder/ui/NavbarHome";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "../../redux/rootReducer";
+import React, {useEffect, useState} from "react";
+import {NavbarHome} from "../../components/joinder/ui/NavbarHome";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "../../redux/rootReducer";
 import Swal from "sweetalert2";
 import "./EventStyle.scss";
-import { JoinEventModalView } from "../../components/modals/JoinEventModalView";
-import { CreateEventModalView } from "../../components/modals/CreateEventModalView";
-import { EventListView } from "./views/EventListView";
-import { logout } from "../auth/authActions";
-import { EventObject, UserEventObject } from "../../models/models";
-import { addEvent, loadEvents, updateActiveEvent } from "./eventActions";
-import { imgUpload } from "../../helpers/imgUpload";
-import { useDate } from "./hooks/useDate";
-import { EventEmptyList } from "./views/EventEmptyList";
-import { EventButtonsView } from "./views/EventButtonsView";
-import { useUser } from "../activeEvent/hooks/useUser";
-import { apiCaller } from "../../helpers/apiCaller";
-import { EventMapping } from "./mapping/EventMapping";
-import { Helmet } from "react-helmet";
+import {JoinEventModalView} from "../../components/modals/JoinEventModalView";
+import {CreateEventModalView} from "../../components/modals/CreateEventModalView";
+import {EventListView} from "./views/EventListView";
+import {logout} from "../auth/authActions";
+import {EventObject, UserEventObject} from "../../models/models";
+import {addEvent, loadEvents, updateActiveEvent} from "./eventActions";
+import {imgUpload} from "../../helpers/imgUpload";
+import {useDate} from "./hooks/useDate";
+import {EventEmptyList} from "./views/EventEmptyList";
+import {EventButtonsView} from "./views/EventButtonsView";
+import {useUser} from "../activeEvent/hooks/useUser";
+import {apiCaller} from "../../helpers/apiCaller";
+import {EventMapping} from "./mapping/EventMapping";
+import {Helmet} from "react-helmet";
 
 export const EventDataContainer: React.FC = () => {
   const dispatch = useDispatch();
   const [modalShowCreate, setModalShowCreate] = useState(false);
   const [modalShowJoin, setModalShowJoin] = useState(false);
   const [img, setImg] = useState(
-    "https://res.cloudinary.com/dq9ut69am/image/upload/v1604313583/tpaxsiaivnuh3f390u3e.png"
+      "https://res.cloudinary.com/dq9ut69am/image/upload/v1604313583/tpaxsiaivnuh3f390u3e.png"
   );
   const [locationValue, setValue] = useState(null);
   const [eventName, setEventName] = useState("");
@@ -50,10 +50,10 @@ export const EventDataContainer: React.FC = () => {
       Swal.fire("ERROR", "La localización debe ser un lugar valido!", "error");
     } else {
       const newUserEvent = await EventMapping.toUserEvent(
-        userEvent.uid,
-        userEvent.username,
-        userEvent.rank,
-        userEvent.color
+          userEvent.id,
+          userEvent.username,
+          userEvent.rank,
+          userEvent.color
       );
 
       const { label }: any = locationValue;

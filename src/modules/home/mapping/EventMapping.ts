@@ -1,4 +1,4 @@
-import { EventObject, UserEventObject } from "../../../models/models";
+import {EventObject, UserEventObject} from "../../../models/models";
 
 export class EventMapping {
   static async toEvent(
@@ -25,13 +25,13 @@ export class EventMapping {
     };
   }
   static async toUserEvent(
-    uid: string,
-    username: string,
-    rank: number,
-    color: string
+      id: string,
+      username: string,
+      rank: number,
+      color: string
   ): Promise<UserEventObject> {
     return {
-      uid,
+      id,
       username,
       rank,
       color,

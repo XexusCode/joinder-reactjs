@@ -1,8 +1,8 @@
 export interface UserEventObject {
-  username: string;
-  uid: string;
-  color: string;
-  rank: number;
+	username: string;
+	id: string;
+	color: string;
+	rank: number;
 }
 
 export interface UserAuth {
