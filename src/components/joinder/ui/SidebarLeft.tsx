@@ -6,8 +6,8 @@ import { UserEventObject } from "../../../models/models";
 
 interface SidebarLeftParams {
   users: Array<UserEventObject>;
-  handleRankUp: (targetId: string) => void;
-  handleKickOut: (targetId: string) => void;
+  handleRankUp: (username: string) => void;
+  handleKickOut: (username: string) => void;
   userRank: number;
 }
 

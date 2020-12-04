@@ -15,7 +15,6 @@ describe("test NavBarEvent ", function () {
         name="Test Name"
         rank={0}
         username="UserTest"
-        passwordEvent="ewe"
       />
     );
     const textNav = getByText("Test Name");
