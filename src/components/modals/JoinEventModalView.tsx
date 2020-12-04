@@ -1,4 +1,4 @@
-import { Button, Col, Container, Form, Modal, Row } from "react-bootstrap";
+import {Button, Col, Container, Form, Modal, Row} from "react-bootstrap";
 import React from "react";
 
 interface JoinEventModalParams {
@@ -52,9 +52,9 @@ export const JoinEventModalView = ({
                 <Form.Group controlId="passwordEvent">
                   <Form.Label>Contraseña de el evento</Form.Label>
                   <Form.Control
-                    onChange={(e) => setPasswordJoinEvent(e.target.value)}
-                    type="email"
-                    placeholder="Password"
+                      onChange={(e) => setPasswordJoinEvent(e.target.value)}
+                      type="text"
+                      placeholder="Password"
                   />
                   <Form.Text className="text-muted">
                     Introduce la contraseña de el evento!

@@ -1,15 +1,15 @@
-import { ReduxActionType } from "../../redux/ReduxActionType";
-import { CommentObject, EventObject, TodoObject } from "../../models/models";
+import {ReduxActionType} from "../../redux/ReduxActionType";
+import {CommentObject, EventObject, TodoObject} from "../../models/models";
 
 export const loadEvents = (
-  events: Array<EventObject>
+    events: Array<EventObject>
 ): { type: ReduxActionType.eventsLoad; payload: Array<EventObject> } => ({
   type: ReduxActionType.eventsLoad,
   payload: events,
 });
 
 export const setActiveEvent = (
-  event: EventObject
+    event: EventObject
 ): { type: ReduxActionType.eventSetActive; payload: EventObject } => ({
   type: ReduxActionType.eventSetActive,
   payload: event,
@@ -56,7 +56,7 @@ export const deleteTodo = (): { type: ReduxActionType.deleteTodo } => ({
 });
 
 export const deleteUser = (
-  username: string
+    username: string
 ): { type: ReduxActionType.deleteUser; payload: string } => ({
   type: ReduxActionType.deleteUser,
   payload: username,

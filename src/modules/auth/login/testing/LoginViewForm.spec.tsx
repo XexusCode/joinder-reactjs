@@ -1,7 +1,7 @@
 import * as React from "react";
-import { render, fireEvent } from "@testing-library/react";
-import { LoginViewForm } from "../LoginViewForm";
-import { Router } from "react-router-dom";
+import {fireEvent, render} from "@testing-library/react";
+import {LoginViewForm} from "../LoginViewForm";
+import {Router} from "react-router-dom";
 import history from "../../../../routing/history";
 
 describe("LoginViewForm tests", () => {
@@ -36,16 +36,18 @@ describe("LoginViewForm tests", () => {
   test("the login button calls handlesubmit", () => {
     module.exports = jest.fn();
 
-    const { getByTestId } = render(
-      <Router history={history}>
-        <LoginViewForm
-          handleSubmit={handleSubmit}
-          email={"username"}
-          handleInputEmail={() => {}}
-          handleInputPassword={() => {}}
-          password={"password"}
-        />
-      </Router>
+    const {getByTestId} = render(
+        <Router history={history}>
+          <LoginViewForm
+              handleSubmit={handleSubmit}
+              email={"username"}
+              handleInputEmail={() => {
+              }}
+              handleInputPassword={() => {
+              }}
+              password={"password"}
+          />
+        </Router>
     );
     expect(getByTestId("button-submit")).not.toHaveAttribute("disabled");
     expect(handleSubmit).not.toHaveBeenCalled();

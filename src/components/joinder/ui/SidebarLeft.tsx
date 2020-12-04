@@ -1,22 +1,22 @@
-import { slide as Menu } from "react-burger-menu";
+import {slide as Menu} from "react-burger-menu";
 import React from "react";
 import "./SidebarLeft.scss";
-import { UserCard } from "../event/UserCard";
-import { UserEventObject } from "../../../models/models";
+import {UserCard} from "../event/UserCard";
+import {UserEventObject} from "../../../models/models";
 
 interface SidebarLeftParams {
-  users: Array<UserEventObject>;
-  handleRankUp: (username: string) => void;
-  handleKickOut: (username: string) => void;
-  userRank: number;
+    users: Array<UserEventObject>;
+    handleRankUp: (username: string) => void;
+    handleKickOut: (username: string) => void;
+    userRank: number;
 }
 
 export const SidebarLeft = ({
-  users,
-  handleKickOut,
-  handleRankUp,
-  userRank,
-}: SidebarLeftParams): JSX.Element => {
+                                users,
+                                handleKickOut,
+                                handleRankUp,
+                                userRank,
+                            }: SidebarLeftParams): JSX.Element => {
   return (
     <div role="complementary">
       <Menu>

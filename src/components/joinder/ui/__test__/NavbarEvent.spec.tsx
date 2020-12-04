@@ -1,6 +1,6 @@
-import { render, fireEvent } from "@testing-library/react";
+import {fireEvent, render} from "@testing-library/react";
 import React from "react";
-import { NavbarEvent } from "../NavbarEvent";
+import {NavbarEvent} from "../NavbarEvent";
 
 describe("test NavBarEvent ", function () {
   const handleDeleteEvent = jest.fn();
