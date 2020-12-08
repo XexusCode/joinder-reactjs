@@ -1,7 +1,7 @@
-import {UserEventObject} from "../../../models/models";
+import { UserEventObject } from "../../../models/models";
 import React from "react";
-import {AiFillStar, CgTrash, FaCrown, RiUserFill} from "react-icons/all";
-import {useUser} from "../../../modules/activeEvent/hooks/useUser";
+import { AiFillStar, CgTrash, FaCrown, RiUserFill } from "react-icons/all";
+import { useUser } from "../../../modules/activeEvent/hooks/useUser";
 
 interface UserCardParams {
   user: UserEventObject;
@@ -11,7 +11,7 @@ interface UserCardParams {
 }
 
 export const UserCard = ({
-                           user,
+  user,
   handleKickOut,
   handleRankUp,
   userRank,
@@ -22,35 +22,33 @@ export const UserCard = ({
     <div className="pb-3">
       <span>
         <RiUserFill size={28} color={user.color} /> {user.username}{" "}
-        {user.rank === 0 || user.rank === 1 ? (
+        {(user.rank === 0 || user.rank === 1) && (
           <AiFillStar
             data-testid="test-rank"
             color={user.rank === 0 ? "gold" : "#00aae4"}
           />
-        ) : (
-          <span />
         )}
         {userRank <= 2 && username !== user.username ? (
           <span className="pl-3">
             <span
-                role="button"
-                tabIndex={0}
-                onClick={() => handleRankUp(user.username)}
-                onKeyDown={() => handleRankUp(user.username)}
-                className="crown"
+              role="button"
+              tabIndex={0}
+              onClick={() => handleRankUp(user.username)}
+              onKeyDown={() => handleRankUp(user.username)}
+              className="crown"
             >
-              <FaCrown/>
-            </span>{" "}
+              <FaCrown />
+            </span>
             <span
-                role="button"
-                data-testid="test-rankup"
-                tabIndex={-1}
-                onClick={() => handleKickOut(user.username)}
-                onKeyDown={() => handleKickOut(user.username)}
-                className="trash"
+              role="button"
+              data-testid="test-rankup"
+              tabIndex={-1}
+              onClick={() => handleKickOut(user.username)}
+              onKeyDown={() => handleKickOut(user.username)}
+              className="trash"
             >
-              <CgTrash/>
-            </span>{" "}
+              <CgTrash />
+            </span>
           </span>
         ) : (
           <span />
