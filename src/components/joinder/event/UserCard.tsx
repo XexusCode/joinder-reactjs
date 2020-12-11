@@ -28,7 +28,7 @@ export const UserCard = ({
             color={user.rank === 0 ? "gold" : "#00aae4"}
           />
         )}
-        {userRank <= 2 && username !== user.username ? (
+        {userRank <= 1 && username !== user.username &&  userRank <= user.rank ? (
           <span className="pl-3">
             <span
               role="button"
@@ -50,11 +50,9 @@ export const UserCard = ({
               <CgTrash />
             </span>
           </span>
-        ) : (
-          <span />
-        )}
+        ) : null }
         {username === user.username ? (
-          <span className="pl-3">[YOU]</span>
+          <span className="pl-3"> [YOU] </span>
         ) : (
           <div />
         )}
