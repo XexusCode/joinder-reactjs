@@ -11,6 +11,7 @@ interface NavbarEventParams {
   rank: number;
   username: string;
   passwordEvent: string;
+  editAdmin:boolean
 }
 
 export const NavbarEvent = ({
@@ -69,7 +70,7 @@ export const NavbarEvent = ({
           >
             Dejar Evento
           </Nav.Link>
-          {rank <= 1 ? (
+          {rank === 0   ? (
             <Nav.Link onClick={handleDeleteEvent}>Borrar Evento</Nav.Link>
           ) : (
             <span />

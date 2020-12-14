@@ -18,6 +18,7 @@ import {useUser} from "../activeEvent/hooks/useUser";
 import {apiCaller} from "../../helpers/apiCaller";
 import {EventMapping} from "./mapping/EventMapping";
 import {Helmet} from "react-helmet";
+import history from "../../routing/history";
 
 export const EventDataContainer: React.FC = () => {
   const dispatch = useDispatch();
@@ -71,7 +72,10 @@ export const EventDataContainer: React.FC = () => {
       const respuesta = await apiCaller(`events/`, newEvent, "POST", true);
       if (respuesta.success) {
         dispatch(addEvent(respuesta.data));
-        Swal.fire("Success", respuesta.message, "success");
+        handleActiveEvent(respuesta.data)
+        console.log(respuesta.data)
+        history.push(`./evento/${respuesta.data.id}`)
+
       }
     }
   };

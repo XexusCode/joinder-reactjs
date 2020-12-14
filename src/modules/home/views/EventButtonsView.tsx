@@ -12,7 +12,7 @@ export const EventButtonsView = ({
   return (
     <Container>
       <Col>
-        <Row md={6} xs={12}>
+        <Row md={12} xs={11}>
           <Button
             variant="secondary"
             className="buttonadd"
@@ -26,7 +26,7 @@ export const EventButtonsView = ({
         </Row>
       </Col>
       <Col>
-        <Row md={6} xs={12}>
+        <Row md={12} xs={1}>
           <Button
             className="buttonjoin"
             style={{ color: "snow" }}

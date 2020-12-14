@@ -31,10 +31,10 @@ export const ActiveEventImportantInfoView = ({
                 className="col-sm-10 col-md-8 order-md-2 col-xs-8 "
                 style={{ border: "0px solid gray" }}
               >
-                <h2 className="mb-3">Cosas Importantes </h2>
+                <h3 >Lista de TO-DOS </h3>
 
                 {edit ? (
-                  <span>
+                  <div>
                     <span className="pr-2">
                       <button
                         aria-label="Add Todo"
@@ -55,7 +55,7 @@ export const ActiveEventImportantInfoView = ({
                         <AiOutlineMinusCircle />
                       </button>
                     </span>
-                  </span>
+                  </div>
                 ) : (
                   <span />
                 )}
@@ -64,7 +64,7 @@ export const ActiveEventImportantInfoView = ({
                   className="mb-3"
                   style={{ color: "#337ab7", fontSize: "12" }}
                 >
-                  <div className="pb-2">
+                  <div className="pt-2-">
                     {todos.map((todo: TodoObject) => (
                       <EditableForm
                         editable={todo.text}

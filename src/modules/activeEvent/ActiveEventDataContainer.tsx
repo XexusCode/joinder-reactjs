@@ -24,6 +24,7 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
   const aEvent = useAevent();
   const {username} = useUser();
   const [avariableEdit, setAvariableEdit] = useState(false);
+  const [avariableEditAdmin, setAvariableEditAdmin] = useState(false);
   const [loading] = useState(false);
   const [message, setMessage] = useState("");
   const yourUser = aEvent.userEvents.find(
@@ -80,6 +81,7 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
       setLatLng({ lat, lng });
     });
     yourUser.rank < 2 ? setAvariableEdit(true) : setAvariableEdit(false);
+    yourUser.rank === 0 ? setAvariableEditAdmin(true) : setAvariableEditAdmin(false);
   }, [yourUser.rank]);
 
   const handleSaveDescription = async (result: string) => {
@@ -135,6 +137,7 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
     );
     if (respuesta.success) {
       dispatch(addComment(respuesta.data));
+      setMessage('')
       Swal.fire("Success", respuesta.message, "success");
     }
   };
@@ -195,6 +198,8 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
       <NavbarEvent
         handleLeaveEvent={handleLeaveEvent}
         rank={yourUser.rank}
+        editAdmin={avariableEditAdmin}
+
         name={aEvent.title}
         handleDeleteEvent={handleDeleteEvent}
         idEvent={aEvent.id}
@@ -203,11 +208,11 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
       />
       <div className="container" role="main">
         <div className="row">
-          <div className="col-md-12 "></div>
 
           <ActiveEventInfoView
             handleSaveValue={handleSaveDescription}
             edit={avariableEdit}
+            editAdmin={avariableEditAdmin}
             eventModal={eventModal}
             aEvent={aEvent}
             latLngLocation={latLng}
@@ -234,7 +239,6 @@ export const ActiveEventDataContainer: () => JSX.Element = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-12"></div>
         </div>
       </div>
 

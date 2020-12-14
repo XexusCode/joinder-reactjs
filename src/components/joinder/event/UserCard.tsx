@@ -45,7 +45,7 @@ export const UserCard = ({
               tabIndex={-1}
               onClick={() => handleKickOut(user.username)}
               onKeyDown={() => handleKickOut(user.username)}
-              className="trash"
+              className="trash "
             >
               <CgTrash />
             </span>
