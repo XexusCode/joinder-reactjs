@@ -37,15 +37,5 @@ describe("test for EventCard", function () {
     expect(handleActiveEventMock).toHaveBeenCalled();
   });
 
-  // it('should ', function () {
-  // const eventtest = jest.fn()
-  //
-  //   const { getByTestId } = render(
-  //       <Router history={history}>
-  //         <EventCard
-  //             handleActiveEvent={handleActiveEventMock}
-  //          event={ }/>
-  //       </Router>
-  //   );
-  // });
+
 });

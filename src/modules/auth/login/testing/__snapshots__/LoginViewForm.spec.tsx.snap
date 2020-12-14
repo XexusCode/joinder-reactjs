@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`LoginViewForm __tests__ should make a snapshot of LoginViewForm 1`] = `
+exports[`LoginViewForm tests should make a snapshot of LoginViewForm 1`] = `
 <DocumentFragment>
   <div
     class="wrapper fadeInDown"

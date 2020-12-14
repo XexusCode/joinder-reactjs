@@ -14,8 +14,8 @@ describe("<SidebarLeft/>", function () {
   const user: UserEventObject = {
     username: "TestUser",
     rank: 1,
-    uid: "10",
     color: "red",
+    id: '3'
   };
 
   const initState = {

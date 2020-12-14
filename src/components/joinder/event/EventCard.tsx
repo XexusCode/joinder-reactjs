@@ -24,6 +24,8 @@ export const EventCard = ({
 }: EventCardParams): JSX.Element => {
   return (
       <Link
+          data-testid="test-title"
+
           onClick={() => {
             handleActiveEvent(event)
 
