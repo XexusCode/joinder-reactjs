@@ -24,7 +24,7 @@ export const LoginViewForm = ({
         <div id="formContent">
           <div className="fadeIn first">
             <img
-              src="https://i.pinimg.com/originals/46/bf/f2/46bff2a47eea2421c50e52f1200266d5.png"
+              src="https://i.gyazo.com/2c0032f42403c7a98928d6fdbea5bd71.png"
               id="icon"
               alt="User Icon"
             />
