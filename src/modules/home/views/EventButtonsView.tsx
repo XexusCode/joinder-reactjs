@@ -11,8 +11,8 @@ export const EventButtonsView = ({
 }: EventButtonsViewParams): JSX.Element => {
   return (
     <Container>
-      <Col>
-        <Row md={12} xs={11}>
+      <Col md={12} xs={6}>
+        <Row md={12} xs={6} >
           <Button
             variant="secondary"
             className="buttonadd"
@@ -24,9 +24,9 @@ export const EventButtonsView = ({
             Crear evento
           </Button>
         </Row>
-      </Col>
-      <Col>
-        <Row md={12} xs={1}>
+      </Col >
+      <Col md={12} xs={6}>
+        <Row md={12} xs={6}>
           <Button
             className="buttonjoin"
             style={{ color: "snow" }}

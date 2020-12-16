@@ -73,7 +73,6 @@ export const EventDataContainer: React.FC = () => {
       if (respuesta.success) {
         dispatch(addEvent(respuesta.data));
         handleActiveEvent(respuesta.data)
-        console.log(respuesta.data)
         history.push(`./evento/${respuesta.data.id}`)
 
       }
